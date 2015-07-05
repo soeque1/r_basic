@@ -1,5 +1,5 @@
 ---
-title       : "R 기초과정"
+title       : "R 기초과정 01"
 subtitle    : "그룹별 기술통계 "
 author      : "김형준"
 job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "

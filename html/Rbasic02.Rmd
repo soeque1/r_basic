@@ -1,6 +1,6 @@
 ---
-title       : "R 기초과정"
-subtitle    : "그룹별 기술통계 "
+title       : "R 기초과정 02"
+subtitle    : "집단비교"
 author      : "김형준"
 job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "
 logo        : logo_03.png

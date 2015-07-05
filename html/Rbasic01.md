@@ -1,5 +1,5 @@
 ---
-title       : "R 기초과정"
+title       : "R 기초과정 01"
 subtitle    : "그룹별 기술통계 "
 author      : "김형준"
 job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "
@@ -607,3 +607,5 @@ sapply(sale.month, function(x) mean(x$구매건수))
 ##        9       10       11       12 
 ## 23920.19 24190.30 24923.86 24290.30
 ```
+
+
