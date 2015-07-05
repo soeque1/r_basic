@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>R 기초과정</title>
+  <meta charset="utf-8">
+  <meta name="description" content="R 기초과정">
+  <meta name="author" content="김형준">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/logo_03.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>R 기초과정</h1>
+    <h2>그룹별 기술통계 </h2>
+    <p>김형준<br/>Analytic Director / (주) 퀀트랩 / kim@mindscale.kr </p>
+  </hgroup>
+  <article></article>  
+  <footer class = 'license'>
+    <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>
+    <img width = '80px' src = 'http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png'>
+    </a>
+  </footer>
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>기초 1 과정</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>학습 목표</h3>
+
+<p>엑셀 자동화 : 그룹별로 평균 / 중간값 구하기<br>
+데이터 불러오기<br>
+데이터 편집하기  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>오늘의 데이터</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##   매출월 요일 점포 성별 구매건수
+## 1    1월                        
+## 2                               
+## 3      1   월    a 남자    21451
+## 4      1   화    b   여    24922
+## 5      1   수    c 남자     8835
+## 6      1   목    d   여    13720
+</code></pre>
+
+<pre><code>##     매출월 요일 점포 성별 구매건수
+## 213    2월                        
+## 214                               
+## 215      2   월    a 남자    43421
+## 216      2   화    b   여    13416
+## 217      2   수    c 남자    24219
+## 218      2   목    d   여    20317
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="dark segue nobackground" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>데이터 불러오기</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>데이터 불러오기</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>경로 설정 : Session -&gt; Set Working Directory -&gt; Choose Directory</h3>
+
+<h3>Windows</h3>
+
+<pre><code class="r">#df &lt;- read.csv(&quot;data/sales.csv&quot;)
+</code></pre>
+
+<h3>MAC</h3>
+
+<pre><code class="r">df &lt;- read.csv(&quot;data/sales.csv&quot;, fileEncoding = &quot;CP949&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-5" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">df &lt;- read.csv(&quot;data/sales.csv&quot;, fileEncoding = &quot;CP949&quot;, stringsAsFactors=T)
+str(df)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    2544 obs. of  5 variables:
+##  $ 매출월  : Factor w/ 25 levels &quot;&quot;,&quot;1&quot;,&quot;10&quot;,&quot;10월&quot;,..: 9 1 2 2 2 2 2 2 2 2 ...
+##  $ 요일    : Factor w/ 8 levels &quot;&quot;,&quot;금&quot;,&quot;목&quot;,&quot;수&quot;,..: 1 1 5 8 4 3 2 7 6 5 ...
+##  $ 점포    : Factor w/ 16 levels &quot;&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,..: 1 1 2 3 4 5 6 7 8 9 ...
+##  $ 성별    : Factor w/ 3 levels &quot;&quot;,&quot;남자&quot;,&quot;여&quot;: 1 1 2 3 2 3 2 3 2 3 ...
+##  $ 구매건수: int  NA NA 21451 24922 8835 13720 10826 43319 2471 10457 ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Type</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>character<br>
+factor : levels<br>
+numeric : int(integer) , double<br>
+Logic : TRUE, FALSE  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>연습</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x &lt;- c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+y &lt;- c(1, 1, 3)
+str(x)
+</code></pre>
+
+<pre><code>##  chr [1:3] &quot;A&quot; &quot;B&quot; &quot;C&quot;
+</code></pre>
+
+<pre><code class="r">str(y)
+</code></pre>
+
+<pre><code>##  num [1:3] 1 1 3
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>logic</h2>
+  </hgroup>
+  <article data-timings="">
+      
+<div class='left' style='float:left;width:50%'>
+ <pre><code class="r">y == 1
+</code></pre>
+
+<pre><code>## [1]  TRUE  TRUE FALSE
+</code></pre>
+
+<pre><code class="r">y == 3
+</code></pre>
+
+<pre><code>## [1] FALSE FALSE  TRUE
+</code></pre>
+
+<pre><code class="r">y == 2
+</code></pre>
+
+<pre><code>## [1] FALSE FALSE FALSE
+</code></pre>
+
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <pre><code class="r">y[y == 1]
+</code></pre>
+
+<pre><code>## [1] 1 1
+</code></pre>
+
+<pre><code class="r">y[y == 2]
+</code></pre>
+
+<pre><code>## numeric(0)
+</code></pre>
+
+<pre><code class="r">y[y != 1]
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-9" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">xy &lt;- data.frame(x, y)
+xy
+</code></pre>
+
+<pre><code>##   x y
+## 1 A 1
+## 2 B 1
+## 3 C 3
+</code></pre>
+
+<pre><code class="r">xy[1, ]  ##  xy에서 1행 전체
+xy[2, ]  ##  xy에서 2행 전체
+xy[, 1]  ##  xy에서 1열 전체
+xy[, 2]  ##  xy에서 2열 전체
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-10" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">xy
+</code></pre>
+
+<pre><code>##   x y
+## 1 A 1
+## 2 B 1
+## 3 C 3
+</code></pre>
+
+<pre><code class="r">xy[1, 1] ##  xy 에서 1행, 1열 
+xy[1:3, 1] ##  xy 에서 1행 ~ 3행,  1열 
+xy[1:3, 1:2] ##  xy 에서 1행 ~ 3행,  1열 ~ 2열
+xy[1:2, ] ##  xy 에서 1행 ~ 2행,  1열 ~ 2열
+xy[1:2, -1] ##  xy 에서 1행 ~ 2행,  1열 제외
+xy[-c(1,3), ] ##  xy 에서 1행, 3행 제외,  1열
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-11" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">df &lt;- read.csv(&quot;data/sales.csv&quot;, fileEncoding = &quot;CP949&quot;, stringsAsFactors=F)
+str(df)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    2544 obs. of  5 variables:
+##  $ 매출월  : chr  &quot;1월&quot; &quot;&quot; &quot;1&quot; &quot;1&quot; ...
+##  $ 요일    : chr  &quot;&quot; &quot;&quot; &quot;월&quot; &quot;화&quot; ...
+##  $ 점포    : chr  &quot;&quot; &quot;&quot; &quot;a&quot; &quot;b&quot; ...
+##  $ 성별    : chr  &quot;&quot; &quot;&quot; &quot;남자&quot; &quot;여&quot; ...
+##  $ 구매건수: int  NA NA 21451 24922 8835 13720 10826 43319 2471 10457 ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-12" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">df[,&quot;성별&quot;] == &quot;남자&quot;
+</code></pre>
+
+<pre><code class="r">df[df[, &quot;성별&quot;] == &quot;남자&quot;, &quot;성별&quot;] &lt;- &quot;남&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-13" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">df[1:5, 1]
+</code></pre>
+
+<pre><code>## [1] &quot;1월&quot; &quot;&quot;    &quot;1&quot;   &quot;1&quot;   &quot;1&quot;
+</code></pre>
+
+<pre><code class="r">df[1:5, &quot;매출월&quot;]
+</code></pre>
+
+<pre><code>## [1] &quot;1월&quot; &quot;&quot;    &quot;1&quot;   &quot;1&quot;   &quot;1&quot;
+</code></pre>
+
+<pre><code class="r">df$매출월[1:5]
+</code></pre>
+
+<pre><code>## [1] &quot;1월&quot; &quot;&quot;    &quot;1&quot;   &quot;1&quot;   &quot;1&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-14" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">df[1:5, 1] == &quot;1월&quot;
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">df[1:5, &quot;매출월&quot;] == &quot;1월&quot;
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">df$매출월[1:5] == &quot;1월&quot;
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-15" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">man &lt;- df[df[,&quot;성별&quot;] == &quot;남&quot;, ]
+man &lt;- subset(df, 성별 == &quot;남&quot;)
+woman &lt;- subset(df, 성별 == &quot;여&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-16" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">man.mean &lt;- mean(man$구매건수)
+woman.mean &lt;- mean(woman$구매건수)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-17" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.mean, woman.mean))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-18" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.mean, woman.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = &quot;남녀 구매건수 평균&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-19" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.mean, woman.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = &quot;남녀 구매건수 평균&quot;,
+        col = c(&quot;red&quot;, &quot;blue&quot;))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-20" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.mean, woman.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = &quot;남녀 구매건수 평균&quot;,
+        col = c(&quot;red&quot;, &quot;blue&quot;),
+        density = 30)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-21" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.mean, woman.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = &quot;남녀 구매건수 평균&quot;,
+        col = c(&quot;red&quot;, &quot;blue&quot;),
+        density = 30,
+        legend = c(&quot;남&quot;, &quot;여&quot;))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-22" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">man.5 &lt;- subset(df, 매출월 == 5 &amp; 성별 == &quot;남&quot;)
+man.5.mean &lt;- mean(man.5$구매건수)
+
+woman.5 &lt;- subset(df, 매출월 == 5 &amp; 성별 == &quot;여&quot;)
+woman.5.mean &lt;- mean(woman.5$구매건수)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-23" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(c(man.5.mean, woman.5.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = &quot;5월 남녀 구매건수 평균 비교&quot;,
+        col = c(&quot;red&quot;, &quot;blue&quot;),
+        density = 30,
+        legend = c(&quot;남&quot;, &quot;여&quot;))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="dark segue nobackground" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>직접 해보기</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-25" style="background:;">
+  <hgroup>
+    <h3>Task 요일별 구매건수 평균 그래프 그리기</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">월 &lt;- subset(df, ??? == ?)
+화 &lt;- subset(df, ??? == ?)
+수 &lt;- subset(df, ??? == ?)
+목 &lt;- subset(df, ??? == ?)
+금 &lt;- subset(df, ??? == ?)
+토 &lt;- subset(df, ??? == ?)
+일 &lt;- subset(df, ??? == ?)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-26" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">월mean &lt;- ???
+화mean &lt;- ???
+수mean &lt;- ???
+목mean &lt;- ???
+금mean &lt;- ???
+토mean &lt;- ???
+일mean &lt;- ???
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-27" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">barplot(???, 
+        names.arg = c(&quot;월&quot;, &quot;화&quot;, &quot;수&quot;, &quot;목&quot;, &quot;금&quot;, &quot;토&quot;, &quot;일&quot;),
+        main = &quot;요일별 구매건수 평균 비교&quot;,
+        col = rainbow(7),
+        density = 30,
+        legend = c(&quot;월&quot;, &quot;화&quot;, &quot;수&quot;, &quot;목&quot;, &quot;금&quot;, &quot;토&quot;, &quot;일&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-28" style="background:;">
+  <hgroup>
+    <h3>Task 평일 vs 주말 구매건수 평균 그래프 그리기</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">평일 &lt;- subset(df, ??? == ?)  ### &quot;==&quot; 사용? &quot;%in%&quot; 사용?
+주말 &lt;- subset(df, ??? == ?)
+
+평일mean &lt;- ???
+주말mean &lt;- ???
+
+barplot(???, col = ???, legend = ???, density = ???)
+title(main = ???)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-29" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">paste(5, &quot;월&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;5 월&quot;
+</code></pre>
+
+<pre><code class="r">paste(5, &quot;월&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;5월&quot;
+</code></pre>
+
+<pre><code class="r">sprintf(&quot;%d%s&quot;, 5, &quot;월&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;5월&quot;
+</code></pre>
+
+<pre><code class="r">sprintf(&quot;%02d%s&quot;, 5, &quot;월&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;05월&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-30" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">for (i in 1:5)
+    {
+        print(i)
+    }
+</code></pre>
+
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+</code></pre>
+
+<pre><code class="r">for (i in 1:5)
+    {
+        print(paste(i, &quot;월&quot;))
+        break
+    }
+</code></pre>
+
+<pre><code>## [1] &quot;1 월&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-31" style="background:;">
+  <hgroup>
+    <h3>월별 &amp; 성별 (5월 ~ 9월)</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">for (i in 5:9)
+{
+    man &lt;- subset(df, 매출월 == i &amp; 성별 == &quot;남&quot;)
+    man.mean &lt;- mean(man$구매건수)
+
+    woman &lt;- subset(df, 매출월 == i &amp; 성별 == &quot;여&quot;)
+    woman.mean &lt;- mean(woman$구매건수)
+
+    png(filename = sprintf(&quot;%d%s&quot;, i, &quot;.png&quot;))
+    barplot(c(man.mean, woman.mean), 
+        names.arg = c(&quot;남&quot;, &quot;여&quot;),
+        main = paste(i, &quot;월 남녀 구매건수 평균&quot;),
+        col = c(&quot;red&quot;, &quot;blue&quot;),
+        density = 30,
+        legend = c(&quot;남&quot;, &quot;여&quot;))
+    dev.off()
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-32" style="background:;">
+  <hgroup>
+    <h3>상반기 vs 하반기</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">df &lt;- df[df[,&quot;매출월&quot;] %in% 1:12,]
+df[,&quot;매출월&quot;] &lt;- as.numeric(df[,&quot;매출월&quot;])
+df.first &lt;- subset(df, 매출월 &lt;= 6 )
+mean(df.first$구매건수)
+</code></pre>
+
+<pre><code>## [1] 24601.29
+</code></pre>
+
+<pre><code class="r">df.latter &lt;- subset(df, 매출월 &gt; 6 )
+mean(df.latter$구매건수)
+</code></pre>
+
+<pre><code>## [1] 24504.51
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-33" style="background:;">
+  <hgroup>
+    <h3>12개월</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">sale.month &lt;- split(df, df$매출월)
+sapply(sale.month, function(x) mean(x$구매건수))
+</code></pre>
+
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 24347.91 25708.40 25529.28 25247.96 23154.91 23619.28 25220.08 24482.36 
+##        9       10       11       12 
+## 23920.19 24190.30 24923.86 24290.30
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='기초 1 과정'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='오늘의 데이터'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='데이터 불러오기'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='데이터 불러오기'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Type'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='연습'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='logic'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title=''>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title=''>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title=''>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title=''>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title=''>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title=''>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title=''>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title=''>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title=''>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title=''>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title=''>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title=''>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title=''>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='직접 해보기'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Task 요일별 구매건수 평균 그래프 그리기'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title=''>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title=''>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Task 평일 vs 주말 구매건수 평균 그래프 그리기'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title=''>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title=''>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='월별 &amp; 성별 (5월 ~ 9월)'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='상반기 vs 하반기'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='12개월'>
+         33
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
