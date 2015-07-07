@@ -16,11 +16,14 @@ knit        : slidify::knit2slides
 
 ## 기초 1 과정
 
-### 학습 목표
+- 데이터 : 총 15개 업종의 1년치 구매건수 (가상의) 데이터 
+- 월 * 업종 * 성별 * 요일의 변수가 존재
 
-엑셀 자동화 : 그룹별로 평균 / 중간값 구하기   
-데이터 불러오기  
-데이터 편집하기  
+### 학습 목표 : 엑셀 기능들을 R로 구현하여 자동화 하기 
+- 데이터 불러오기  
+- 데이터 편집하기  
+- 그룹별로 평균 구하기  
+- 그래프 그리기  
 
 ---  .new-background
 
@@ -98,10 +101,10 @@ str(df)
 
 ## Type
 
-character  
-factor : levels  
-numeric : int(integer) , double  
-Logic : TRUE, FALSE  
+- character  
+- factor : levels  
+- numeric : int(integer) , double  
+- Logic : TRUE, FALSE  
 
 --- .new-background
 
@@ -598,6 +601,19 @@ mean(df.latter$구매건수)
 
 ```r
 sale.month <- split(df, df$매출월)
+
+for (i in 1:2)
+{
+    print(mean(sale.month[i][[1]]$구매건수))
+}
+```
+
+```
+## [1] 24347.91
+## [1] 25708.4
+```
+
+```r
 sapply(sale.month, function(x) mean(x$구매건수))
 ```
 

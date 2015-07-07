@@ -18,7 +18,8 @@ knit        : slidify::knit2slides
 
 ### 학습 목표
 
-데이터 편집하기 
+데이터 편집하기  
+Missing 다루기  
 집단 평균 비교하기  
 상관관계 이해하기
 
@@ -30,7 +31,15 @@ knit        : slidify::knit2slides
 ```{r, echo=F}
 par(family="NanumGothic")
 setwd("/Users/kimhyungjun/Dropbox/repo/r_basic/html")
-df <- read.csv("data/salesC.csv", fileEncoding = "CP949")
+df <- read.csv("data/salesC.csv", fileEncoding = "CP949", stringsAsFactors = F)
+str(df)
+```
+
+---  .new-background
+
+```{r}
+df <- read.csv("data/salesC.csv", fileEncoding = "CP949", stringsAsFactors = F, na.strings = c(".", "#"))
+str(df)
 ```
 
 ---  .new-background
@@ -48,8 +57,9 @@ table(df$점포)
 ```{r}
 df.first <- subset(df, 매출월 <= 6 )
 mean(df.first$구매건수)
+mean(df.first$구매건수, na.rm = T)
 df.latter <- subset(df, 매출월 > 6 )
-mean(df.latter$구매건수)
+mean(df.latter$구매건수, na.rm = T)
 ```
 
 ---  .new-background
@@ -70,9 +80,55 @@ hist(df.latter$구매건수, xlab = "구매건수", main = "하반기")
 
 ---  .new-background
 
+### 상반기 vs 하반기
+
+```{r, message=F}
+library(bootstrap)
+```
+
+```{r}
+상반기 <- na.omit(df.first$구매건수)
+하반기 <- na.omit(df.latter$구매건수)
+hist(bootstrap(상반기, 5, mean)$thetastar - bootstrap(하반기, 5, mean)$thetastar, main = "상반기 - 하반기", xlab = "평균 차이")
+```
+
+---  .new-background
+
+### 상반기 vs 하반기
+
+```{r}
+hist(bootstrap(상반기, 5000, mean)$thetastar - bootstrap(하반기, 5000, mean)$thetastar, main = "상반기 - 하반기", xlab = "평균 차이")
+```
+
+---  .new-background
+
+### 상반기 vs 상반기
+
+```{r}
+hist(bootstrap(상반기, 5000, mean)$thetastar - bootstrap(상반기, 5000, mean)$thetastar, main = "상반기 - 상반기", xlab = "평균 차이")
+```
+
+--- &twocol w1:50% w2:50% .new-background
+
+*** =left
+
+```{r}
+hist(bootstrap(상반기, 5000, mean)$thetastar - bootstrap(하반기, 5000, mean)$thetastar, main = "상반기 - 하반기", xlab = "평균 차이")
+```
+
+*** =right
+
+```{r}
+hist(bootstrap(상반기, 5000, mean)$thetastar - bootstrap(상반기, 5000, mean)$thetastar, main = "상반기 - 상반기", xlab = "평균 차이")
+```
+
+
+---  .new-background
+
 ```{r}
 var.test(df.first$구매건수, df.latter$구매건수)
 ```
+
 
 ---  .new-background
 
@@ -83,7 +139,7 @@ t.test(df.first$구매건수, df.latter$구매건수)
 ---  .new-background
 
 ```{r}
-df.high <- df[df$구매건수 >= quantile(df$구매건수, probs = .9), ]
+df.high <- df[df$구매건수 >= quantile(df$구매건수, probs = .9, na.rm = T), ]
 mosaicplot(df.high$성별 ~ df.high$요일, 
            main="성별 by 요일", shade=F, 
            color = 1:7, xlab="성별", ylab="요일")
@@ -116,6 +172,30 @@ t.test(구매건수 ~ 성별, df.sunday)
 ---  .new-background
 
 ```{r}
-df.month <- sapply(split(df, df$점포), function(x) x$구매건수)
-cor(df.month)
+x = 1:10; y = c(1,3,2,4,5,6,7,9,8,10);
+plot(x, y)
+cor(x,y)
 ```
+
+---  .new-background
+
+```{r}
+x = 1:10; y = c(5,10,1,6,4,3,7,9,8,3);
+plot(x, y)
+cor(x,y)
+```
+
+---  .new-background
+
+```{r}
+df$요일 <- factor(df$요일, levels = c("월", "화", "수", "목", "금", "토", "일"))
+df.month <- sapply(split(df, df$요일), function(x) x$구매건수)
+cor(df.month, use = "pairwise")
+```
+
+---  .new-background
+
+```{r}
+cor(df.month, use = "complete")
+```
+
