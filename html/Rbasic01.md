@@ -27,6 +27,45 @@ knit        : slidify::knit2slides
 
 ---  .new-background
 
+## R
+
+* R 언어는 통계 <U>계산</U>과 <U>그래픽</U>을 위한 프로그래밍 언어  
+* S-PLUS -> R (1997, GNU PROJECT)  
+
+* 한계 : R’s biggest challenge is that most R users are not programmers  
+* 극복 : Solving the “Two-Language” Problem  
+
+### 설치 
+ 
+* Install [R](http://www.r-project.org/)  
+* Install the lastest version of [RStudio](http://rstudio.org/download/)  
+
+--- .new-background
+
+## 적절한 code editor 고르기
+예) R Studio
+![alt rstudio](assets/img/rstudio.png)
+
+--- .new-background
+
+## Introduction
+    
+- The "Comprehensive R Archive Network" (CRAN)  
+is a collection of sites which carry identical material, consisting of the R distribution(s), the contributed extensions, documentation for R, and binaries.
+
+### 장점  
+- Freeware
+- 대화식 프로그램
+- 방대한 라이브러리
+- 다양한 OS 지원 / Java, C, Fortran 프로그래밍 인터페이스
+- 다양한 그래픽 지원
+
+### 단점
+- Freeware --> 저자 마음대로 input 설정
+- 국내자료가 부족
+
+--- .new-background
+
 ## 오늘의 데이터
 
 
@@ -101,10 +140,10 @@ str(df)
 
 ## Type
 
-- character  
-- factor : levels  
-- numeric : int(integer) , double  
-- Logic : TRUE, FALSE  
+- character # 문자열 (예, 사람 이름)   
+- factor : levels # 요인 (예, 성별, 요일, 업종)  
+- numeric : int(integer) , double (예, 숫자)  
+- Logic : TRUE, FALSE    
 
 --- .new-background
 
@@ -321,8 +360,16 @@ df$매출월[1:5] == "1월"
 
 
 ```r
-man <- df[df[,"성별"] == "남", ]
+man.temp <- df[df[,"성별"] == "남", ]
 man <- subset(df, 성별 == "남")
+all.equal(man.temp, man)
+```
+
+```
+## [1] TRUE
+```
+
+```r
 woman <- subset(df, 성별 == "여")
 ```
 
@@ -332,6 +379,9 @@ woman <- subset(df, 성별 == "여")
 ```r
 man.mean <- mean(man$구매건수)
 woman.mean <- mean(woman$구매건수)
+
+man.sum <- sum(man$구매건수)
+woman.sum <- sum(woman$구매건수)
 ```
 
 ---  .new-background
@@ -360,8 +410,7 @@ barplot(c(man.mean, woman.mean),
 ```r
 barplot(c(man.mean, woman.mean), 
         names.arg = c("남", "여"),
-        main = "남녀 구매건수 평균",
-        col = c("red", "blue"))
+        main = "남녀 구매건수 평균", col = c("red", "blue"))
 ```
 
 ![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
@@ -372,22 +421,18 @@ barplot(c(man.mean, woman.mean),
 ```r
 barplot(c(man.mean, woman.mean), 
         names.arg = c("남", "여"),
-        main = "남녀 구매건수 평균",
-        col = c("red", "blue"),
-        density = 30)
+        main = "남녀 구매건수 평균", col = c("red", "blue"), density = 30)
 ```
 
 ![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png) 
 
----  .new-background
+---  .new-background .modal
 
 
 ```r
 barplot(c(man.mean, woman.mean), 
         names.arg = c("남", "여"),
-        main = "남녀 구매건수 평균",
-        col = c("red", "blue"),
-        density = 30,
+        main = "남녀 구매건수 평균", col = c("red", "blue"), density = 30, 
         legend = c("남", "여"))
 ```
 
@@ -404,16 +449,14 @@ woman.5 <- subset(df, 매출월 == 5 & 성별 == "여")
 woman.5.mean <- mean(woman.5$구매건수)
 ```
 
----  .new-background
+---  .new-background .modal
 
 
 ```r
 barplot(c(man.5.mean, woman.5.mean), 
         names.arg = c("남", "여"),
-        main = "5월 남녀 구매건수 평균 비교",
-        col = c("red", "blue"),
-        density = 30,
-        legend = c("남", "여"))
+        main = "5월 남녀 구매건수 평균 비교", col = c("red", "blue"),
+        density = 30, legend = c("남", "여"))
 ```
 
 ![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png) 
@@ -596,7 +639,7 @@ mean(df.latter$구매건수)
 
 ---  .new-background
 
-### 12개월
+## 12개월 (다음 시간에는)
 
 
 ```r

@@ -74,6 +74,72 @@
 
 <slide class="new-background" id="slide-2" style="background:;">
   <hgroup>
+    <h2>R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R 언어는 통계 <U>계산</U>과 <U>그래픽</U>을 위한 프로그래밍 언어<br></li>
+<li><p>S-PLUS -&gt; R (1997, GNU PROJECT)  </p></li>
+<li><p>한계 : R’s biggest challenge is that most R users are not programmers  </p></li>
+<li><p>극복 : Solving the “Two-Language” Problem  </p></li>
+</ul>
+
+<h3>설치</h3>
+
+<ul>
+<li>Install <a href="http://www.r-project.org/">R</a><br></li>
+<li>Install the lastest version of <a href="http://rstudio.org/download/">RStudio</a><br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>적절한 code editor 고르기</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>예) R Studio
+<img src="assets/img/rstudio.png" alt="alt rstudio"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The &quot;Comprehensive R Archive Network&quot; (CRAN)<br>
+is a collection of sites which carry identical material, consisting of the R distribution(s), the contributed extensions, documentation for R, and binaries.</li>
+</ul>
+
+<h3>장점</h3>
+
+<ul>
+<li>Freeware</li>
+<li>대화식 프로그램</li>
+<li>방대한 라이브러리</li>
+<li>다양한 OS 지원 / Java, C, Fortran 프로그래밍 인터페이스</li>
+<li>다양한 그래픽 지원</li>
+</ul>
+
+<h3>단점</h3>
+
+<ul>
+<li>Freeware --&gt; 저자 마음대로 input 설정</li>
+<li>국내자료가 부족</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-5" style="background:;">
+  <hgroup>
     <h2>오늘의 데이터</h2>
   </hgroup>
   <article data-timings="">
@@ -99,7 +165,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="dark segue nobackground" id="slide-3" style="background:;">
+<slide class="dark segue nobackground" id="slide-6" style="background:;">
   <hgroup>
     <h2>데이터 불러오기</h2>
   </hgroup>
@@ -109,7 +175,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-4" style="background:;">
+<slide class="new-background" id="slide-7" style="background:;">
   <hgroup>
     <h2>데이터 불러오기</h2>
   </hgroup>
@@ -130,7 +196,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-5" style="background:;">
+<slide class="new-background" id="slide-8" style="background:;">
   <article data-timings="">
     <pre><code class="r">df &lt;- read.csv(&quot;data/sales.csv&quot;, fileEncoding = &quot;CP949&quot;, stringsAsFactors=T)
 str(df)
@@ -148,15 +214,15 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-6" style="background:;">
+<slide class="new-background" id="slide-9" style="background:;">
   <hgroup>
     <h2>Type</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>character<br></li>
-<li>factor : levels<br></li>
-<li>numeric : int(integer) , double<br></li>
+<li>character # 문자열 (예, 사람 이름)<br></li>
+<li>factor : levels # 요인 (예, 성별, 요일, 업종)<br></li>
+<li>numeric : int(integer) , double (예, 숫자)<br></li>
 <li>Logic : TRUE, FALSE<br></li>
 </ul>
 
@@ -164,7 +230,7 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-7" style="background:;">
+<slide class="new-background" id="slide-10" style="background:;">
   <hgroup>
     <h2>연습</h2>
   </hgroup>
@@ -187,7 +253,7 @@ str(x)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-8" style="background:;">
+<slide class="new-background" id="slide-11" style="background:;">
   <hgroup>
     <h2>logic</h2>
   </hgroup>
@@ -237,7 +303,7 @@ str(x)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-9" style="background:;">
+<slide class="new-background" id="slide-12" style="background:;">
   <article data-timings="">
     <pre><code class="r">xy &lt;- data.frame(x, y)
 xy
@@ -259,7 +325,7 @@ xy[, 2]  ##  xy에서 2열 전체
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-10" style="background:;">
+<slide class="new-background" id="slide-13" style="background:;">
   <article data-timings="">
     <pre><code class="r">xy
 </code></pre>
@@ -282,7 +348,7 @@ xy[-c(1,3), ] ##  xy 에서 1행, 3행 제외,  1열
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-11" style="background:;">
+<slide class="new-background" id="slide-14" style="background:;">
   <article data-timings="">
     <pre><code class="r">df &lt;- read.csv(&quot;data/sales.csv&quot;, fileEncoding = &quot;CP949&quot;, stringsAsFactors=F)
 str(df)
@@ -300,7 +366,7 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-12" style="background:;">
+<slide class="new-background" id="slide-15" style="background:;">
   <article data-timings="">
     <pre><code class="r">df[,&quot;성별&quot;] == &quot;남자&quot;
 </code></pre>
@@ -312,7 +378,7 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-13" style="background:;">
+<slide class="new-background" id="slide-16" style="background:;">
   <article data-timings="">
     <pre><code class="r">df[1:5, 1]
 </code></pre>
@@ -336,7 +402,7 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-14" style="background:;">
+<slide class="new-background" id="slide-17" style="background:;">
   <article data-timings="">
     <pre><code class="r">df[1:5, 1] == &quot;1월&quot;
 </code></pre>
@@ -360,28 +426,37 @@ str(df)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-15" style="background:;">
+<slide class="new-background" id="slide-18" style="background:;">
   <article data-timings="">
-    <pre><code class="r">man &lt;- df[df[,&quot;성별&quot;] == &quot;남&quot;, ]
+    <pre><code class="r">man.temp &lt;- df[df[,&quot;성별&quot;] == &quot;남&quot;, ]
 man &lt;- subset(df, 성별 == &quot;남&quot;)
-woman &lt;- subset(df, 성별 == &quot;여&quot;)
+all.equal(man.temp, man)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">woman &lt;- subset(df, 성별 == &quot;여&quot;)
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-16" style="background:;">
+<slide class="new-background" id="slide-19" style="background:;">
   <article data-timings="">
     <pre><code class="r">man.mean &lt;- mean(man$구매건수)
 woman.mean &lt;- mean(woman$구매건수)
+
+man.sum &lt;- sum(man$구매건수)
+woman.sum &lt;- sum(woman$구매건수)
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-17" style="background:;">
+<slide class="new-background" id="slide-20" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.mean, woman.mean))
 </code></pre>
@@ -392,7 +467,7 @@ woman.mean &lt;- mean(woman$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-18" style="background:;">
+<slide class="new-background" id="slide-21" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.mean, woman.mean), 
         names.arg = c(&quot;남&quot;, &quot;여&quot;),
@@ -405,12 +480,11 @@ woman.mean &lt;- mean(woman$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-19" style="background:;">
+<slide class="new-background" id="slide-22" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.mean, woman.mean), 
         names.arg = c(&quot;남&quot;, &quot;여&quot;),
-        main = &quot;남녀 구매건수 평균&quot;,
-        col = c(&quot;red&quot;, &quot;blue&quot;))
+        main = &quot;남녀 구매건수 평균&quot;, col = c(&quot;red&quot;, &quot;blue&quot;))
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
@@ -419,13 +493,11 @@ woman.mean &lt;- mean(woman$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-20" style="background:;">
+<slide class="new-background" id="slide-23" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.mean, woman.mean), 
         names.arg = c(&quot;남&quot;, &quot;여&quot;),
-        main = &quot;남녀 구매건수 평균&quot;,
-        col = c(&quot;red&quot;, &quot;blue&quot;),
-        density = 30)
+        main = &quot;남녀 구매건수 평균&quot;, col = c(&quot;red&quot;, &quot;blue&quot;), density = 30)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-23-1.png" alt="plot of chunk unnamed-chunk-23"> </p>
@@ -434,13 +506,11 @@ woman.mean &lt;- mean(woman$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-21" style="background:;">
+<slide class="new-background modal" id="slide-24" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.mean, woman.mean), 
         names.arg = c(&quot;남&quot;, &quot;여&quot;),
-        main = &quot;남녀 구매건수 평균&quot;,
-        col = c(&quot;red&quot;, &quot;blue&quot;),
-        density = 30,
+        main = &quot;남녀 구매건수 평균&quot;, col = c(&quot;red&quot;, &quot;blue&quot;), density = 30, 
         legend = c(&quot;남&quot;, &quot;여&quot;))
 </code></pre>
 
@@ -450,7 +520,7 @@ woman.mean &lt;- mean(woman$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-22" style="background:;">
+<slide class="new-background" id="slide-25" style="background:;">
   <article data-timings="">
     <pre><code class="r">man.5 &lt;- subset(df, 매출월 == 5 &amp; 성별 == &quot;남&quot;)
 man.5.mean &lt;- mean(man.5$구매건수)
@@ -463,14 +533,12 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-23" style="background:;">
+<slide class="new-background modal" id="slide-26" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(c(man.5.mean, woman.5.mean), 
         names.arg = c(&quot;남&quot;, &quot;여&quot;),
-        main = &quot;5월 남녀 구매건수 평균 비교&quot;,
-        col = c(&quot;red&quot;, &quot;blue&quot;),
-        density = 30,
-        legend = c(&quot;남&quot;, &quot;여&quot;))
+        main = &quot;5월 남녀 구매건수 평균 비교&quot;, col = c(&quot;red&quot;, &quot;blue&quot;),
+        density = 30, legend = c(&quot;남&quot;, &quot;여&quot;))
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"> </p>
@@ -479,7 +547,7 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="dark segue nobackground" id="slide-24" style="background:;">
+<slide class="dark segue nobackground" id="slide-27" style="background:;">
   <hgroup>
     <h2>직접 해보기</h2>
   </hgroup>
@@ -489,7 +557,7 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-25" style="background:;">
+<slide class="new-background" id="slide-28" style="background:;">
   <hgroup>
     <h3>Task 요일별 구매건수 평균 그래프 그리기</h3>
   </hgroup>
@@ -507,7 +575,7 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-26" style="background:;">
+<slide class="new-background" id="slide-29" style="background:;">
   <article data-timings="">
     <pre><code class="r">월mean &lt;- ???
 화mean &lt;- ???
@@ -522,7 +590,7 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-27" style="background:;">
+<slide class="new-background" id="slide-30" style="background:;">
   <article data-timings="">
     <pre><code class="r">barplot(???, 
         names.arg = c(&quot;월&quot;, &quot;화&quot;, &quot;수&quot;, &quot;목&quot;, &quot;금&quot;, &quot;토&quot;, &quot;일&quot;),
@@ -536,7 +604,7 @@ woman.5.mean &lt;- mean(woman.5$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-28" style="background:;">
+<slide class="new-background" id="slide-31" style="background:;">
   <hgroup>
     <h3>Task 평일 vs 주말 구매건수 평균 그래프 그리기</h3>
   </hgroup>
@@ -555,7 +623,7 @@ title(main = ???)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-29" style="background:;">
+<slide class="new-background" id="slide-32" style="background:;">
   <article data-timings="">
     <pre><code class="r">paste(5, &quot;월&quot;)
 </code></pre>
@@ -585,7 +653,7 @@ title(main = ???)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-30" style="background:;">
+<slide class="new-background" id="slide-33" style="background:;">
   <article data-timings="">
     <pre><code class="r">for (i in 1:5)
     {
@@ -614,7 +682,7 @@ title(main = ???)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-31" style="background:;">
+<slide class="new-background" id="slide-34" style="background:;">
   <hgroup>
     <h3>월별 &amp; 성별 (5월 ~ 9월)</h3>
   </hgroup>
@@ -642,7 +710,7 @@ title(main = ???)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-32" style="background:;">
+<slide class="new-background" id="slide-35" style="background:;">
   <hgroup>
     <h3>상반기 vs 하반기</h3>
   </hgroup>
@@ -667,9 +735,9 @@ mean(df.latter$구매건수)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="new-background" id="slide-33" style="background:;">
+<slide class="new-background" id="slide-36" style="background:;">
   <hgroup>
-    <h3>12개월</h3>
+    <h2>12개월 (다음 시간에는)</h2>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">sale.month &lt;- split(df, df$매출월)
@@ -709,61 +777,61 @@ for (i in 1:2)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='오늘의 데이터'>
+        data-slide=2 title='R'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='데이터 불러오기'>
+        data-slide=3 title='적절한 code editor 고르기'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='데이터 불러오기'>
+        data-slide=4 title='Introduction'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title=''>
+        data-slide=5 title='오늘의 데이터'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Type'>
+        data-slide=6 title='데이터 불러오기'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='연습'>
+        data-slide=7 title='데이터 불러오기'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='logic'>
+        data-slide=8 title=''>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title=''>
+        data-slide=9 title='Type'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title=''>
+        data-slide=10 title='연습'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title=''>
+        data-slide=11 title='logic'>
          11
       </a>
     </li>
@@ -841,13 +909,13 @@ for (i in 1:2)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='직접 해보기'>
+        data-slide=24 title=''>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Task 요일별 구매건수 평균 그래프 그리기'>
+        data-slide=25 title=''>
          25
       </a>
     </li>
@@ -859,13 +927,13 @@ for (i in 1:2)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title=''>
+        data-slide=27 title='직접 해보기'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Task 평일 vs 주말 구매건수 평균 그래프 그리기'>
+        data-slide=28 title='Task 요일별 구매건수 평균 그래프 그리기'>
          28
       </a>
     </li>
@@ -883,20 +951,38 @@ for (i in 1:2)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='월별 &amp; 성별 (5월 ~ 9월)'>
+        data-slide=31 title='Task 평일 vs 주말 구매건수 평균 그래프 그리기'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='상반기 vs 하반기'>
+        data-slide=32 title=''>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='12개월'>
+        data-slide=33 title=''>
          33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='월별 &amp; 성별 (5월 ~ 9월)'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='상반기 vs 하반기'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='12개월 (다음 시간에는)'>
+         36
       </a>
     </li>
   </ul>
