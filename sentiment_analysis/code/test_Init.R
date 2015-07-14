@@ -46,13 +46,14 @@ preprocess_text_test <- function(texts, sparse.rate)
 setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
 
 ### 영화 
-fileName <- sprintf("%s%s", getwd(), "/data/IMDBmovie/labeledTrainData.tsv")
+fileName <- "data/IMDBmovie/labeledTrainData.tsv"
 data <- read.csv(fileName, header=T, sep="\t", quote="")
 data <- data[1:10000, ] ## 테스트 위해서는 1000개만 
 
 totalNum <- 1:nrow(data)
-trainingNum <- sample(totalNum, nrow(data)*.7, replace = F)
-testNum <- setdiff(totalNum, trainingNum)
+shuffledNum <- sample(totalNum, nrow(data), replace = F)
+trainingNum <- shuffledNum[1:7000]
+testNum <- shuffledNum[7001:10000]
 
 train.data <- data[trainingNum, ]
 test.data <- data[testNum, ]
@@ -60,6 +61,7 @@ test.data <- data[testNum, ]
 sparse.rate <- .9999
 tdm.train <- preprocess_text(train.data$review, sparse.rate)
 
+# NOTE: 여기서 상위 1000단어만 자를거면 removeSparseTerms를 쓸 필요가 있나?
 library(slam)
 word.count = as.array(rollup(tdm.train, 2))
 word.order = order(word.count, decreasing = T)
@@ -113,9 +115,9 @@ findCutpoint <- function(predSentiment, dataSentiment)
 {
     pred <- prediction(predSentiment, dataSentiment)
     perf <- performance(pred,"tpr", "fpr")
-    auc<-performance(pred,"auc")
+    auc <- performance(pred,"auc")
     auc <- unlist(slot(auc, "y.values"))
-    acc <-performance(pred,"acc")
+    acc <- performance(pred,"acc")
     cutpoint <- unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))]
     return(cutpoint)
 }
