@@ -3,22 +3,22 @@ library(tm)
 
 #strsplit_space_tokenizer <- function(x)
 #    unlist(strsplit(as.character(x), "[[:space:]]+")) ## windows에서 한글 때문에 
-    #unlist(strsplit(as.character(x), "([[:punct:]]|[0-9]|[[:space:]])+"))
+#unlist(strsplit(as.character(x), "([[:punct:]]|[0-9]|[[:space:]])+"))
 
 preprocess_text <- function(texts) #, sparse.rate)
 {
     corpus <- Corpus(VectorSource(texts))
-        
+    
     tdm <- TermDocumentMatrix(corpus, 
                               control=list(#tokenize = strsplit_space_tokenizer,
-                                           stemming = T,
-                                           tolower = T,
-                                           removePunctuation = T,
-                                           removeNumbers = T,
-                                           stopwords=stopwords("SMART")))
-
+                                  stemming = T,
+                                  tolower = T,
+                                  removePunctuation = T,
+                                  removeNumbers = T,
+                                  stopwords=stopwords("SMART")))
     
-#    tdm <- removeSparseTerms(tdm, sparse.rate)
+    
+    #    tdm <- removeSparseTerms(tdm, sparse.rate)
     
     return(tdm)
 }
@@ -29,16 +29,16 @@ preprocess_text_test <- function(texts) #, sparse.rate)
     
     test.tdm <- TermDocumentMatrix(corpus, 
                                    control=list(#tokenize = strsplit_space_tokenizer,
-                                                dictionary = Terms(tdm.train), 
-                                                stemming = T,
-                                                tolower = T,
-                                                removePunctuation = T,
-                                                removeNumbers = T,
-                                                stopwords=stopwords("SMART")))
+                                       dictionary = Terms(tdm.train), 
+                                       stemming = T,
+                                       tolower = T,
+                                       removePunctuation = T,
+                                       removeNumbers = T,
+                                       stopwords=stopwords("SMART")))
     
     test.dtm <- as.DocumentTermMatrix(test.tdm)
     
-#   test.dtm <- removeSparseTerms(test.dtm, sparse.rate)
+    #   test.dtm <- removeSparseTerms(test.dtm, sparse.rate)
     
     return(test.dtm)
 }
@@ -90,10 +90,10 @@ library(glmnet)
 
 alpha <- .2 # 그냥 알파 고정
 cv.res <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
-                                             type.measure = "auc", 
-                                             nfolds = 4,
-                                             family = "binomial", 
-                                             alpha = alpha)
+                    type.measure = "auc", 
+                    nfolds = 4,
+                    family = "binomial", 
+                    alpha = alpha)
 
 res.coef <- coef(cv.res, s = "lambda.min") # res.coef[1:6,1]
 res.coef.num <- res.coef[,1]
@@ -165,7 +165,7 @@ confusionMatrix(test.sentiScore.b, data$sentiment[testNum])
 library(XML)
 library(rvest)
 
-posfileName <- sprintf("%s%s", getwd(), "/data/dvd/positive.review")
+posfileName <- sprintf("%s%s", getwd(), "/data/books/positive.review")
 data.pos <- htmlParse(posfileName)
 titles <- data.pos %>% html_nodes("title") %>% html_text()
 texts <- data.pos %>% html_nodes("review_text") %>% html_text()
@@ -173,13 +173,13 @@ points <- data.pos %>% html_nodes("rating") %>% html_text()
 bpoints <- rep(1, length(points))
 dt.pos <- data.frame(titles, texts, points, bpoints)
 
-negfileName <- sprintf("%s%s", getwd(), "/data/dvd/negative.review")
+negfileName <- sprintf("%s%s", getwd(), "/data/books/negative.review")
 data.neg <- htmlParse(negfileName)
 titles <- data.neg %>% html_nodes("title") %>% html_text()
 texts <- data.neg %>% html_nodes("review_text") %>% html_text()
 points <- data.neg %>% html_nodes("rating") %>% html_text()
 bpoints <- rep(0, length(points))
-               
+
 dt.neg <- data.frame(titles, texts, points, bpoints)
 dt <- rbind(dt.pos, dt.neg)
 
