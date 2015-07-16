@@ -1,0 +1,263 @@
+---
+title       : "Sentiment Analysis"
+subtitle    : "감정사전 & 감정점수 만들기"
+author      : "김형준"
+job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "
+logo        : logo_03.png
+license     : by-nc-sa
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+widgets     : []            # {mathjax, bootstrap, quiz}
+mode        : selfcontained
+hitheme     : tomorrow      # {tomorrow, tomorrow_night, solarized_dark, solarized_light}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+knit        : slidify::knit2slides
+
+---
+
+<center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center>
+
+--- .new-background
+
+## 워크숍 관련 온라인 사이트
+
+http://course.mindscale.kr/course/text-analysis
+
+<left><img src="assets/img/courses.png" height=450px width=600px></left>
+
+--- .new-background
+
+## 오늘의 목표  
+
+### 감정 사전 만들기  
+### 감정 점수 만들기  
+
+### 상관관계  
+### 회귀분석  
+### 모형평가  
+
+--- .newbackground
+
+## 감정분석
+
+- 감정 사전을 기반으로 텍스트 자료에서 긍정 단어와 부정 단어의 비율을 계산  
+- 감정 사전을 어떻게 만들 것인가?
+
+--- .newbackground
+
+## 사전지식 
+
+예측이란 무엇?
+
+자기자신 : Y가 변화하는 추세  
+다른변수 : X가 Y를 예측  
+- 키로 몸무게를 예측!  
+- 키로 성적을 예측?  
+- 예측이 잘 되려면 서로 상관(관련성)이 높아야 함  
+-> 감정단어로 영화 평점을 예측  
+
+--- .newbackground
+
+## 회귀분석(선형(직선) 모형) 
+
+### 예시
+
+- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  
+- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소  
+- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  
+- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  
+
+--- &twocol .modal
+
+## 상관관계
+
+*** =left
+
+```{r, echo = F}
+x <- 1:10
+y <- 1:10
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(x, y)
+cor(x, y)
+```
+
+*** =right
+
+```{r, echo = F}
+x <- 1:10
+y <- 1:10
+y[2] <- 10
+y[8] <- 3
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(x, y)
+cor(x, y)
+```
+
+--- .newbackground .modal
+
+## 상관관계
+
+- x가 증가(혹은 감소)할때 y가 증가(혹은 감소)하는 정도
+
+### scale
+
+키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가  
+키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  
+
+### -> 표준화해야 한다 
+
+--- &twocol .modal
+
+## 둘 중 무엇이 상관이 더 클까요?
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, ylim = c(70,90))
+#cor(weights, heights)
+```
+
+*** =right
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+weights = weights / 10 + 70
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, ylim = c(70,90))
+#cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6}
+plot(heights, weights, pch = 16, ylim = c(70,90))
+abline(lm(weights ~ heights), col="red")
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=5}
+library(xtable)
+library(lm.beta)
+print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
+```
+
+```{r}
+cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo = F}
+weights = weights / 10 + 70
+#hist(weights);hist(heights)
+```
+
+```{r, echo=F,warning=F, fig.width=6}
+plot(heights, weights, pch = 16, ylim = c(70,90))
+abline(lm(weights ~ heights), col="red")
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=5}
+library(xtable)
+library(lm.beta)
+print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
+```
+
+```{r}
+cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16)
+abline(lm(weights ~ heights), col="red")
+#cor(weights, heights)
+```
+
+*** =right
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16)
+abline(lm(weights ~ heights), col="red")
+```
+
+--- &twocol
+
+## X가 2개라면?
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+iq <- 87 + heights*.1 + rnorm(30,0,10)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+library(scatterplot3d)
+test <- scatterplot3d(heights,iq,weights,color='red',
+          pch=19,col.grid='lightblue',type='h')
+
+my.lm<-lm(weights~heights+iq)
+test$plane3d(my.lm,col='blue')
+cor(weights, heights)
+```
+
+
+*** =right
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+test <- scatterplot3d(iq,heights,weights,color='red',
+          pch=19,col.grid='lightblue',type='h')
+
+my.lm<-lm(weights~iq+heights)
+test$plane3d(my.lm,col='blue')
+cor(weights, iq)
+```
