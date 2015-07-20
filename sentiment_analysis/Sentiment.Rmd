@@ -28,19 +28,20 @@ http://course.mindscale.kr/course/text-analysis
 
 ## 오늘의 목표  
 
-### 감정 사전 만들기  
-### 감정 점수 만들기  
+<h3b> 감정 사전 만들기</h3b>  
+<h3b> 감정 점수 만들기</h3b>  
 
-### 상관관계  
-### 회귀분석  
-### 모형평가  
+<h3b> 상관관계</h3b>  
+<h3b> 회귀분석</h3b>  
+<h3b> 모형평가</h3b>  
 
 --- .newbackground
 
 ## 감정분석
 
-- 감정 사전을 기반으로 텍스트 자료에서 긍정 단어와 부정 단어의 비율을 계산  
-- 감정 사전을 어떻게 만들 것인가?
+<h3b> - 감정 사전을 기반으로 텍스트 자료에서   
+ 긍정 단어와 부정 단어의 비율을 계산</h3b>  
+<h3b> - 감정 사전을 어떻게 만들 것인가? </h3b>
 
 --- .newbackground
 
@@ -237,7 +238,7 @@ set.seed(1)
 heights = rnorm(30,180,5)
 heights = sort(heights, decreasing = F)
 weights =  -10 + heights*.5 + rnorm(30,0,2)
-iq <- 87 + heights*.1 + rnorm(30,0,10)
+iq <- 87 + heights*0 + rnorm(30,0,5)
 ```
 
 ```{r, echo=F,warning=F, fig.width=6, fig.height=6}
@@ -250,7 +251,6 @@ test$plane3d(my.lm,col='blue')
 cor(weights, heights)
 ```
 
-
 *** =right
 
 ```{r, echo=F,warning=F, fig.width=6, fig.height=6}
@@ -260,4 +260,253 @@ test <- scatterplot3d(iq,heights,weights,color='red',
 my.lm<-lm(weights~iq+heights)
 test$plane3d(my.lm,col='blue')
 cor(weights, iq)
+```
+
+--- .newbackground
+
+## 다중회귀분석
+
+```{r results="asis", echo=F, fig.width=5}
+my.lm<-lm(weights~iq+heights)
+print(xtable(coef(summary(lm(weights ~ iq + heights)))),type="html")
+```
+
+--- &twocol
+
+## Traninig Vs Test
+
+*** =left
+
+```{r results="asis", echo=F, fig.width=6}
+lm.1 <- lm(weights~heights)
+lm.2 <- lm(weights~iq+heights)
+plot(weights ~ heights, pch = 3, lwd = 5, main = "Sample(Training) Set") 
+
+points((-10 + heights*.5) ~ heights, pch = 15, col = "red")
+points(predict(lm.1) ~ heights, pch = 15,  col = "blue")
+points(predict(lm.2) ~ heights , pch = 16,  col = "green")
+
+a <- apply(cbind(heights, heights, weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
+
+
+
+true_mse = sum((weights - (-10 + .5*heights))^2)
+lm_mse = sum((weights - predict(lm.1))^2)
+lm2_mse = sum((weights - predict(lm.2))^2)
+
+legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
+                       paste("LM MSE:",round(lm_mse,2)), 
+                       paste("LM2 MSE:",round(lm2_mse,2))),
+                         col=c("red","blue","green"),lty=1)
+
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=6}
+set.seed(12345)
+t.heights = rnorm(30,180,5)
+t.weights =  -10 + t.heights*.5 + rnorm(30,0,2)
+plot(t.weights ~ t.heights, pch = 3, lwd = 5, main = "Sample(Test) Set")
+points((-10 + t.heights*.5) ~ t.heights, pch = 15,  col = "red")
+points(predict(lm.1) ~ t.heights, pch = 15,  col = "blue")
+points(predict(lm.2) ~ t.heights , pch = 16,  col = "green")
+
+a <- apply(cbind(t.heights, t.heights, t.weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
+
+true_mse = sum((t.weights - (-10 + .5*t.heights))^2)
+lm_mse = sum((t.weights - predict(lm.1))^2)
+lm2_mse = sum((t.weights - predict(lm.2))^2)
+
+legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
+                       paste("LM MSE:",round(lm_mse,2)), 
+                       paste("LM2 MSE:",round(lm2_mse,2))),
+                         col=c("red","blue","green"),lty=1)
+
+```
+
+--- .newbackground
+
+## Over-fitting
+
+<center><img src="assets/img/overfitting.png" height=450px width=700px></center>
+
+
+--- .newbackground
+
+## Over-fitting(과적합)
+
+### How to avoid Over-fitting
+- Penality of Model Complexity (MSE 보정)  
+<font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  
+- Bayesian  
+- Drop Out, Bagging, Feature Bagging  
+
+--- .newbackground
+
+## Lasso Vs Ridge
+
+<center><img src="assets/img/lassoridge.png" height=450px width=800px></center>
+
+--- &twocol
+
+## Lasso Vs Ridge
+
+*** =left
+
+```{r, echo = F, warning=F}
+library(glmnet)
+```
+
+```{r, echo = F, fig.width=6}
+#cv.res <- cv.glmnet(cbind(heights, iq), weights, family = "gaussian", alpha = 1)
+#cv.coef <- coef(cv.res, s = "lambda.min")
+#plot(cv.res)
+# 
+#lasso.res <- glmnet(cbind(heights, iq), weights, lambda = cv.res$lambda.min, alpha = 1)
+#plot(coefficients(lasso.res))
+#lasso_mse = sum((t.weights - predict(lasso.res, cbind(heights, iq)))^2)
+#lasso_mse
+
+lbs_fun <- function(fit, ...) {
+        L <- length(fit$lambda)
+        x <- log(fit$lambda[L])
+        y <- fit$beta[, L]
+        labs <- names(y)
+        text(x - .3*x, y , labels=labs, pos = 3, offset = .5, ...)
+        legend('topright', legend=labs, col=1:length(labs), lty=1) # <<< ADDED BY ME
+}
+
+lasso.res <- glmnet(cbind(heights, iq), weights, alpha = 1)
+plot(lasso.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "LASSO", ylim = c(0, .6))
+lbs_fun(lasso.res)
+
+```
+
+*** =right
+
+```{r, echo = F, fig.width=6}
+
+ridge.res <- glmnet(cbind(heights, iq), weights, alpha = 0)
+plot(ridge.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "RIDGE", ylim = c(0, .6))
+lbs_fun(ridge.res)
+```
+
+--- .newbackground
+
+## 감정분석
+
+<h5b> Data </h5b>  
+<h5b> 10,000 IMDB movie reviews </h5b>  
+<h5b> Training Vs Test = 7 Vs 3 </h5b>  
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분리
+
+```{r, echo = F}
+setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
+```
+
+```{r}
+fileName <- "data/IMDBmovie/labeledTrainData.tsv"
+data <- read.csv(fileName, header=T, sep="\t", quote="")
+nrow(data)
+data <- data[1:10000, ]
+```
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분할
+
+```{r}
+totalNum <- 1:nrow(data)
+set.seed(12345)
+shuffledNum <- sample(totalNum, nrow(data), replace = F)
+trainingNum <- shuffledNum[1:7000]
+testNum <- shuffledNum[7001:10000]
+train.data <- data[trainingNum, ]
+test.data <- data[testNum, ]
+```
+
+--- .newbackground
+
+## Term-DocumentMatrix
+
+```{r, warning=F}
+library(tm)
+```
+
+
+```{r}
+corpus <- Corpus(VectorSource(train.data$review))
+tdm.train <- TermDocumentMatrix(corpus, 
+                                control=list(stemming = T,
+                                             tolower = T,
+                                             removePunctuation = T,
+                                             removeNumbers = T,
+                                             stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## 주요 단어 10000개 사용
+
+```{r}
+library(slam)
+word.count = as.array(rollup(tdm.train, 2))
+word.order = order(word.count, decreasing = T)
+freq.word = word.order[1 : 10000]
+tdm.train <- tdm.train[freq.word, ]
+```
+
+--- .newbackground
+
+## Preparation
+
+```{r}
+library("doMC")
+registerDoMC(cores=4)
+```
+
+--- .newbackground
+
+## LASSO Regression
+
+```{r}
+alpha <- 1
+cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+                      type.measure = "auc", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha,
+                      parallel = T)
+```
+
+--- .newbackground
+
+## LASSO Regression
+```{r}
+plot(cv.lasso)
+log(cv.lasso$lambda.min)
+```
+
+--- .newbackground
+
+## LASSO Regression
+```{r}
+plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
+```
+
+--- .newbackground
+
+## Ridge Regression
+```{r}
+alpha <- 0
+cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+                      type.measure = "auc", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha,
+                      parallel = T)
 ```

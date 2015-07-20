@@ -51,6 +51,7 @@ data <- read.csv(fileName, header=T, sep="\t", quote="")
 data <- data[1:10000, ] ## 테스트 위해서는 10000개만 
 
 totalNum <- 1:nrow(data)
+set.seed(12345)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
 trainingNum <- shuffledNum[1:7000]
 testNum <- shuffledNum[7001:10000]

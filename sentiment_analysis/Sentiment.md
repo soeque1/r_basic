@@ -28,19 +28,20 @@ http://course.mindscale.kr/course/text-analysis
 
 ## 오늘의 목표  
 
-### 감정 사전 만들기  
-### 감정 점수 만들기  
+<h3b> 감정 사전 만들기</h3b>  
+<h3b> 감정 점수 만들기</h3b>  
 
-### 상관관계  
-### 회귀분석  
-### 모형평가  
+<h3b> 상관관계</h3b>  
+<h3b> 회귀분석</h3b>  
+<h3b> 모형평가</h3b>  
 
 --- .newbackground
 
 ## 감정분석
 
-- 감정 사전을 기반으로 텍스트 자료에서 긍정 단어와 부정 단어의 비율을 계산  
-- 감정 사전을 어떻게 만들 것인가?
+<h3b> - 감정 사전을 기반으로 텍스트 자료에서   
+ 긍정 단어와 부정 단어의 비율을 계산</h3b>  
+<h3b> - 감정 사전을 어떻게 만들 것인가? </h3b>
 
 --- .newbackground
 
@@ -205,7 +206,6 @@ cor(weights, heights)
 ## [1] 0.8194181
 ```
 
-
 *** =right
 
 ![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
@@ -213,3 +213,89 @@ cor(weights, heights)
 ```
 ## [1] 0.1387562
 ```
+
+--- .newbackground
+
+## 다중회귀분석
+
+<!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
+<!-- Sat Jul 18 17:24:39 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
+  <tr> <td align="right"> (Intercept) </td> <td align="right"> -20.76 </td> <td align="right"> 11.60 </td> <td align="right"> -1.79 </td> <td align="right"> 0.08 </td> </tr>
+  <tr> <td align="right"> iq </td> <td align="right"> 0.08 </td> <td align="right"> 0.03 </td> <td align="right"> 2.68 </td> <td align="right"> 0.01 </td> </tr>
+  <tr> <td align="right"> heights </td> <td align="right"> 0.52 </td> <td align="right"> 0.06 </td> <td align="right"> 8.66 </td> <td align="right"> 0.00 </td> </tr>
+   </table>
+
+--- &twocol
+
+## Traninig Vs Test
+
+*** =left
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
+
+*** =right
+
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
+
+--- .newbackground
+
+## Over-fitting
+
+<center><img src="assets/img/overfitting.png" height=450px width=700px></center>
+
+
+--- .newbackground
+
+## Over-fitting(과적합)
+
+### How to avoid Over-fitting
+- Penality of Model Complexity (MSE 보정)  
+<font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  
+- Bayesian  
+- Drop Out, Bagging, Feature Bagging  
+
+--- .newbackground
+
+## Lasso Vs Ridge
+
+<center><img src="assets/img/lassoridge.png" height=450px width=800px></center>
+
+--- &twocol
+
+## Lasso Vs Ridge
+
+*** =left
+
+
+
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
+
+*** =right
+
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png) 
+
+--- .newbackground
+
+## 감정분석
+
+<h5b> Data </h5b>  
+<h5b> 10,000 IMDB movie reviews </h5b>  
+<h5b> Training Vs Test = 7 Vs 3 </h5b>  
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분리
+
+
+```r
+setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
+getwd()
+```
+
+```
+## [1] "/Users/kimhyungjun/Dropbox/repo/r_basic/sentiment_analysis"
+```
+
+
