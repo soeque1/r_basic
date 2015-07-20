@@ -412,7 +412,7 @@ setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
 fileName <- "data/IMDBmovie/labeledTrainData.tsv"
 data <- read.csv(fileName, header=T, sep="\t", quote="")
 nrow(data)
-data <- data[1:10000, ]
+data <- data[1:1000, ]
 ```
 
 --- .newbackground
@@ -423,8 +423,8 @@ data <- data[1:10000, ]
 totalNum <- 1:nrow(data)
 set.seed(12345)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
-trainingNum <- shuffledNum[1:7000]
-testNum <- shuffledNum[7001:10000]
+trainingNum <- shuffledNum[1:700]
+testNum <- shuffledNum[701:1000]
 train.data <- data[trainingNum, ]
 test.data <- data[testNum, ]
 ```
@@ -476,7 +476,7 @@ registerDoMC(cores=4)
 ```{r}
 alpha <- 1
 cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
-                      type.measure = "auc", 
+                      type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
                       alpha = alpha,
@@ -501,12 +501,29 @@ plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
 --- .newbackground
 
 ## Ridge Regression
+
 ```{r}
 alpha <- 0
 cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
-                      type.measure = "auc", 
+                      type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
                       alpha = alpha,
                       parallel = T)
 ```
+
+--- .newbackground
+
+## RIDGE Regression
+```{r}
+plot(cv.ridge)
+log(cv.ridge$lambda.min)
+```
+
+--- .newbackground
+
+## RIDGE Regression
+```{r}
+plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
+```
+

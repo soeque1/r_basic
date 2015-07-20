@@ -289,13 +289,181 @@ cor(weights, heights)
 ## Traing Set 과 Test Set 분리
 
 
+
+
 ```r
-setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
-getwd()
+fileName <- "data/IMDBmovie/labeledTrainData.tsv"
+data <- read.csv(fileName, header=T, sep="\t", quote="")
+nrow(data)
 ```
 
 ```
-## [1] "/Users/kimhyungjun/Dropbox/repo/r_basic/sentiment_analysis"
+## [1] 25000
 ```
 
+```r
+data <- data[1:1000, ]
+```
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분할
+
+
+```r
+totalNum <- 1:nrow(data)
+set.seed(12345)
+shuffledNum <- sample(totalNum, nrow(data), replace = F)
+trainingNum <- shuffledNum[1:700]
+testNum <- shuffledNum[701:1000]
+train.data <- data[trainingNum, ]
+test.data <- data[testNum, ]
+```
+
+--- .newbackground
+
+## Term-DocumentMatrix
+
+
+```r
+library(tm)
+```
+
+```
+## Loading required package: NLP
+```
+
+
+
+```r
+corpus <- Corpus(VectorSource(train.data$review))
+tdm.train <- TermDocumentMatrix(corpus, 
+                                control=list(stemming = T,
+                                             tolower = T,
+                                             removePunctuation = T,
+                                             removeNumbers = T,
+                                             stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## 주요 단어 10000개 사용
+
+
+```r
+library(slam)
+word.count = as.array(rollup(tdm.train, 2))
+word.order = order(word.count, decreasing = T)
+freq.word = word.order[1 : 10000]
+tdm.train <- tdm.train[freq.word, ]
+```
+
+--- .newbackground
+
+## Preparation
+
+
+```r
+library("doMC")
+```
+
+```
+## Loading required package: foreach
+## Loading required package: iterators
+## Loading required package: parallel
+```
+
+```r
+registerDoMC(cores=4)
+```
+
+--- .newbackground
+
+## LASSO Regression
+
+
+```r
+alpha <- 1
+cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+                      type.measure = "class", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha,
+                      parallel = T)
+```
+
+```
+## Warning: executing %dopar% sequentially: no parallel backend registered
+```
+
+--- .newbackground
+
+## LASSO Regression
+
+```r
+plot(cv.lasso)
+```
+
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-1.png) 
+
+```r
+log(cv.lasso$lambda.min)
+```
+
+```
+## [1] -3.365195
+```
+
+--- .newbackground
+
+## LASSO Regression
+
+```r
+plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
+```
+
+![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-38-1.png) 
+
+--- .newbackground
+
+## Ridge Regression
+
+
+```r
+alpha <- 0
+cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+                      type.measure = "class", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha,
+                      parallel = T)
+```
+
+--- .newbackground
+
+## RIDGE Regression
+
+```r
+plot(cv.ridge)
+```
+
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-1.png) 
+
+```r
+log(cv.ridge$lambda.min)
+```
+
+```
+## [1] 0.5654804
+```
+
+--- .newbackground
+
+## RIDGE Regression
+
+```r
+plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
+```
+
+![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-41-1.png) 
 
