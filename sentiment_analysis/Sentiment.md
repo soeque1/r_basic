@@ -724,9 +724,9 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
 
 
 ```r
-score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)))
-score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)))
-score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)))
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)), s = "lambda.min")
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)), s = "lambda.min")
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)), s = "lambda.min")
 ```
 
 
@@ -767,9 +767,9 @@ cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
 
 
 ```r
-score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)))
-score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)))
-score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)))
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)), s = "lambda.min")
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)), s = "lambda.min")
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)), s = "lambda.min")
 ```
 
 ## Test Set

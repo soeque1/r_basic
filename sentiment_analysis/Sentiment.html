@@ -884,9 +884,9 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     <h2>glmnet 활용</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.train)))
-score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.train)))
-score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.train)))
+    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
 </code></pre>
 
 <pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
@@ -921,9 +921,9 @@ cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
     <h2>glmnet 활용</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.test)))
-score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.test)))
-score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.test)))
+    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
+score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
+score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
 </code></pre>
 
 <h2>Test Set</h2>
