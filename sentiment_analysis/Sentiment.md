@@ -133,7 +133,7 @@ http://course.mindscale.kr/course/text-analysis
 *** =right
 
 <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-<!-- Thu Jul 16 21:27:52 2015 -->
+<!-- Tue Jul 21 22:39:51 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
   <tr> <td align="right"> (Intercept) </td> <td align="right"> -8.29 </td> <td align="right"> 11.74 </td> <td align="right"> -0.71 </td> <td align="right"> 0.49 </td> </tr>
@@ -162,7 +162,7 @@ cor(weights, heights)
 *** =right
 
 <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-<!-- Thu Jul 16 21:27:52 2015 -->
+<!-- Tue Jul 21 22:39:51 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
   <tr> <td align="right"> (Intercept) </td> <td align="right"> 69.17 </td> <td align="right"> 1.17 </td> <td align="right"> 58.93 </td> <td align="right"> 0.00 </td> </tr>
@@ -280,9 +280,9 @@ cor(weights, heights)
 
 ## 감정분석
 
-<h5b> Data </h5b>  
-<h5b> 10,000 IMDB movie reviews </h5b>  
-<h5b> Training Vs Test = 7 Vs 3 </h5b>  
+<h3b> Data </h3b>  
+<h3b> 25,000 IMDB movie reviews 중에서 1,000개만 </h3b>  
+<h3b> Training Vs Test = 7 Vs 3 </h3b>  
 
 --- .newbackground
 
@@ -316,8 +316,8 @@ set.seed(12345)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
 trainingNum <- shuffledNum[1:700]
 testNum <- shuffledNum[701:1000]
-train.data <- data[trainingNum, ]
-test.data <- data[testNum, ]
+data.train <- data[trainingNum, ]
+data.test <- data[testNum, ]
 ```
 
 --- .newbackground
@@ -329,14 +329,10 @@ test.data <- data[testNum, ]
 library(tm)
 ```
 
-```
-## Loading required package: NLP
-```
-
 
 
 ```r
-corpus <- Corpus(VectorSource(train.data$review))
+corpus <- Corpus(VectorSource(data.train$review))
 tdm.train <- TermDocumentMatrix(corpus, 
                                 control=list(stemming = T,
                                              tolower = T,
@@ -360,40 +356,16 @@ tdm.train <- tdm.train[freq.word, ]
 
 --- .newbackground
 
-## Preparation
-
-
-```r
-library("doMC")
-```
-
-```
-## Loading required package: foreach
-## Loading required package: iterators
-## Loading required package: parallel
-```
-
-```r
-registerDoMC(cores=4)
-```
-
---- .newbackground
-
 ## LASSO Regression
 
 
 ```r
 alpha <- 1
-cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                       type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
-                      alpha = alpha,
-                      parallel = T)
-```
-
-```
-## Warning: executing %dopar% sequentially: no parallel backend registered
+                      alpha = alpha)
 ```
 
 --- .newbackground
@@ -404,14 +376,14 @@ cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment,
 plot(cv.lasso)
 ```
 
-![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-1.png) 
+![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
 
 ```r
 log(cv.lasso$lambda.min)
 ```
 
 ```
-## [1] -3.365195
+## [1] -3.59778
 ```
 
 --- .newbackground
@@ -422,7 +394,7 @@ log(cv.lasso$lambda.min)
 plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-38-1.png) 
+![plot of chunk unnamed-chunk-37](assets/fig/unnamed-chunk-37-1.png) 
 
 --- .newbackground
 
@@ -431,39 +403,489 @@ plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
 
 ```r
 alpha <- 0
-cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                       type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
-                      alpha = alpha,
-                      parallel = T)
+                      alpha = alpha)
 ```
 
 --- .newbackground
 
 ## RIDGE Regression
 
+
 ```r
 plot(cv.ridge)
 ```
 
-![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-1.png) 
+![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-1.png) 
 
 ```r
 log(cv.ridge$lambda.min)
 ```
 
 ```
-## [1] 0.5654804
+## [1] 1.402784
 ```
 
 --- .newbackground
 
 ## RIDGE Regression
 
+
 ```r
 plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-41-1.png) 
+![plot of chunk unnamed-chunk-40](assets/fig/unnamed-chunk-40-1.png) 
 
+--- .newbackground
+
+## ElasticNet Regression
+
+
+```r
+alpha <- .8
+cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
+                        type.measure = "class", 
+                        nfolds = 4,
+                        family = "binomial", 
+                        alpha = alpha)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+
+```r
+plot(cv.elastic)
+```
+
+![plot of chunk unnamed-chunk-42](assets/fig/unnamed-chunk-42-1.png) 
+
+```r
+log(cv.elastic$lambda.min)
+```
+
+```
+## [1] -3.281602
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+
+```r
+plot(cv.elastic$glmnet.fit, "lambda", label=TRUE)
+```
+
+![plot of chunk unnamed-chunk-43](assets/fig/unnamed-chunk-43-1.png) 
+
+--- .newbackground
+
+## 감정 단어 추출
+
+
+```r
+coef.lasso <- coef(cv.lasso, s = "lambda.min")[,1]
+coef.ridge <- coef(cv.ridge, s = "lambda.min")[,1]
+coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+
+```r
+pos.lasso <- sort(coef.lasso[coef.lasso > 0])
+neg.lasso <- sort(coef.lasso[coef.lasso < 0])
+
+pos.ridge <- sort(coef.ridge[coef.ridge > 0])
+neg.ridge <- sort(coef.ridge[coef.ridge < 0])
+
+pos.elastic <- sort(coef.elastic[coef.elastic > 0])
+neg.elastic <- sort(coef.elastic[coef.elastic < 0])
+```
+
+
+```r
+library(tm.plugin.sentiment)
+```
+
+
+```r
+score.lasso <- polarity(tdm.train, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+
+
+
+
+
+
+```r
+findCutpoint(data.train$sentiment, score.lasso)
+```
+
+```
+## [1] 0.09090909
+```
+
+```r
+findCutpoint(data.train$sentiment, score.ridge)
+```
+
+```
+## [1] 0.3333333
+```
+
+```r
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+```
+## [1] 0.3333333
+```
+
+
+```r
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+corpus <- Corpus(VectorSource(data.test$review))
+
+tdm.test <- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            stemming = T,
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## Test Set
+
+
+
+```r
+score.lasso <- polarity(tdm.test, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+library(caret)
+```
+
+
+```r
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 118  30
+##          1  49 103
+##                                          
+##                Accuracy : 0.7367         
+##                  95% CI : (0.683, 0.7856)
+##     No Information Rate : 0.5567         
+##     P-Value [Acc > NIR] : 8.952e-11      
+##                                          
+##                   Kappa : 0.4741         
+##  Mcnemar's Test P-Value : 0.04285        
+##                                          
+##             Sensitivity : 0.7066         
+##             Specificity : 0.7744         
+##          Pos Pred Value : 0.7973         
+##          Neg Pred Value : 0.6776         
+##              Prevalence : 0.5567         
+##          Detection Rate : 0.3933         
+##    Detection Prevalence : 0.4933         
+##       Balanced Accuracy : 0.7405         
+##                                          
+##        'Positive' Class : 0              
+## 
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 130  42
+##          1  37  91
+##                                          
+##                Accuracy : 0.7367         
+##                  95% CI : (0.683, 0.7856)
+##     No Information Rate : 0.5567         
+##     P-Value [Acc > NIR] : 8.952e-11      
+##                                          
+##                   Kappa : 0.4644         
+##  Mcnemar's Test P-Value : 0.6527         
+##                                          
+##             Sensitivity : 0.7784         
+##             Specificity : 0.6842         
+##          Pos Pred Value : 0.7558         
+##          Neg Pred Value : 0.7109         
+##              Prevalence : 0.5567         
+##          Detection Rate : 0.4333         
+##    Detection Prevalence : 0.5733         
+##       Balanced Accuracy : 0.7313         
+##                                          
+##        'Positive' Class : 0              
+## 
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 130  42
+##          1  37  91
+##                                          
+##                Accuracy : 0.7367         
+##                  95% CI : (0.683, 0.7856)
+##     No Information Rate : 0.5567         
+##     P-Value [Acc > NIR] : 8.952e-11      
+##                                          
+##                   Kappa : 0.4644         
+##  Mcnemar's Test P-Value : 0.6527         
+##                                          
+##             Sensitivity : 0.7784         
+##             Specificity : 0.6842         
+##          Pos Pred Value : 0.7558         
+##          Neg Pred Value : 0.7109         
+##              Prevalence : 0.5567         
+##          Detection Rate : 0.4333         
+##    Detection Prevalence : 0.5733         
+##       Balanced Accuracy : 0.7313         
+##                                          
+##        'Positive' Class : 0              
+## 
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+
+```r
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)))
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)))
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)))
+```
+
+
+```r
+findCutpoint(data.train$sentiment, score.lasso)
+```
+
+```
+## [1] 0.1426384
+```
+
+```r
+findCutpoint(data.train$sentiment, score.ridge)
+```
+
+```
+## [1] -0.03759213
+```
+
+```r
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+```
+## [1] 0.1195488
+```
+
+
+```r
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+
+```r
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)))
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)))
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)))
+```
+
+## Test Set
+
+
+```r
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 148 110
+##          1  19  23
+##                                           
+##                Accuracy : 0.57            
+##                  95% CI : (0.5119, 0.6268)
+##     No Information Rate : 0.5567          
+##     P-Value [Acc > NIR] : 0.3428          
+##                                           
+##                   Kappa : 0.0636          
+##  Mcnemar's Test P-Value : 2.299e-15       
+##                                           
+##             Sensitivity : 0.8862          
+##             Specificity : 0.1729          
+##          Pos Pred Value : 0.5736          
+##          Neg Pred Value : 0.5476          
+##              Prevalence : 0.5567          
+##          Detection Rate : 0.4933          
+##    Detection Prevalence : 0.8600          
+##       Balanced Accuracy : 0.5296          
+##                                           
+##        'Positive' Class : 0               
+## 
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 85 71
+##          1 82 62
+##                                           
+##                Accuracy : 0.49            
+##                  95% CI : (0.4321, 0.5481)
+##     No Information Rate : 0.5567          
+##     P-Value [Acc > NIR] : 0.9912          
+##                                           
+##                   Kappa : -0.0246         
+##  Mcnemar's Test P-Value : 0.4188          
+##                                           
+##             Sensitivity : 0.5090          
+##             Specificity : 0.4662          
+##          Pos Pred Value : 0.5449          
+##          Neg Pred Value : 0.4306          
+##              Prevalence : 0.5567          
+##          Detection Rate : 0.2833          
+##    Detection Prevalence : 0.5200          
+##       Balanced Accuracy : 0.4876          
+##                                           
+##        'Positive' Class : 0               
+## 
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```r
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
+
+```
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 147 110
+##          1  20  23
+##                                           
+##                Accuracy : 0.5667          
+##                  95% CI : (0.5085, 0.6235)
+##     No Information Rate : 0.5567          
+##     P-Value [Acc > NIR] : 0.3865          
+##                                           
+##                   Kappa : 0.0571          
+##  Mcnemar's Test P-Value : 5.912e-15       
+##                                           
+##             Sensitivity : 0.8802          
+##             Specificity : 0.1729          
+##          Pos Pred Value : 0.5720          
+##          Neg Pred Value : 0.5349          
+##              Prevalence : 0.5567          
+##          Detection Rate : 0.4900          
+##    Detection Prevalence : 0.8567          
+##       Balanced Accuracy : 0.5266          
+##                                           
+##        'Positive' Class : 0               
+## 
+```

@@ -163,7 +163,7 @@ abline(lm(weights ~ heights), col="red")
 
 *** =right
 
-```{r results="asis", echo=F, fig.width=5}
+```{r results="asis", echo=F, fig.width=5, message=F}
 library(xtable)
 library(lm.beta)
 print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
@@ -191,7 +191,7 @@ abline(lm(weights ~ heights), col="red")
 
 *** =right
 
-```{r results="asis", echo=F, fig.width=5}
+```{r results="asis", echo=F, fig.width=5, message=F}
 library(xtable)
 library(lm.beta)
 print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
@@ -241,7 +241,7 @@ weights =  -10 + heights*.5 + rnorm(30,0,2)
 iq <- 87 + heights*0 + rnorm(30,0,5)
 ```
 
-```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+```{r, echo=F,warning=F, fig.width=6, fig.height=6, message=F}
 library(scatterplot3d)
 test <- scatterplot3d(heights,iq,weights,color='red',
           pch=19,col.grid='lightblue',type='h')
@@ -354,7 +354,7 @@ legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
 
 *** =left
 
-```{r, echo = F, warning=F}
+```{r, echo = F, message=F}
 library(glmnet)
 ```
 
@@ -396,9 +396,9 @@ lbs_fun(ridge.res)
 
 ## 감정분석
 
-<h5b> Data </h5b>  
-<h5b> 10,000 IMDB movie reviews </h5b>  
-<h5b> Training Vs Test = 7 Vs 3 </h5b>  
+<h3b> Data </h3b>  
+<h3b> 25,000 IMDB movie reviews 중에서 1,000개만 </h3b>  
+<h3b> Training Vs Test = 7 Vs 3 </h3b>  
 
 --- .newbackground
 
@@ -425,21 +425,21 @@ set.seed(12345)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
 trainingNum <- shuffledNum[1:700]
 testNum <- shuffledNum[701:1000]
-train.data <- data[trainingNum, ]
-test.data <- data[testNum, ]
+data.train <- data[trainingNum, ]
+data.test <- data[testNum, ]
 ```
 
 --- .newbackground
 
 ## Term-DocumentMatrix
 
-```{r, warning=F}
+```{r, warning=F, message=F}
 library(tm)
 ```
 
 
 ```{r}
-corpus <- Corpus(VectorSource(train.data$review))
+corpus <- Corpus(VectorSource(data.train$review))
 tdm.train <- TermDocumentMatrix(corpus, 
                                 control=list(stemming = T,
                                              tolower = T,
@@ -452,7 +452,7 @@ tdm.train <- TermDocumentMatrix(corpus,
 
 ## 주요 단어 10000개 사용
 
-```{r}
+```{r, message=F}
 library(slam)
 word.count = as.array(rollup(tdm.train, 2))
 word.order = order(word.count, decreasing = T)
@@ -462,25 +462,15 @@ tdm.train <- tdm.train[freq.word, ]
 
 --- .newbackground
 
-## Preparation
-
-```{r}
-library("doMC")
-registerDoMC(cores=4)
-```
-
---- .newbackground
-
 ## LASSO Regression
 
 ```{r}
 alpha <- 1
-cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                       type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
-                      alpha = alpha,
-                      parallel = T)
+                      alpha = alpha)
 ```
 
 --- .newbackground
@@ -504,17 +494,17 @@ plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
 
 ```{r}
 alpha <- 0
-cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
+cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                       type.measure = "class", 
                       nfolds = 4,
                       family = "binomial", 
-                      alpha = alpha,
-                      parallel = T)
+                      alpha = alpha)
 ```
 
 --- .newbackground
 
 ## RIDGE Regression
+
 ```{r}
 plot(cv.ridge)
 log(cv.ridge$lambda.min)
@@ -523,7 +513,229 @@ log(cv.ridge$lambda.min)
 --- .newbackground
 
 ## RIDGE Regression
+
 ```{r}
 plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
 ```
 
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+alpha <- .8
+cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
+                        type.measure = "class", 
+                        nfolds = 4,
+                        family = "binomial", 
+                        alpha = alpha)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+plot(cv.elastic)
+log(cv.elastic$lambda.min)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+plot(cv.elastic$glmnet.fit, "lambda", label=TRUE)
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+coef.lasso <- coef(cv.lasso, s = "lambda.min")[,1]
+coef.ridge <- coef(cv.ridge, s = "lambda.min")[,1]
+coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+
+pos.lasso <- sort(coef.lasso[coef.lasso > 0])
+neg.lasso <- sort(coef.lasso[coef.lasso < 0])
+
+pos.ridge <- sort(coef.ridge[coef.ridge > 0])
+neg.ridge <- sort(coef.ridge[coef.ridge < 0])
+
+pos.elastic <- sort(coef.elastic[coef.elastic > 0])
+neg.elastic <- sort(coef.elastic[coef.elastic < 0])
+
+```
+
+```{r, warning=F, message=F}
+library(tm.plugin.sentiment)
+```
+
+```{r}
+score.lasso <- polarity(tdm.train, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+```{r, warning=F, message=F, echo = F}
+library(ROCR)
+```
+
+```{r, echo = F}
+findCutpoint <- function(dataSentiment, predSentiment)
+    {
+    pred <- prediction(predSentiment, dataSentiment)
+    perf <- performance(pred,"tpr", "fpr")
+    auc <- performance(pred,"auc")
+    auc <- unlist(slot(auc, "y.values"))
+    acc <- performance(pred,"acc")
+    cutpoint <- as.numeric(unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))])
+    return(cutpoint)
+    }
+```
+
+
+```{r}
+findCutpoint(data.train$sentiment, score.lasso)
+findCutpoint(data.train$sentiment, score.ridge)
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+```{r}
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+corpus <- Corpus(VectorSource(data.test$review))
+
+tdm.test <- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            stemming = T,
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```{r}
+score.lasso <- polarity(tdm.test, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r, message=F}
+library(caret)
+```
+
+```{r}
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+```{r}
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)))
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)))
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)))
+```
+
+```{r}
+findCutpoint(data.train$sentiment, score.lasso)
+findCutpoint(data.train$sentiment, score.ridge)
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+```{r}
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+```{r}
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)))
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)))
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)))
+```
+
+## Test Set
+
+```{r}
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
