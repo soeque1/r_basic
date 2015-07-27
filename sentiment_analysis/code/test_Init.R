@@ -112,17 +112,17 @@ cor(train.sentiScore, data$sentiment[trainingNum], use = "complete")
 
 #library(ROCR)
 
-# findCutpoint <- function(predSentiment, dataSentiment)
-# {
-#     pred <- prediction(predSentiment, dataSentiment)
-#     perf <- performance(pred,"tpr", "fpr")
-#     auc <- performance(pred,"auc")
-#     auc <- unlist(slot(auc, "y.values"))
-#     acc <- performance(pred,"acc")
-#     cutpoint <- unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))]
-#     return(cutpoint)
-# }
-# 
+ findCutpoint <- function(predSentiment, dataSentiment)
+ {
+     pred <- prediction(predSentiment, dataSentiment)
+     perf <- performance(pred,"tpr", "fpr")
+     auc <- performance(pred,"auc")
+     auc <- unlist(slot(auc, "y.values"))
+     acc <- performance(pred,"acc")
+     cutpoint <- unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))]
+     return(cutpoint)
+ }
+ 
 # cutpoint <- findCutpoint(sentiScore, data$sentiment[trainingNum])
 
 library(pROC)

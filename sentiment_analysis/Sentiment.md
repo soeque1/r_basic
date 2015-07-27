@@ -6,13 +6,15 @@ job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "
 logo        : logo_03.png
 license     : by-nc-sa
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-widgets     : []            # {mathjax, bootstrap, quiz}
+widgets     : [mathjax]            # {mathjax, bootstrap, quiz}
 mode        : selfcontained
 hitheme     : tomorrow      # {tomorrow, tomorrow_night, solarized_dark, solarized_light}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 knit        : slidify::knit2slides
 
 ---
+
+## 퀀트랩 소개
 
 <center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center>
 
@@ -28,44 +30,89 @@ http://course.mindscale.kr/course/text-analysis
 
 ## 오늘의 목표  
 
-<h3b> 감정 사전 만들기</h3b>  
-<h3b> 감정 점수 만들기</h3b>  
+<h3b> - 감정 사전 만들기</h3b>  
+<h3b> - 감정 점수 만들기</h3b>  
 
-<h3b> 상관관계</h3b>  
-<h3b> 회귀분석</h3b>  
-<h3b> 모형평가</h3b>  
+<h3b> - 상관관계 이해하기</h3b>  
+<h3b> - 회귀분석 이해하기</h3b>  
+<h3b> - 모형평가 이해하기</h3b>  
+
+--- .newbackground
+
+## 왜 감정분석을 하는가?
+
+<h3b> 설문지의 단점</h3b>  
+<h3b> 1) 조사 비용 발생 </h3b>  
+<h3b> 2) 미리 정해진 문항만 측정 가능</h3b>  
+<h3b> 3) 사회적 바람직성 등 편향 발생</h3b>  
 
 --- .newbackground
 
 ## 감정분석
 
-<h3b> - 감정 사전을 기반으로 텍스트 자료에서   
- 긍정 단어와 부정 단어의 비율을 계산</h3b>  
-<h3b> - 감정 사전을 어떻게 만들 것인가? </h3b>
+<h3b> 텍스트에서 감정 단어를 추출하여 점수화</h3b>  
+<h3b> 1) 기계 학습 (Machine Learning) </h3b>  
+<h3b> 2) 단어 사전 기반 </h3b>
 
 --- .newbackground
 
-## 사전지식 
+## 사전 기반 분석
 
-예측이란 무엇?
+<h3b> 장점 </h3b>  
+<h3b> - 사용하기 간편 </h3b>  
+<h3b> 단점 </h3b>  
+<h3b> - 주제에 따라 사전이 달라 짐 </h3b>  
+<h3b> - 동음이의어 처리 힘듦 e.g) bank </h3b>  
 
-자기자신 : Y가 변화하는 추세  
-다른변수 : X가 Y를 예측  
-- 키로 몸무게를 예측!  
-- 키로 성적을 예측?  
-- 예측이 잘 되려면 서로 상관(관련성)이 높아야 함  
--> 감정단어로 영화 평점을 예측  
+--- .newbackground
+
+## 기계학습 기반 분석
+
+<h3b> 장점 </h3b>  
+<h3b> - 높은 정확도  </h3b>  
+<h3b> 단점 </h3b>  
+<h3b> - Over-fitting 해결 </h3b>  
+<h3b> - 많은 데이터 필요 </h3b>  
+<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트지지벡터머신 / </h3b>  
+<h3b>  랜덤 포레스트 / 토픽 모델 </h3b>
+
+--- .newbackground
+
+## 감정 분석 예시
+
+<center><img src="assets/img/election.png" height=450px width=800px></center>
+
+--- .newbackground
+
+## 감정 분석 예시
+
+<center><img src="assets/img/twitter.png" height=450px width=800px></center>
+
+
+--- .newbackground
+
+## 사전 지식 
+
+<h3b> 예측이란 무엇? </h3b> 
+
+<h4b>자기자신(Y) : Y가 변화하는 추세  </h4b>    
+<h4b>다른변수(X,Y) : X가 Y를 예측  </h4b>    
+<h4b> - 키로 몸무게를 예측! </h4b>    
+<h4b> - 키로 성적을 예측?   </h4b>    
+
+<h3b> 예측이 잘 되려면 서로 상관(관련성)이 높아야 함</h3b>  
+<h4b> -> 감정단어로 영화 평점을 예측 </h4b>  
 
 --- .newbackground
 
 ## 회귀분석(선형(직선) 모형) 
 
-### 예시
+<h3b> 예시 </h3b>
 
-- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  
-- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소  
-- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  
-- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  
+<h4b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h4b>  
+<h4b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h4b>   
+<h4b>- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  </h4b>  
+<h4b>- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  </h4b>  
 
 --- &twocol .modal
 
@@ -95,14 +142,14 @@ http://course.mindscale.kr/course/text-analysis
 
 ## 상관관계
 
-- x가 증가(혹은 감소)할때 y가 증가(혹은 감소)하는 정도
+<h3b> x가 증가(혹은 감소)할때 y가 선형적으로 증가(혹은 감소)하는 정도 </h3b>
 
-### scale
+<h3b> scale </h3b>
 
-키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가  
-키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  
+<h4b> 키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가  </h4b>   
+<h4b> 키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  </h4b>   
 
-### -> 표준화해야 한다 
+<h3b> -> 표준화해야 한다 </h3b>
 
 --- &twocol .modal
 
@@ -211,7 +258,7 @@ cor(weights, heights)
 ![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
 
 ```
-## [1] 0.1387562
+## [1] 0.09818667
 ```
 
 --- .newbackground
@@ -226,6 +273,18 @@ cor(weights, heights)
   <tr> <td align="right"> iq </td> <td align="right"> 0.08 </td> <td align="right"> 0.03 </td> <td align="right"> 2.68 </td> <td align="right"> 0.01 </td> </tr>
   <tr> <td align="right"> heights </td> <td align="right"> 0.52 </td> <td align="right"> 0.06 </td> <td align="right"> 8.66 </td> <td align="right"> 0.00 </td> </tr>
    </table>
+
+--- .newbackground
+
+## 예측력  
+
+<h3b> MSE(Mean of Square Error) </h3b>
+$$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
+
+<h3b> 정확도(Accracy) </h3b>  
+
+<center><img src="assets/img/confusionMat.jpg" height=200px width=600px></center>
+<h3b> 정확도 = (TP + TN) / (TP + FP + TN + FN) </h3b>
 
 --- &twocol
 
@@ -250,11 +309,11 @@ cor(weights, heights)
 
 ## Over-fitting(과적합)
 
-### How to avoid Over-fitting
-- Penality of Model Complexity (MSE 보정)  
-<font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  
-- Bayesian  
-- Drop Out, Bagging, Feature Bagging  
+<h3b> How to avoid Over-fitting </h3b>  
+<h3b>- Penality of Model Complexity (MSE 보정)  </h3b>  
+<h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b>  
+<h3b>- Bayesian  </h3b>  
+<h3b>- Drop Out, Bagging, Feature Bagging  </h3b>  
 
 --- .newbackground
 

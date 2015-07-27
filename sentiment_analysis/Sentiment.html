@@ -50,6 +50,9 @@
 
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>퀀트랩 소개</h2>
+  </hgroup>
   <article data-timings="">
     <p><center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center></p>
 
@@ -75,12 +78,12 @@
     <h2>오늘의 목표</h2>
   </hgroup>
   <article data-timings="">
-    <p><h3b> 감정 사전 만들기</h3b><br>
-<h3b> 감정 점수 만들기</h3b>  </p>
+    <p><h3b> - 감정 사전 만들기</h3b><br>
+<h3b> - 감정 점수 만들기</h3b>  </p>
 
-<p><h3b> 상관관계</h3b><br>
-<h3b> 회귀분석</h3b><br>
-<h3b> 모형평가</h3b>  </p>
+<p><h3b> - 상관관계 이해하기</h3b><br>
+<h3b> - 회귀분석 이해하기</h3b><br>
+<h3b> - 모형평가 이해하기</h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -88,12 +91,13 @@
 
 <slide class="newbackground" id="slide-4" style="background:;">
   <hgroup>
-    <h2>감정분석</h2>
+    <h2>왜 감정분석을 하는가?</h2>
   </hgroup>
   <article data-timings="">
-    <p><h3b> - 감정 사전을 기반으로 텍스트 자료에서<br>
- 긍정 단어와 부정 단어의 비율을 계산</h3b><br>
-<h3b> - 감정 사전을 어떻게 만들 것인가? </h3b></p>
+    <p><h3b> 설문지의 단점</h3b><br>
+<h3b> 1) 조사 비용 발생 </h3b><br>
+<h3b> 2) 미리 정해진 문항만 측정 가능</h3b><br>
+<h3b> 3) 사회적 바람직성 등 편향 발생</h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -101,20 +105,12 @@
 
 <slide class="newbackground" id="slide-5" style="background:;">
   <hgroup>
-    <h2>사전지식</h2>
+    <h2>감정분석</h2>
   </hgroup>
   <article data-timings="">
-    <p>예측이란 무엇?</p>
-
-<p>자기자신 : Y가 변화하는 추세<br>
-다른변수 : X가 Y를 예측  </p>
-
-<ul>
-<li>키로 몸무게를 예측!<br></li>
-<li>키로 성적을 예측?<br></li>
-<li>예측이 잘 되려면 서로 상관(관련성)이 높아야 함<br>
--&gt; 감정단어로 영화 평점을 예측<br></li>
-</ul>
+    <p><h3b> 텍스트에서 감정 단어를 추출하여 점수화</h3b><br>
+<h3b> 1) 기계 학습 (Machine Learning) </h3b><br>
+<h3b> 2) 단어 사전 기반 </h3b></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -122,23 +118,94 @@
 
 <slide class="newbackground" id="slide-6" style="background:;">
   <hgroup>
-    <h2>회귀분석(선형(직선) 모형)</h2>
+    <h2>사전 기반 분석</h2>
   </hgroup>
   <article data-timings="">
-    <h3>예시</h3>
-
-<ul>
-<li>키가 1cm 증가할 때마다 몸무게가 1kg 증가<br></li>
-<li>월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소<br></li>
-<li>부정단어가 1개 증가할 때 마다 평점 .1점 감점<br></li>
-<li>긍정단어가 1개 증가할 때 마다 평점 .1점 증가<br></li>
-</ul>
+    <p><h3b> 장점 </h3b><br>
+<h3b> - 사용하기 간편 </h3b><br>
+<h3b> 단점 </h3b><br>
+<h3b> - 주제에 따라 사전이 달라 짐 </h3b><br>
+<h3b> - 동음이의어 처리 힘듦 e.g) bank </h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="modal" id="slide-7" style="background:;">
+<slide class="newbackground" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>기계학습 기반 분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> 장점 </h3b><br>
+<h3b> - 높은 정확도  </h3b><br>
+<h3b> 단점 </h3b><br>
+<h3b> - Over-fitting 해결 </h3b><br>
+<h3b> - 많은 데이터 필요 </h3b><br>
+<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트지지벡터머신 / </h3b><br>
+<h3b>  랜덤 포레스트 / 토픽 모델 </h3b></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>감정 분석 예시</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/election.png" height=450px width=800px></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>감정 분석 예시</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/twitter.png" height=450px width=800px></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>사전 지식</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> 예측이란 무엇? </h3b> </p>
+
+<p><h4b>자기자신(Y) : Y가 변화하는 추세  </h4b><br>
+<h4b>다른변수(X,Y) : X가 Y를 예측  </h4b><br>
+<h4b> - 키로 몸무게를 예측! </h4b><br>
+<h4b> - 키로 성적을 예측?   </h4b>    </p>
+
+<p><h3b> 예측이 잘 되려면 서로 상관(관련성)이 높아야 함</h3b><br>
+<h4b> -&gt; 감정단어로 영화 평점을 예측 </h4b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>회귀분석(선형(직선) 모형)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> 예시 </h3b></p>
+
+<p><h4b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h4b><br>
+<h4b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h4b><br>
+<h4b>- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  </h4b><br>
+<h4b>- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  </h4b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="modal" id="slide-12" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
@@ -162,27 +229,25 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground modal" id="slide-8" style="background:;">
+<slide class="newbackground modal" id="slide-13" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>x가 증가(혹은 감소)할때 y가 증가(혹은 감소)하는 정도</li>
-</ul>
+    <p><h3b> x가 증가(혹은 감소)할때 y가 선형적으로 증가(혹은 감소)하는 정도 </h3b></p>
 
-<h3>scale</h3>
+<p><h3b> scale </h3b></p>
 
-<p>키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가<br>
-키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  </p>
+<p><h4b> 키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가  </h4b><br>
+<h4b> 키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  </h4b>   </p>
 
-<h3>-&gt; 표준화해야 한다</h3>
+<p><h3b> -&gt; 표준화해야 한다 </h3b></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="modal" id="slide-9" style="background:;">
+<slide class="modal" id="slide-14" style="background:;">
   <hgroup>
     <h2>둘 중 무엇이 상관이 더 클까요?</h2>
   </hgroup>
@@ -200,7 +265,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-10" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>상관관계 및 회귀분석</h2>
   </hgroup>
@@ -232,7 +297,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <hgroup>
     <h2>상관관계 및 회귀분석</h2>
   </hgroup>
@@ -264,7 +329,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>상관관계 및 회귀분석</h2>
   </hgroup>
@@ -282,7 +347,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>X가 2개라면?</h2>
   </hgroup>
@@ -298,7 +363,7 @@
 <div class='right' style='float:right;width:'>
  <p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
 
-<pre><code>## [1] 0.1387562
+<pre><code>## [1] 0.09818667
 </code></pre>
 
 </div>
@@ -306,7 +371,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-14" style="background:;">
+<slide class="newbackground" id="slide-19" style="background:;">
   <hgroup>
     <h2>다중회귀분석</h2>
   </hgroup>
@@ -326,7 +391,24 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="newbackground" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>예측력</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> MSE(Mean of Square Error) </h3b>
+\[ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} \]</p>
+
+<p><h3b> 정확도(Accracy) </h3b>  </p>
+
+<p><center><img src="assets/img/confusionMat.jpg" height=200px width=600px></center>
+<h3b> 정확도 = (TP + TN) / (TP + FP + TN + FN) </h3b></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Traninig Vs Test</h2>
   </hgroup>
@@ -344,7 +426,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-16" style="background:;">
+<slide class="newbackground" id="slide-22" style="background:;">
   <hgroup>
     <h2>Over-fitting</h2>
   </hgroup>
@@ -355,25 +437,22 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-17" style="background:;">
+<slide class="newbackground" id="slide-23" style="background:;">
   <hgroup>
     <h2>Over-fitting(과적합)</h2>
   </hgroup>
   <article data-timings="">
-    <h3>How to avoid Over-fitting</h3>
-
-<ul>
-<li>Penality of Model Complexity (MSE 보정)<br>
-<font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font><br></li>
-<li>Bayesian<br></li>
-<li>Drop Out, Bagging, Feature Bagging<br></li>
-</ul>
+    <p><h3b> How to avoid Over-fitting </h3b><br>
+<h3b>- Penality of Model Complexity (MSE 보정)  </h3b><br>
+<h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b><br>
+<h3b>- Bayesian  </h3b><br>
+<h3b>- Drop Out, Bagging, Feature Bagging  </h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-18" style="background:;">
+<slide class="newbackground" id="slide-24" style="background:;">
   <hgroup>
     <h2>Lasso Vs Ridge</h2>
   </hgroup>
@@ -384,7 +463,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>Lasso Vs Ridge</h2>
   </hgroup>
@@ -402,7 +481,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-20" style="background:;">
+<slide class="newbackground" id="slide-26" style="background:;">
   <hgroup>
     <h2>감정분석</h2>
   </hgroup>
@@ -415,7 +494,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-21" style="background:;">
+<slide class="newbackground" id="slide-27" style="background:;">
   <hgroup>
     <h2>Traing Set 과 Test Set 분리</h2>
   </hgroup>
@@ -435,7 +514,7 @@ nrow(data)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-22" style="background:;">
+<slide class="newbackground" id="slide-28" style="background:;">
   <hgroup>
     <h2>Traing Set 과 Test Set 분할</h2>
   </hgroup>
@@ -453,7 +532,7 @@ data.test &lt;- data[testNum, ]
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-23" style="background:;">
+<slide class="newbackground" id="slide-29" style="background:;">
   <hgroup>
     <h2>Term-DocumentMatrix</h2>
   </hgroup>
@@ -474,7 +553,7 @@ tdm.train &lt;- TermDocumentMatrix(corpus,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-24" style="background:;">
+<slide class="newbackground" id="slide-30" style="background:;">
   <hgroup>
     <h2>주요 단어 10000개 사용</h2>
   </hgroup>
@@ -490,7 +569,7 @@ tdm.train &lt;- tdm.train[freq.word, ]
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-25" style="background:;">
+<slide class="newbackground" id="slide-31" style="background:;">
   <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
@@ -507,7 +586,7 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-26" style="background:;">
+<slide class="newbackground" id="slide-32" style="background:;">
   <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
@@ -527,7 +606,7 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-27" style="background:;">
+<slide class="newbackground" id="slide-33" style="background:;">
   <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
@@ -541,7 +620,7 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-28" style="background:;">
+<slide class="newbackground" id="slide-34" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -558,7 +637,7 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-29" style="background:;">
+<slide class="newbackground" id="slide-35" style="background:;">
   <hgroup>
     <h2>RIDGE Regression</h2>
   </hgroup>
@@ -578,7 +657,7 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-30" style="background:;">
+<slide class="newbackground" id="slide-36" style="background:;">
   <hgroup>
     <h2>RIDGE Regression</h2>
   </hgroup>
@@ -592,7 +671,7 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-31" style="background:;">
+<slide class="newbackground" id="slide-37" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
@@ -609,7 +688,7 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-32" style="background:;">
+<slide class="newbackground" id="slide-38" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
@@ -629,7 +708,7 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-33" style="background:;">
+<slide class="newbackground" id="slide-39" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
@@ -643,7 +722,7 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-34" style="background:;">
+<slide class="newbackground" id="slide-40" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -657,7 +736,7 @@ coef.elastic &lt;- coef(cv.elastic, s = &quot;lambda.min&quot;)[,1]
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-35" style="background:;">
+<slide class="newbackground" id="slide-41" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -684,7 +763,7 @@ score.elastic &lt;- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-36" style="background:;">
+<slide class="newbackground" id="slide-42" style="background:;">
   <hgroup>
     <h2>CUT-POINT</h2>
   </hgroup>
@@ -716,7 +795,7 @@ cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-37" style="background:;">
+<slide class="newbackground" id="slide-43" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -736,7 +815,7 @@ tdm.test &lt;- TermDocumentMatrix(corpus,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-38" style="background:;">
+<slide class="newbackground" id="slide-44" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -750,7 +829,7 @@ score.elastic &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-39" style="background:;">
+<slide class="newbackground" id="slide-45" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -795,7 +874,7 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-40" style="background:;">
+<slide class="newbackground" id="slide-46" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -837,7 +916,7 @@ confusionMatrix(score.ridge.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-41" style="background:;">
+<slide class="newbackground" id="slide-47" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -879,7 +958,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-42" style="background:;">
+<slide class="newbackground" id="slide-48" style="background:;">
   <hgroup>
     <h2>glmnet 활용</h2>
   </hgroup>
@@ -916,7 +995,7 @@ cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-43" style="background:;">
+<slide class="newbackground" id="slide-49" style="background:;">
   <hgroup>
     <h2>glmnet 활용</h2>
   </hgroup>
@@ -965,7 +1044,7 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-44" style="background:;">
+<slide class="newbackground" id="slide-50" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -1007,7 +1086,7 @@ confusionMatrix(score.ridge.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-45" style="background:;">
+<slide class="newbackground" id="slide-51" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -1055,7 +1134,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title=''>
+        data-slide=1 title='퀀트랩 소개'>
          1
       </a>
     </li>
@@ -1073,241 +1152,241 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='감정분석'>
+        data-slide=4 title='왜 감정분석을 하는가?'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='사전지식'>
+        data-slide=5 title='감정분석'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='회귀분석(선형(직선) 모형)'>
+        data-slide=6 title='사전 기반 분석'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='상관관계'>
+        data-slide=7 title='기계학습 기반 분석'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='상관관계'>
+        data-slide=8 title='감정 분석 예시'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='둘 중 무엇이 상관이 더 클까요?'>
+        data-slide=9 title='감정 분석 예시'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='상관관계 및 회귀분석'>
+        data-slide=10 title='사전 지식'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='상관관계 및 회귀분석'>
+        data-slide=11 title='회귀분석(선형(직선) 모형)'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='상관관계 및 회귀분석'>
+        data-slide=12 title='상관관계'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='X가 2개라면?'>
+        data-slide=13 title='상관관계'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='다중회귀분석'>
+        data-slide=14 title='둘 중 무엇이 상관이 더 클까요?'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Traninig Vs Test'>
+        data-slide=15 title='상관관계 및 회귀분석'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Over-fitting'>
+        data-slide=16 title='상관관계 및 회귀분석'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Over-fitting(과적합)'>
+        data-slide=17 title='상관관계 및 회귀분석'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Lasso Vs Ridge'>
+        data-slide=18 title='X가 2개라면?'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Lasso Vs Ridge'>
+        data-slide=19 title='다중회귀분석'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='감정분석'>
+        data-slide=20 title='예측력'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Traing Set 과 Test Set 분리'>
+        data-slide=21 title='Traninig Vs Test'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Traing Set 과 Test Set 분할'>
+        data-slide=22 title='Over-fitting'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Term-DocumentMatrix'>
+        data-slide=23 title='Over-fitting(과적합)'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='주요 단어 10000개 사용'>
+        data-slide=24 title='Lasso Vs Ridge'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='LASSO Regression'>
+        data-slide=25 title='Lasso Vs Ridge'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='LASSO Regression'>
+        data-slide=26 title='감정분석'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='LASSO Regression'>
+        data-slide=27 title='Traing Set 과 Test Set 분리'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Ridge Regression'>
+        data-slide=28 title='Traing Set 과 Test Set 분할'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='RIDGE Regression'>
+        data-slide=29 title='Term-DocumentMatrix'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='RIDGE Regression'>
+        data-slide=30 title='주요 단어 10000개 사용'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='ElasticNet Regression'>
+        data-slide=31 title='LASSO Regression'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='ElasticNet Regression'>
+        data-slide=32 title='LASSO Regression'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='ElasticNet Regression'>
+        data-slide=33 title='LASSO Regression'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='감정 단어 추출'>
+        data-slide=34 title='Ridge Regression'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='감정 단어 추출'>
+        data-slide=35 title='RIDGE Regression'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='CUT-POINT'>
+        data-slide=36 title='RIDGE Regression'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Test Set'>
+        data-slide=37 title='ElasticNet Regression'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Test Set'>
+        data-slide=38 title='ElasticNet Regression'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='Test Set'>
+        data-slide=39 title='ElasticNet Regression'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Test Set'>
+        data-slide=40 title='감정 단어 추출'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Test Set'>
+        data-slide=41 title='감정 단어 추출'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='glmnet 활용'>
+        data-slide=42 title='CUT-POINT'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='glmnet 활용'>
+        data-slide=43 title='Test Set'>
          43
       </a>
     </li>
@@ -1323,6 +1402,42 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
          45
       </a>
     </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Test Set'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Test Set'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='glmnet 활용'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='glmnet 활용'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Test Set'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Test Set'>
+         51
+      </a>
+    </li>
   </ul>
   </div>  <!--[if IE]>
     <script 
@@ -1333,7 +1448,21 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
 </body>
   <!-- Load Javascripts for Widgets -->
   
-  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
   <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <!-- DONE LOADING HIGHLIGHTER JS FILES -->
