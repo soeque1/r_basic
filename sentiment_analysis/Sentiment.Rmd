@@ -461,7 +461,7 @@ lbs_fun(ridge.res)
 
 --- .newbackground
 
-## Traing Set 과 Test Set 분리
+## Traing Set 과 Test Set 분할
 
 ```{r, echo = F}
 setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
@@ -500,8 +500,7 @@ library(tm)
 ```{r}
 corpus <- Corpus(VectorSource(data.train$review))
 tdm.train <- TermDocumentMatrix(corpus, 
-                                control=list(stemming = T,
-                                             tolower = T,
+                                control=list(tolower = T,
                                              removePunctuation = T,
                                              removeNumbers = T,
                                              stopwords=stopwords("SMART")))
@@ -582,7 +581,7 @@ plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
 ## ElasticNet Regression
 
 ```{r}
-alpha <- .8
+alpha <- .5
 cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                         type.measure = "class", 
                         nfolds = 4,
@@ -626,13 +625,55 @@ coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
 pos.lasso <- sort(coef.lasso[coef.lasso > 0])
 neg.lasso <- sort(coef.lasso[coef.lasso < 0])
 
+```
+
+```{r, cache=F}
+
+pos.lasso[1:5]
+neg.lasso[1:5]
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+
 pos.ridge <- sort(coef.ridge[coef.ridge > 0])
 neg.ridge <- sort(coef.ridge[coef.ridge < 0])
+
+```
+
+```{r, cache=F}
+
+pos.ridge[1:5]
+neg.ridge[1:5]
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
 
 pos.elastic <- sort(coef.elastic[coef.elastic > 0])
 neg.elastic <- sort(coef.elastic[coef.elastic < 0])
 
 ```
+
+```{r, cache=F}
+
+pos.elastic[1:5]
+neg.elastic[1:5]
+
+```
+
+
+--- .newbackground
+
+## 감정 단어 점수화
 
 ```{r, warning=F, message=F}
 library(tm.plugin.sentiment)
@@ -687,7 +728,6 @@ corpus <- Corpus(VectorSource(data.test$review))
 
 tdm.test <- TermDocumentMatrix(corpus, 
                                control=list(dictionary = Terms(tdm.train), 
-                                            stemming = T,
                                             tolower = T,
                                             removePunctuation = T,
                                             removeNumbers = T,
