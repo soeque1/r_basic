@@ -278,7 +278,7 @@
 <div class='right' style='float:right;width:'>
  <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
 
-<!-- Mon Jul 27 21:54:01 2015 -->
+<!-- Tue Jul 28 22:06:22 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -310,7 +310,7 @@
 <div class='right' style='float:right;width:'>
  <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
 
-<!-- Mon Jul 27 21:54:02 2015 -->
+<!-- Tue Jul 28 22:06:23 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -378,7 +378,7 @@
   <article data-timings="">
     <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
 
-<!-- Mon Jul 27 21:54:02 2015 -->
+<!-- Tue Jul 28 22:06:24 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -507,7 +507,7 @@ nrow(data)
 <pre><code>## [1] 25000
 </code></pre>
 
-<pre><code class="r">data &lt;- data[1:1000, ]
+<pre><code class="r">data &lt;- data[1:2000, ]
 </code></pre>
 
   </article>
@@ -522,8 +522,8 @@ nrow(data)
     <pre><code class="r">totalNum &lt;- 1:nrow(data)
 set.seed(12345)
 shuffledNum &lt;- sample(totalNum, nrow(data), replace = F)
-trainingNum &lt;- shuffledNum[1:700]
-testNum &lt;- shuffledNum[701:1000]
+trainingNum &lt;- shuffledNum[1:1400]
+testNum &lt;- shuffledNum[1401:2000]
 data.train &lt;- data[trainingNum, ]
 data.test &lt;- data[testNum, ]
 </code></pre>
@@ -554,22 +554,6 @@ tdm.train &lt;- TermDocumentMatrix(corpus,
 
 <slide class="newbackground" id="slide-30" style="background:;">
   <hgroup>
-    <h2>주요 단어 10000개 사용</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">library(slam)
-word.count = as.array(rollup(tdm.train, 2))
-word.order = order(word.count, decreasing = T)
-freq.word = word.order[1 : 10000]
-tdm.train &lt;- tdm.train[freq.word, ]
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-31" style="background:;">
-  <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
   <article data-timings="">
@@ -585,7 +569,7 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-32" style="background:;">
+<slide class="newbackground" id="slide-31" style="background:;">
   <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
@@ -593,19 +577,19 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.lasso)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
 
 <pre><code class="r">log(cv.lasso$lambda.min)
 </code></pre>
 
-<pre><code>## [1] -3.272161
+<pre><code>## [1] -4.344838
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-33" style="background:;">
+<slide class="newbackground" id="slide-32" style="background:;">
   <hgroup>
     <h2>LASSO Regression</h2>
   </hgroup>
@@ -613,13 +597,13 @@ cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.lasso$glmnet.fit, &quot;lambda&quot;, label=TRUE)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-34" style="background:;">
+<slide class="newbackground" id="slide-33" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -636,7 +620,7 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-35" style="background:;">
+<slide class="newbackground" id="slide-34" style="background:;">
   <hgroup>
     <h2>RIDGE Regression</h2>
   </hgroup>
@@ -644,19 +628,19 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.ridge)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
+<p><img src="assets/fig/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"> </p>
 
 <pre><code class="r">log(cv.ridge$lambda.min)
 </code></pre>
 
-<pre><code>## [1] 0.6119973
+<pre><code>## [1] 1.493029
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-36" style="background:;">
+<slide class="newbackground" id="slide-35" style="background:;">
   <hgroup>
     <h2>RIDGE Regression</h2>
   </hgroup>
@@ -664,18 +648,18 @@ cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.ridge$glmnet.fit, &quot;lambda&quot;, label=TRUE)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40"> </p>
+<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-37" style="background:;">
+<slide class="newbackground" id="slide-36" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">alpha &lt;- .5
+    <pre><code class="r">alpha &lt;- .3
 cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                         type.measure = &quot;class&quot;, 
                         nfolds = 4,
@@ -687,7 +671,7 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-38" style="background:;">
+<slide class="newbackground" id="slide-37" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
@@ -695,19 +679,19 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.elastic)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
+<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
 
 <pre><code class="r">log(cv.elastic$lambda.min)
 </code></pre>
 
-<pre><code>## [1] -2.811599
+<pre><code>## [1] -3.419966
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-39" style="background:;">
+<slide class="newbackground" id="slide-38" style="background:;">
   <hgroup>
     <h2>ElasticNet Regression</h2>
   </hgroup>
@@ -715,13 +699,13 @@ cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment,
     <pre><code class="r">plot(cv.elastic$glmnet.fit, &quot;lambda&quot;, label=TRUE)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-43-1.png" alt="plot of chunk unnamed-chunk-43"> </p>
+<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-40" style="background:;">
+<slide class="newbackground" id="slide-39" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -735,7 +719,7 @@ coef.elastic &lt;- coef(cv.elastic, s = &quot;lambda.min&quot;)[,1]
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-41" style="background:;">
+<slide class="newbackground" id="slide-40" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -747,22 +731,22 @@ neg.lasso &lt;- sort(coef.lasso[coef.lasso &lt; 0])
 <pre><code class="r">pos.lasso[1:5]
 </code></pre>
 
-<pre><code>##   hilarious       drama        life       world         bit 
-## 0.004800054 0.008611723 0.038371849 0.044125055 0.051063664
+<pre><code>##    collapses  patricyoure       againi       veneer      subject 
+## 3.120188e-15 4.940365e-15 1.424454e-06 1.517951e-06 6.820669e-06
 </code></pre>
 
 <pre><code class="r">neg.lasso[1:5]
 </code></pre>
 
-<pre><code>##      worst      waste       save    wouldnt whatsoever 
-## -1.0178384 -0.8242384 -0.6190533 -0.5708966 -0.5378581
+<pre><code>## economically        worst     returned       commit       wooden 
+##    -1.409192    -1.349991    -1.297906    -1.266191    -1.255193
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-42" style="background:;">
+<slide class="newbackground" id="slide-41" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -774,24 +758,24 @@ neg.ridge &lt;- sort(coef.ridge[coef.ridge &lt; 0])
 <pre><code class="r">pos.ridge[1:5]
 </code></pre>
 
-<pre><code>##        hints      fathers     scripted   frequently    obsession 
-## 2.801103e-06 1.891073e-05 4.397610e-05 4.478976e-05 5.434588e-05
+<pre><code>##          jew      streets          rob         plan        stall 
+## 3.042999e-07 2.091328e-05 2.313824e-05 2.362472e-05 2.417472e-05
 </code></pre>
 
 <pre><code class="r">neg.ridge[1:5]
 </code></pre>
 
-<pre><code>##             binks           coughed        betterhard bottomofthebarrel 
-##        -0.1925666        -0.1925665        -0.1845028        -0.1845024 
-##       capturelike 
-##        -0.1835726
+<pre><code>##        evolving     typecasting       cancelled     cameosimans 
+##     -0.10789309     -0.10340770     -0.10157122     -0.09999705 
+## selfdeprecating 
+##     -0.09974657
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-43" style="background:;">
+<slide class="newbackground" id="slide-42" style="background:;">
   <hgroup>
     <h2>감정 단어 추출</h2>
   </hgroup>
@@ -803,22 +787,24 @@ neg.elastic &lt;- sort(coef.elastic[coef.elastic &lt; 0])
 <pre><code class="r">pos.elastic[1:5]
 </code></pre>
 
-<pre><code>##   brilliant        dark    american       naive      humour 
-## 0.002717850 0.005426420 0.008651522 0.008926515 0.010264251
+<pre><code>##            theni       mutilating              ive             ride 
+##     0.0002650247     0.0003448974     0.0003601619     0.0003829296 
+## weirdstrangeeven 
+##     0.0009908731
 </code></pre>
 
 <pre><code class="r">neg.elastic[1:5]
 </code></pre>
 
-<pre><code>##      worst      waste    wouldnt whatsoever       save 
-## -0.8711227 -0.7880778 -0.6300778 -0.6222940 -0.6193373
+<pre><code>##          pic     returned       commit economically     enamored 
+##    -1.332630    -1.270371    -1.207446    -1.156321    -1.140002
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-44" style="background:;">
+<slide class="newbackground" id="slide-43" style="background:;">
   <hgroup>
     <h2>감정 단어 점수화</h2>
   </hgroup>
@@ -835,7 +821,7 @@ score.elastic &lt;- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-45" style="background:;">
+<slide class="newbackground" id="slide-44" style="background:;">
   <hgroup>
     <h2>CUT-POINT</h2>
   </hgroup>
@@ -843,22 +829,56 @@ score.elastic &lt;- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
     <pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
 </code></pre>
 
-<pre><code>## [1] 0.2
+<pre><code>## [1] 0
 </code></pre>
 
 <pre><code class="r">findCutpoint(data.train$sentiment, score.ridge)
 </code></pre>
 
-<pre><code>## [1] 0.05882353
+<pre><code>## [1] 0.106383
 </code></pre>
 
 <pre><code class="r">findCutpoint(data.train$sentiment, score.elastic)
 </code></pre>
 
-<pre><code>## [1] 0.05882353
+<pre><code>## [1] 0.106383
 </code></pre>
 
-<pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-45" style="background:;">
+  <hgroup>
+    <h2>CUT-POINT</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(pROC)
+</code></pre>
+
+<pre><code class="r">plot.roc(data.train$sentiment, score.lasso, print.thres = T)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-56-1.png" alt="plot of chunk unnamed-chunk-56"> </p>
+
+<pre><code>## 
+## Call:
+## plot.roc.default(x = data.train$sentiment, predictor = score.lasso,     print.thres = T)
+## 
+## Data: score.lasso in 694 controls (data.train$sentiment 0) &lt; 702 cases (data.train$sentiment 1).
+## Area under the curve: 0.9897
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>CUT-POINT</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
 cut.ridge &lt;- findCutpoint(data.train$sentiment, score.ridge)
 cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
 </code></pre>
@@ -867,7 +887,7 @@ cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-46" style="background:;">
+<slide class="newbackground" id="slide-47" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -886,7 +906,7 @@ tdm.test &lt;- TermDocumentMatrix(corpus,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-47" style="background:;">
+<slide class="newbackground" id="slide-48" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -900,7 +920,7 @@ score.elastic &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-48" style="background:;">
+<slide class="newbackground" id="slide-49" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -917,67 +937,25 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 131  59
-##          1  36  74
+##          0 222  35
+##          1  87 256
 ##                                           
-##                Accuracy : 0.6833          
-##                  95% CI : (0.6274, 0.7356)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 4.879e-06       
+##                Accuracy : 0.7967          
+##                  95% CI : (0.7622, 0.8282)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : 0.3469          
-##  Mcnemar&#39;s Test P-Value : 0.024           
+##                   Kappa : 0.5951          
+##  Mcnemar&#39;s Test P-Value : 3.887e-06       
 ##                                           
-##             Sensitivity : 0.7844          
-##             Specificity : 0.5564          
-##          Pos Pred Value : 0.6895          
-##          Neg Pred Value : 0.6727          
-##              Prevalence : 0.5567          
-##          Detection Rate : 0.4367          
-##    Detection Prevalence : 0.6333          
-##       Balanced Accuracy : 0.6704          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-49" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.ridge.b &lt;- rep(0, length(score.ridge))
-score.ridge.b[score.ridge &gt;= cut.ridge] &lt;- 1
-confusionMatrix(score.ridge.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 130  45
-##          1  37  88
-##                                           
-##                Accuracy : 0.7267          
-##                  95% CI : (0.6725, 0.7763)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 9.443e-10       
-##                                           
-##                   Kappa : 0.4428          
-##  Mcnemar&#39;s Test P-Value : 0.4395          
-##                                           
-##             Sensitivity : 0.7784          
-##             Specificity : 0.6617          
-##          Pos Pred Value : 0.7429          
-##          Neg Pred Value : 0.7040          
-##              Prevalence : 0.5567          
-##          Detection Rate : 0.4333          
-##    Detection Prevalence : 0.5833          
-##       Balanced Accuracy : 0.7200          
+##             Sensitivity : 0.7184          
+##             Specificity : 0.8797          
+##          Pos Pred Value : 0.8638          
+##          Neg Pred Value : 0.7464          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.3700          
+##    Detection Prevalence : 0.4283          
+##       Balanced Accuracy : 0.7991          
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## 
@@ -992,34 +970,34 @@ confusionMatrix(score.ridge.b, data.test$sentiment)
     <h2>Test Set</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
-score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
-confusionMatrix(score.elastic.b, data.test$sentiment)
+    <pre><code class="r">score.ridge.b &lt;- rep(0, length(score.ridge))
+score.ridge.b[score.ridge &gt;= cut.ridge] &lt;- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
 </code></pre>
 
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 130  45
-##          1  37  88
+##          0 248  58
+##          1  61 233
 ##                                           
-##                Accuracy : 0.7267          
-##                  95% CI : (0.6725, 0.7763)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 9.443e-10       
+##                Accuracy : 0.8017          
+##                  95% CI : (0.7675, 0.8329)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
 ##                                           
-##                   Kappa : 0.4428          
-##  Mcnemar&#39;s Test P-Value : 0.4395          
+##                   Kappa : 0.6031          
+##  Mcnemar&#39;s Test P-Value : 0.8545          
 ##                                           
-##             Sensitivity : 0.7784          
-##             Specificity : 0.6617          
-##          Pos Pred Value : 0.7429          
-##          Neg Pred Value : 0.7040          
-##              Prevalence : 0.5567          
-##          Detection Rate : 0.4333          
-##    Detection Prevalence : 0.5833          
-##       Balanced Accuracy : 0.7200          
+##             Sensitivity : 0.8026          
+##             Specificity : 0.8007          
+##          Pos Pred Value : 0.8105          
+##          Neg Pred Value : 0.7925          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.4133          
+##    Detection Prevalence : 0.5100          
+##       Balanced Accuracy : 0.8016          
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## 
@@ -1031,35 +1009,40 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
 
 <slide class="newbackground" id="slide-51" style="background:;">
   <hgroup>
-    <h2>glmnet 활용</h2>
+    <h2>Test Set</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
-score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
-score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
+score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
 </code></pre>
 
-<pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
-</code></pre>
-
-<pre><code>## [1] 0.1043392
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.ridge)
-</code></pre>
-
-<pre><code>## [1] 0.03085342
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.elastic)
-</code></pre>
-
-<pre><code>## [1] 0.1470654
-</code></pre>
-
-<pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
-cut.ridge &lt;- findCutpoint(data.train$sentiment, score.ridge)
-cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 248  58
+##          1  61 233
+##                                           
+##                Accuracy : 0.8017          
+##                  95% CI : (0.7675, 0.8329)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.6031          
+##  Mcnemar&#39;s Test P-Value : 0.8545          
+##                                           
+##             Sensitivity : 0.8026          
+##             Specificity : 0.8007          
+##          Pos Pred Value : 0.8105          
+##          Neg Pred Value : 0.7925          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.4133          
+##    Detection Prevalence : 0.5100          
+##       Balanced Accuracy : 0.8016          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## 
 </code></pre>
 
   </article>
@@ -1071,14 +1054,67 @@ cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
     <h2>glmnet 활용</h2>
   </hgroup>
   <article data-timings="">
+    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-53" style="background:;">
+  <hgroup>
+    <h2>glmnet 활용</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
+</code></pre>
+
+<pre><code>## [1] 0.03829955
+</code></pre>
+
+<pre><code class="r">findCutpoint(data.train$sentiment, score.ridge)
+</code></pre>
+
+<pre><code>## [1] -0.01393038
+</code></pre>
+
+<pre><code class="r">findCutpoint(data.train$sentiment, score.elastic)
+</code></pre>
+
+<pre><code>## [1] 0.2442177
+</code></pre>
+
+<pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge &lt;- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-54" style="background:;">
+  <hgroup>
+    <h2>glmnet 활용</h2>
+  </hgroup>
+  <article data-timings="">
     <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
 score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
 score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
 </code></pre>
 
-<h2>Test Set</h2>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<pre><code class="r">score.lasso.b &lt;- rep(0, length(score.lasso))
+<slide class="newbackground" id="slide-55" style="background:;">
+  <hgroup>
+    <h2>Test Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">score.lasso.b &lt;- rep(0, length(score.lasso))
 score.lasso.b[score.lasso &gt;= cut.lasso] &lt;- 1
 confusionMatrix(score.lasso.b, data.test$sentiment)
 </code></pre>
@@ -1087,25 +1123,25 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0   3   3
-##          1 164 130
+##          0 245  47
+##          1  64 244
 ##                                           
-##                Accuracy : 0.4433          
-##                  95% CI : (0.3863, 0.5015)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 1               
+##                Accuracy : 0.815           
+##                  95% CI : (0.7816, 0.8453)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
 ##                                           
-##                   Kappa : -0.0041         
-##  Mcnemar&#39;s Test P-Value : &lt;2e-16          
+##                   Kappa : 0.6303          
+##  Mcnemar&#39;s Test P-Value : 0.1288          
 ##                                           
-##             Sensitivity : 0.01796         
-##             Specificity : 0.97744         
-##          Pos Pred Value : 0.50000         
-##          Neg Pred Value : 0.44218         
-##              Prevalence : 0.55667         
-##          Detection Rate : 0.01000         
-##    Detection Prevalence : 0.02000         
-##       Balanced Accuracy : 0.49770         
+##             Sensitivity : 0.7929          
+##             Specificity : 0.8385          
+##          Pos Pred Value : 0.8390          
+##          Neg Pred Value : 0.7922          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.4083          
+##    Detection Prevalence : 0.4867          
+##       Balanced Accuracy : 0.8157          
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## 
@@ -1115,7 +1151,7 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-53" style="background:;">
+<slide class="newbackground" id="slide-56" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -1128,26 +1164,26 @@ confusionMatrix(score.ridge.b, data.test$sentiment)
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
-## Prediction  0  1
-##          0 90 74
-##          1 77 59
+## Prediction   0   1
+##          0 238  40
+##          1  71 251
 ##                                           
-##                Accuracy : 0.4967          
-##                  95% CI : (0.4387, 0.5547)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 0.9840          
+##                Accuracy : 0.815           
+##                  95% CI : (0.7816, 0.8453)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : -0.0174         
-##  Mcnemar&#39;s Test P-Value : 0.8707          
+##                   Kappa : 0.6308          
+##  Mcnemar&#39;s Test P-Value : 0.004407        
 ##                                           
-##             Sensitivity : 0.5389          
-##             Specificity : 0.4436          
-##          Pos Pred Value : 0.5488          
-##          Neg Pred Value : 0.4338          
-##              Prevalence : 0.5567          
-##          Detection Rate : 0.3000          
-##    Detection Prevalence : 0.5467          
-##       Balanced Accuracy : 0.4913          
+##             Sensitivity : 0.7702          
+##             Specificity : 0.8625          
+##          Pos Pred Value : 0.8561          
+##          Neg Pred Value : 0.7795          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.3967          
+##    Detection Prevalence : 0.4633          
+##       Balanced Accuracy : 0.8164          
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## 
@@ -1157,7 +1193,7 @@ confusionMatrix(score.ridge.b, data.test$sentiment)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-54" style="background:;">
+<slide class="newbackground" id="slide-57" style="background:;">
   <hgroup>
     <h2>Test Set</h2>
   </hgroup>
@@ -1171,25 +1207,122 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 120 100
-##          1  47  33
+##          0 261  68
+##          1  48 223
 ##                                           
-##                Accuracy : 0.51            
-##                  95% CI : (0.4519, 0.5679)
-##     No Information Rate : 0.5567          
-##     P-Value [Acc &gt; NIR] : 0.9537          
+##                Accuracy : 0.8067          
+##                  95% CI : (0.7728, 0.8375)
+##     No Information Rate : 0.515           
+##     P-Value [Acc &gt; NIR] : &lt; 2e-16         
 ##                                           
-##                   Kappa : -0.0347         
-##  Mcnemar&#39;s Test P-Value : 1.796e-05       
+##                   Kappa : 0.6122          
+##  Mcnemar&#39;s Test P-Value : 0.07771         
 ##                                           
-##             Sensitivity : 0.7186          
-##             Specificity : 0.2481          
-##          Pos Pred Value : 0.5455          
-##          Neg Pred Value : 0.4125          
-##              Prevalence : 0.5567          
-##          Detection Rate : 0.4000          
-##    Detection Prevalence : 0.7333          
-##       Balanced Accuracy : 0.4833          
+##             Sensitivity : 0.8447          
+##             Specificity : 0.7663          
+##          Pos Pred Value : 0.7933          
+##          Neg Pred Value : 0.8229          
+##              Prevalence : 0.5150          
+##          Detection Rate : 0.4350          
+##    Detection Prevalence : 0.5483          
+##       Balanced Accuracy : 0.8055          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-58" style="background:;">
+  <hgroup>
+    <h2>다른 데이터에 적용</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> Data </h3b><br>
+<h3b> Amazon Books Reviews 중에서 2,000개</h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-59" style="background:;">
+  <hgroup>
+    <h2>Test Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">books.review &lt;- read.csv(&quot;data/Amazon_books.csv&quot;, stringsAsFactors = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-60" style="background:;">
+  <hgroup>
+    <h2>Test Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">corpus &lt;- Corpus(VectorSource(books.review$texts))
+
+tdm.test &lt;- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords(&quot;SMART&quot;)))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-61" style="background:;">
+  <hgroup>
+    <h2>Test Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">score.elastic &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-62" style="background:;">
+  <hgroup>
+    <h2>Test Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
+score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
+confusionMatrix(score.elastic.b, books.review$sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 717 290
+##          1 283 710
+##                                           
+##                Accuracy : 0.7135          
+##                  95% CI : (0.6931, 0.7332)
+##     No Information Rate : 0.5             
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.427           
+##  Mcnemar&#39;s Test P-Value : 0.8021          
+##                                           
+##             Sensitivity : 0.7170          
+##             Specificity : 0.7100          
+##          Pos Pred Value : 0.7120          
+##          Neg Pred Value : 0.7150          
+##              Prevalence : 0.5000          
+##          Detection Rate : 0.3585          
+##    Detection Prevalence : 0.5035          
+##       Balanced Accuracy : 0.7135          
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## 
@@ -1379,7 +1512,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='주요 단어 10000개 사용'>
+        data-slide=30 title='LASSO Regression'>
          30
       </a>
     </li>
@@ -1397,13 +1530,13 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='LASSO Regression'>
+        data-slide=33 title='Ridge Regression'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Ridge Regression'>
+        data-slide=34 title='RIDGE Regression'>
          34
       </a>
     </li>
@@ -1415,7 +1548,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='RIDGE Regression'>
+        data-slide=36 title='ElasticNet Regression'>
          36
       </a>
     </li>
@@ -1433,7 +1566,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='ElasticNet Regression'>
+        data-slide=39 title='감정 단어 추출'>
          39
       </a>
     </li>
@@ -1457,13 +1590,13 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='감정 단어 추출'>
+        data-slide=43 title='감정 단어 점수화'>
          43
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='감정 단어 점수화'>
+        data-slide=44 title='CUT-POINT'>
          44
       </a>
     </li>
@@ -1475,7 +1608,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title='Test Set'>
+        data-slide=46 title='CUT-POINT'>
          46
       </a>
     </li>
@@ -1505,7 +1638,7 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=51 title='glmnet 활용'>
+        data-slide=51 title='Test Set'>
          51
       </a>
     </li>
@@ -1517,14 +1650,62 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='Test Set'>
+        data-slide=53 title='glmnet 활용'>
          53
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title='Test Set'>
+        data-slide=54 title='glmnet 활용'>
          54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Test Set'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Test Set'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Test Set'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='다른 데이터에 적용'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Test Set'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Test Set'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Test Set'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='Test Set'>
+         62
       </a>
     </li>
   </ul>

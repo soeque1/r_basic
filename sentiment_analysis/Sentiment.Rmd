@@ -471,7 +471,7 @@ setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
 fileName <- "data/IMDBmovie/labeledTrainData.tsv"
 data <- read.csv(fileName, header=T, sep="\t", quote="")
 nrow(data)
-data <- data[1:1000, ]
+data <- data[1:2000, ]
 ```
 
 --- .newbackground
@@ -482,8 +482,8 @@ data <- data[1:1000, ]
 totalNum <- 1:nrow(data)
 set.seed(12345)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
-trainingNum <- shuffledNum[1:700]
-testNum <- shuffledNum[701:1000]
+trainingNum <- shuffledNum[1:1400]
+testNum <- shuffledNum[1401:2000]
 data.train <- data[trainingNum, ]
 data.test <- data[testNum, ]
 ```
@@ -504,18 +504,6 @@ tdm.train <- TermDocumentMatrix(corpus,
                                              removePunctuation = T,
                                              removeNumbers = T,
                                              stopwords=stopwords("SMART")))
-```
-
---- .newbackground
-
-## 주요 단어 10000개 사용
-
-```{r, message=F}
-library(slam)
-word.count = as.array(rollup(tdm.train, 2))
-word.order = order(word.count, decreasing = T)
-freq.word = word.order[1 : 10000]
-tdm.train <- tdm.train[freq.word, ]
 ```
 
 --- .newbackground
@@ -581,7 +569,7 @@ plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
 ## ElasticNet Regression
 
 ```{r}
-alpha <- .5
+alpha <- .3
 cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
                         type.measure = "class", 
                         nfolds = 4,
@@ -713,6 +701,23 @@ findCutpoint(data.train$sentiment, score.ridge)
 findCutpoint(data.train$sentiment, score.elastic)
 ```
 
+--- .newbackground
+
+## CUT-POINT
+
+```{r, message=F}
+library(pROC)
+```
+
+```{r, message=F, fig.width=6, fig.height=5}
+plot.roc(data.train$sentiment, score.lasso, print.thres = T)
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+
 ```{r}
 cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
 cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
@@ -789,6 +794,10 @@ score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)), s = "lambda.min")
 score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)), s = "lambda.min")
 ```
 
+--- .newbackground
+
+## glmnet 활용
+
 ```{r}
 findCutpoint(data.train$sentiment, score.lasso)
 findCutpoint(data.train$sentiment, score.ridge)
@@ -810,6 +819,8 @@ score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)), s = "lambda.min")
 score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)), s = "lambda.min")
 score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)), s = "lambda.min")
 ```
+
+--- .newbackground
 
 ## Test Set
 
@@ -838,3 +849,53 @@ score.elastic.b <- rep(0, length(score.elastic))
 score.elastic.b[score.elastic >= cut.elastic] <- 1
 confusionMatrix(score.elastic.b, data.test$sentiment)
 ```
+
+--- .newbackground
+
+## 다른 데이터에 적용
+
+<h3b> Data </h3b>  
+<h3b> Amazon Books Reviews 중에서 2,000개</h3b>  
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+books.review <- read.csv("data/Amazon_books.csv", stringsAsFactors = F)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+corpus <- Corpus(VectorSource(books.review$texts))
+
+tdm.test <- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, books.review$sentiment)
+```
+
+

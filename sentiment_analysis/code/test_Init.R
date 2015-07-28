@@ -171,23 +171,26 @@ data.pos <- htmlParse(posfileName)
 titles <- data.pos %>% html_nodes("title") %>% html_text()
 texts <- data.pos %>% html_nodes("review_text") %>% html_text()
 points <- data.pos %>% html_nodes("rating") %>% html_text()
-bpoints <- rep(1, length(points))
-dt.pos <- data.frame(titles, texts, points, bpoints)
+sentiment <- rep(1, length(points))
+dt.pos <- data.frame(titles, texts, sentiment) #points, sentiment)
 
 negfileName <- sprintf("%s%s", getwd(), "/data/books/negative.review")
 data.neg <- htmlParse(negfileName)
 titles <- data.neg %>% html_nodes("title") %>% html_text()
 texts <- data.neg %>% html_nodes("review_text") %>% html_text()
 points <- data.neg %>% html_nodes("rating") %>% html_text()
-bpoints <- rep(0, length(points))
+sentiment <- rep(0, length(points))
 
-dt.neg <- data.frame(titles, texts, points, bpoints)
+dt.neg <- data.frame(titles, texts, sentiment) #points, sentiment)
 dt <- rbind(dt.pos, dt.neg)
 
 library(stringr)
 dt$titles <- str_replace_all(dt$titles, "\n", "")
 dt$texts <- str_replace_all(dt$texts, "\n", "")
-dt$points <- str_replace_all(dt.pos$points, "\n", "") %>% as.numeric()
+
+write.csv(dt, "data/Amazon_books.csv")
+
+#dt$points <- str_replace_all(dt.pos$points, "\n", "") %>% as.numeric()
 
 #sparse.rate <- .9999
 
@@ -196,7 +199,7 @@ library(tm)
 test.dtm <- preprocess_text_test(dt$texts)# , sparse.rate)
 
 test.sentiScore <- polarity(test.dtm, names(posword), names(negword))
-# pred <- prediction(sentiScore, dt$bpoints)
+# pred <- prediction(sentiScore, dt$sentiment)
 # perf <- performance(pred,"tpr", "fpr")
 # auc <- performance(pred,"auc")
 # auc <- unlist(slot(auc, "y.values"))
@@ -216,7 +219,7 @@ test.sentiScore.b <- rep(0, length(test.sentiScore))
 test.sentiScore.b[test.sentiScore >= 0] <- 1
 
 library(caret)
-confusionMatrix(test.sentiScore.b, dt$bpoints)
+confusionMatrix(test.sentiScore.b, dt$sentiment)
 
 
 # dataset2 <- as.data.frame(data$review[testNum])
