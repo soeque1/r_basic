@@ -397,6 +397,12 @@ tdm.train <- TermDocumentMatrix(corpus,
                                              removePunctuation = T,
                                              removeNumbers = T,
                                              stopwords=stopwords("SMART")))
+
+dim(tdm.train)
+```
+
+```
+## [1] 24865  1400
 ```
 
 --- .newbackground
@@ -428,7 +434,7 @@ log(cv.lasso$lambda.min)
 ```
 
 ```
-## [1] -4.344838
+## [1] -5.833378
 ```
 
 --- .newbackground
@@ -515,7 +521,7 @@ log(cv.elastic$lambda.min)
 ```
 
 ```
-## [1] -3.419966
+## [1] -3.280416
 ```
 
 --- .newbackground
@@ -548,7 +554,25 @@ coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
 ```r
 pos.lasso <- sort(coef.lasso[coef.lasso > 0])
 neg.lasso <- sort(coef.lasso[coef.lasso < 0])
+
+length(pos.lasso)
 ```
+
+```
+## [1] 475
+```
+
+```r
+length(neg.lasso)
+```
+
+```
+## [1] 606
+```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 
 ```r
@@ -556,8 +580,8 @@ pos.lasso[1:5]
 ```
 
 ```
-##    collapses  patricyoure       againi       veneer      subject 
-## 3.120188e-15 4.940365e-15 1.424454e-06 1.517951e-06 6.820669e-06
+##  patricyoure        tonks       ahmads   unorthodox         lori 
+## 2.331122e-15 5.989465e-15 6.367617e-13 1.169503e-05 1.214698e-05
 ```
 
 ```r
@@ -565,9 +589,10 @@ neg.lasso[1:5]
 ```
 
 ```
-## economically        worst     returned       commit       wooden 
-##    -1.409192    -1.349991    -1.297906    -1.266191    -1.255193
+## differentokay           pic distinguished    decoration        inform 
+##     -3.918694     -3.835755     -3.390117     -3.359009     -3.290011
 ```
+
 
 --- .newbackground
 
@@ -577,7 +602,25 @@ neg.lasso[1:5]
 ```r
 pos.ridge <- sort(coef.ridge[coef.ridge > 0])
 neg.ridge <- sort(coef.ridge[coef.ridge < 0])
+
+length(pos.ridge)
 ```
+
+```
+## [1] 12963
+```
+
+```r
+length(neg.ridge)
+```
+
+```
+## [1] 11903
+```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 
 ```r
@@ -608,7 +651,25 @@ neg.ridge[1:5]
 ```r
 pos.elastic <- sort(coef.elastic[coef.elastic > 0])
 neg.elastic <- sort(coef.elastic[coef.elastic < 0])
+
+length(pos.elastic)
 ```
+
+```
+## [1] 463
+```
+
+```r
+length(neg.elastic)
+```
+
+```
+## [1] 612
+```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 
 ```r
@@ -663,7 +724,7 @@ findCutpoint(data.train$sentiment, score.lasso)
 ```
 
 ```
-## [1] 0
+## [1] 0.1428571
 ```
 
 ```r
@@ -703,8 +764,8 @@ plot.roc(data.train$sentiment, score.lasso, print.thres = T)
 ## Call:
 ## plot.roc.default(x = data.train$sentiment, predictor = score.lasso,     print.thres = T)
 ## 
-## Data: score.lasso in 694 controls (data.train$sentiment 0) < 702 cases (data.train$sentiment 1).
-## Area under the curve: 0.9897
+## Data: score.lasso in 694 controls (data.train$sentiment 0) < 706 cases (data.train$sentiment 1).
+## Area under the curve: 0.9971
 ```
 
 --- .newbackground
@@ -768,25 +829,25 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 222  35
-##          1  87 256
+##          0 251  68
+##          1  58 223
 ##                                           
-##                Accuracy : 0.7967          
-##                  95% CI : (0.7622, 0.8282)
+##                Accuracy : 0.79            
+##                  95% CI : (0.7552, 0.8219)
 ##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : < 2.2e-16       
+##     P-Value [Acc > NIR] : <2e-16          
 ##                                           
-##                   Kappa : 0.5951          
-##  Mcnemar's Test P-Value : 3.887e-06       
+##                   Kappa : 0.5792          
+##  Mcnemar's Test P-Value : 0.4227          
 ##                                           
-##             Sensitivity : 0.7184          
-##             Specificity : 0.8797          
-##          Pos Pred Value : 0.8638          
-##          Neg Pred Value : 0.7464          
+##             Sensitivity : 0.8123          
+##             Specificity : 0.7663          
+##          Pos Pred Value : 0.7868          
+##          Neg Pred Value : 0.7936          
 ##              Prevalence : 0.5150          
-##          Detection Rate : 0.3700          
-##    Detection Prevalence : 0.4283          
-##       Balanced Accuracy : 0.7991          
+##          Detection Rate : 0.4183          
+##    Detection Prevalence : 0.5317          
+##       Balanced Accuracy : 0.7893          
 ##                                           
 ##        'Positive' Class : 0               
 ## 
@@ -893,7 +954,7 @@ findCutpoint(data.train$sentiment, score.lasso)
 ```
 
 ```
-## [1] 0.03829955
+## [1] 0.6222667
 ```
 
 ```r
@@ -909,7 +970,7 @@ findCutpoint(data.train$sentiment, score.elastic)
 ```
 
 ```
-## [1] 0.2442177
+## [1] -0.06572849
 ```
 
 
@@ -946,27 +1007,27 @@ confusionMatrix(score.lasso.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 245  47
-##          1  64 244
-##                                           
-##                Accuracy : 0.815           
-##                  95% CI : (0.7816, 0.8453)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : <2e-16          
-##                                           
-##                   Kappa : 0.6303          
-##  Mcnemar's Test P-Value : 0.1288          
-##                                           
-##             Sensitivity : 0.7929          
-##             Specificity : 0.8385          
-##          Pos Pred Value : 0.8390          
-##          Neg Pred Value : 0.7922          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4083          
-##    Detection Prevalence : 0.4867          
-##       Balanced Accuracy : 0.8157          
-##                                           
-##        'Positive' Class : 0               
+##          0 260  68
+##          1  49 223
+##                                         
+##                Accuracy : 0.805         
+##                  95% CI : (0.771, 0.836)
+##     No Information Rate : 0.515         
+##     P-Value [Acc > NIR] : < 2e-16       
+##                                         
+##                   Kappa : 0.6089        
+##  Mcnemar's Test P-Value : 0.09609       
+##                                         
+##             Sensitivity : 0.8414        
+##             Specificity : 0.7663        
+##          Pos Pred Value : 0.7927        
+##          Neg Pred Value : 0.8199        
+##              Prevalence : 0.5150        
+##          Detection Rate : 0.4333        
+##    Detection Prevalence : 0.5467        
+##       Balanced Accuracy : 0.8039        
+##                                         
+##        'Positive' Class : 0             
 ## 
 ```
 
@@ -1026,27 +1087,27 @@ confusionMatrix(score.elastic.b, data.test$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 261  68
-##          1  48 223
-##                                           
-##                Accuracy : 0.8067          
-##                  95% CI : (0.7728, 0.8375)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : < 2e-16         
-##                                           
-##                   Kappa : 0.6122          
-##  Mcnemar's Test P-Value : 0.07771         
-##                                           
-##             Sensitivity : 0.8447          
-##             Specificity : 0.7663          
-##          Pos Pred Value : 0.7933          
-##          Neg Pred Value : 0.8229          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4350          
-##    Detection Prevalence : 0.5483          
-##       Balanced Accuracy : 0.8055          
-##                                           
-##        'Positive' Class : 0               
+##          0 248  34
+##          1  61 257
+##                                       
+##                Accuracy : 0.8417      
+##                  95% CI : (0.81, 0.87)
+##     No Information Rate : 0.515       
+##     P-Value [Acc > NIR] : < 2.2e-16   
+##                                       
+##                   Kappa : 0.6839      
+##  Mcnemar's Test P-Value : 0.007641    
+##                                       
+##             Sensitivity : 0.8026      
+##             Specificity : 0.8832      
+##          Pos Pred Value : 0.8794      
+##          Neg Pred Value : 0.8082      
+##              Prevalence : 0.5150      
+##          Detection Rate : 0.4133      
+##    Detection Prevalence : 0.4700      
+##       Balanced Accuracy : 0.8429      
+##                                       
+##        'Positive' Class : 0           
 ## 
 ```
 
@@ -1107,25 +1168,25 @@ confusionMatrix(score.elastic.b, books.review$sentiment)
 ## 
 ##           Reference
 ## Prediction   0   1
-##          0 717 290
-##          1 283 710
+##          0 490 154
+##          1 510 846
 ##                                           
-##                Accuracy : 0.7135          
-##                  95% CI : (0.6931, 0.7332)
+##                Accuracy : 0.668           
+##                  95% CI : (0.6469, 0.6886)
 ##     No Information Rate : 0.5             
-##     P-Value [Acc > NIR] : <2e-16          
+##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.427           
-##  Mcnemar's Test P-Value : 0.8021          
+##                   Kappa : 0.336           
+##  Mcnemar's Test P-Value : < 2.2e-16       
 ##                                           
-##             Sensitivity : 0.7170          
-##             Specificity : 0.7100          
-##          Pos Pred Value : 0.7120          
-##          Neg Pred Value : 0.7150          
+##             Sensitivity : 0.4900          
+##             Specificity : 0.8460          
+##          Pos Pred Value : 0.7609          
+##          Neg Pred Value : 0.6239          
 ##              Prevalence : 0.5000          
-##          Detection Rate : 0.3585          
-##    Detection Prevalence : 0.5035          
-##       Balanced Accuracy : 0.7135          
+##          Detection Rate : 0.2450          
+##    Detection Prevalence : 0.3220          
+##       Balanced Accuracy : 0.6680          
 ##                                           
 ##        'Positive' Class : 0               
 ## 

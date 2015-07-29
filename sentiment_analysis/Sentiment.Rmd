@@ -504,6 +504,8 @@ tdm.train <- TermDocumentMatrix(corpus,
                                              removePunctuation = T,
                                              removeNumbers = T,
                                              stopwords=stopwords("SMART")))
+
+dim(tdm.train)
 ```
 
 --- .newbackground
@@ -613,14 +615,21 @@ coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
 pos.lasso <- sort(coef.lasso[coef.lasso > 0])
 neg.lasso <- sort(coef.lasso[coef.lasso < 0])
 
+length(pos.lasso)
+length(neg.lasso)
+
 ```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 ```{r, cache=F}
 
 pos.lasso[1:5]
 neg.lasso[1:5]
-
 ```
+
 
 --- .newbackground
 
@@ -631,7 +640,14 @@ neg.lasso[1:5]
 pos.ridge <- sort(coef.ridge[coef.ridge > 0])
 neg.ridge <- sort(coef.ridge[coef.ridge < 0])
 
+length(pos.ridge)
+length(neg.ridge)
+
 ```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 ```{r, cache=F}
 
@@ -649,7 +665,14 @@ neg.ridge[1:5]
 pos.elastic <- sort(coef.elastic[coef.elastic > 0])
 neg.elastic <- sort(coef.elastic[coef.elastic < 0])
 
+length(pos.elastic)
+length(neg.elastic)
+
 ```
+
+--- .newbackground
+
+## 감정 단어 추출
 
 ```{r, cache=F}
 
