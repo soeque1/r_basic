@@ -11,7 +11,7 @@ preprocess_text <- function(texts) #, sparse.rate)
     
     tdm <- TermDocumentMatrix(corpus, 
                               control=list(#tokenize = strsplit_space_tokenizer,
-                                  stemming = T,
+                                  stemming = F,
                                   tolower = T,
                                   removePunctuation = T,
                                   removeNumbers = T,
@@ -26,11 +26,11 @@ preprocess_text <- function(texts) #, sparse.rate)
 preprocess_text_test <- function(texts) #, sparse.rate)
 {
     corpus <- Corpus(VectorSource(texts))
-    
+    meta(corpus, tag = "Month") <- test.data$Month
     test.tdm <- TermDocumentMatrix(corpus, 
                                    control=list(#tokenize = strsplit_space_tokenizer,
                                        dictionary = Terms(tdm.train), 
-                                       stemming = T,
+                                       stemming = F,
                                        tolower = T,
                                        removePunctuation = T,
                                        removeNumbers = T,
@@ -45,29 +45,62 @@ preprocess_text_test <- function(texts) #, sparse.rate)
 
 setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
 
-### 영화 
-fileName <- "data/IMDBmovie/labeledTrainData.tsv"
-data <- read.csv(fileName, header=T, sep="\t", quote="")
-data <- data[1:10000, ] ## 테스트 위해서는 10000개만 
+## 아마존 도서
+library(XML)
+library(rvest)
 
+posfileName <- sprintf("%s%s", getwd(), "/data/electronics/positive.review")
+data.pos <- htmlParse(posfileName)
+titles <- data.pos %>% html_nodes("title") %>% html_text()
+texts <- data.pos %>% html_nodes("review_text") %>% html_text()
+points <- data.pos %>% html_nodes("rating") %>% html_text()
+sentiment <- rep(1, length(points))
+dt.pos <- data.frame(titles, texts, points, sentiment)
+
+negfileName <- sprintf("%s%s", getwd(), "/data/electronics/negative.review")
+data.neg <- htmlParse(negfileName)
+titles <- data.neg %>% html_nodes("title") %>% html_text()
+texts <- data.neg %>% html_nodes("review_text") %>% html_text()
+points <- data.neg %>% html_nodes("rating") %>% html_text()
+sentiment <- rep(0, length(points))
+
+dt.neg <- data.frame(titles, texts, points, sentiment)
+dt <- rbind(dt.pos, dt.neg)
+
+library(stringr)
+dt$titles <- str_replace_all(dt$titles, "\n", "")
+dt$texts <- str_replace_all(dt$texts, "\n", "")
+dt$points <- str_replace_all(dt$points, "\n", "") %>% as.numeric()
+
+write.csv(dt, 'electronics.csv')
+
+
+summary(dt$points)
+
+### 영화 
+#fileName <- "data/IMDBmovie/labeledTrainData.tsv"
+#data <- read.csv(fileName, header=T, sep="\t", quote="")
+#data <- data[1:10000, ] ## 테스트 위해서는 10000개만 
+
+data <- read.csv("data/mobile2014.csv")
 totalNum <- 1:nrow(data)
-set.seed(12345)
+set.seed(54321)
 shuffledNum <- sample(totalNum, nrow(data), replace = F)
-trainingNum <- shuffledNum[1:7000]
-testNum <- shuffledNum[7001:10000]
+trainingNum <- shuffledNum[1:1400]
+testNum <- shuffledNum[1401:2000]
 
 train.data <- data[trainingNum, ]
 test.data <- data[testNum, ]
 
 #sparse.rate <- .9999
-tdm.train <- preprocess_text(train.data$review) #, sparse.rate)
+tdm.train <- preprocess_text(train.data$Texts) #, sparse.rate)
 
 # NOTE: 여기서 상위 10000단어만 자를거면 removeSparseTerms를 쓸 필요가 있나? -> removeSparseTerms 삭제
-library(slam)
-word.count = as.array(rollup(tdm.train, 2))
-word.order = order(word.count, decreasing = T)
-freq.word = word.order[1 : 10000]
-tdm.train <- tdm.train[freq.word, ]
+##library(slam)
+##word.count = as.array(rollup(tdm.train, 2))
+#word.order = order(word.count, decreasing = T)
+#freq.word = word.order[1 : 10000]
+#tdm.train <- tdm.train[freq.word, ]
 
 library(glmnet)
 
@@ -89,12 +122,18 @@ library(glmnet)
 #alphas[which.min(cv.cvm.min)]
 #res.coef <- coef(cv.res[[which.min(cv.cvm.min)]], s = "lambda.min")
 
-alpha <- .2 # 그냥 알파 고정
-cv.res <- cv.glmnet(as.matrix(t(tdm.train)), train.data$sentiment, 
-                    type.measure = "auc", 
+alpha <- .3 # 그냥 알파 고정
+cv.res <- cv.glmnet(as.matrix(t(tdm.train)), train.data$Points, 
+                    type.measure = "mse", 
                     nfolds = 4,
-                    family = "binomial", 
                     alpha = alpha)
+
+# alpha <- 1 # 그냥 알파 고정
+# cv.res <- cv.glmnet(as.matrix(t(tdm.train)), train.data$points, 
+#                     type.measure = "auc", 
+#                     nfolds = 4,
+#                     family = "binomial", 
+#                     alpha = alpha)
 
 res.coef <- coef(cv.res, s = "lambda.min") # res.coef[1:6,1]
 res.coef.num <- res.coef[,1]
@@ -108,9 +147,9 @@ head(negword, 10)
 library(tm.plugin.sentiment)
 train.sentiScore <- polarity(tdm.train, names(posword), names(negword))
 
-cor(train.sentiScore, data$sentiment[trainingNum], use = "complete")
+cor(train.sentiScore, data$Points[trainingNum], use = "complete")
 
-#library(ROCR)
+library(ROCR)
 
  findCutpoint <- function(predSentiment, dataSentiment)
  {
@@ -122,35 +161,23 @@ cor(train.sentiScore, data$sentiment[trainingNum], use = "complete")
      cutpoint <- unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))]
      return(cutpoint)
  }
- 
-# cutpoint <- findCutpoint(sentiScore, data$sentiment[trainingNum])
+
+cutpoint <- findCutpoint(train.sentiScore, data$Sentiment[trainingNum])
 
 library(pROC)
-train.roc <- roc(data$sentiment[trainingNum], train.sentiScore)
+train.roc <- roc(data$Sentiment[trainingNum], train.sentiScore)
 
 plot(train.roc, print.auc=TRUE, auc.polygon=TRUE, grid=c(0.1, 0.2),
      grid.col=c("green", "red"), max.auc.polygon=TRUE,
      auc.polygon.col="blue", print.thres=TRUE)
 
-test.dtm <- preprocess_text_test(data$review[testNum]) #, sparse.rate)
+test.dtm <- preprocess_text_test(data$Texts[testNum]) #, sparse.rate)
 
 test.sentiScore <- polarity(test.dtm, names(posword), names(negword))
 
-cor(test.sentiScore, data$sentiment[testNum], use = "complete")
+cor(test.sentiScore, data$Points[testNum], use = "complete")
 
-# pred <- prediction(sentiScore, data$sentiment[testNum])
-# #pred <- prediction(result, data$sentiment[testNum])
-# perf <- performance(pred,"tpr", "fpr")
-# auc <- performance(pred,"auc")
-# auc <- unlist(slot(auc, "y.values"))
-# acc <-performance(pred,"acc")
-# 
-# plot(perf, col="red", lty=1)
-# curve(x+0, add=T)
-# auc.name = round(auc, 3)
-# legend(.7, .5, auc.name,lty=1,col=c("red"),cex=.7)    
-
-test.roc <- roc(data$sentiment[testNum], test.sentiScore)
+test.roc <- roc(data$Sentiment[testNum], test.sentiScore)
 plot(test.roc, print.auc=TRUE, auc.polygon=TRUE, grid=c(0.1, 0.2),
      grid.col=c("green", "red"), max.auc.polygon=TRUE,
      auc.polygon.col="blue", print.thres=TRUE)
@@ -159,7 +186,9 @@ test.sentiScore.b <- rep(0, length(test.sentiScore))
 test.sentiScore.b[test.sentiScore >= cutpoint] <- 1
 
 library(caret)
-confusionMatrix(test.sentiScore.b, data$sentiment[testNum])
+confusionMatrix(test.sentiScore.b, data$Sentiment[testNum])
+
+
 
 
 ################# 다른 곳에 적용
@@ -198,7 +227,7 @@ library(tm)
 
 test.dtm <- preprocess_text_test(dt$texts)# , sparse.rate)
 
-test.sentiScore <- polarity(test.dtm, names(posword), names(negword))
+test.sentiScore <- senti_diffs_per_ref(test.dtm, names(posword), names(negword))
 # pred <- prediction(sentiScore, dt$sentiment)
 # perf <- performance(pred,"tpr", "fpr")
 # auc <- performance(pred,"auc")
@@ -220,6 +249,25 @@ test.sentiScore.b[test.sentiScore >= 0] <- 1
 
 library(caret)
 confusionMatrix(test.sentiScore.b, dt$sentiment)
+
+corpus <- Corpus(VectorSource(texts))
+for (i in 1:length(corpus))
+{
+    meta(corpus[[i]], "datetimestamp") <- test.data$YMD[i]
+}
+meta(corpus[[1]])
+
+a <- score(corpus,control=list(#tokenize = strsplit_space_tokenizer,
+    dictionary = Terms(tdm.train), 
+    stemming = F,
+    tolower = T,
+    removePunctuation = T,
+    removeNumbers = T,
+    stopwords=stopwords("SMART")))
+
+a[[2]]$meta
+sentixts <- metaXTS(a, period = "months")
+chartSentiment(sentixts)
 
 
 # dataset2 <- as.data.frame(data$review[testNum])
@@ -263,3 +311,12 @@ confusionMatrix(test.sentiScore.b, dt$sentiment)
 #         result<- c(result,0)
 #     }
 # }
+
+## 파일 저장
+set.seed(12345)
+posNum <- sample(which(data$sentiment == 1), 1000, replace = F)
+negNum <- sample(which(data$sentiment == 0), 1000, replace = F)
+
+write.csv(data[c(posNum, negNum),], 'data.csv')
+
+
