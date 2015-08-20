@@ -1,0 +1,923 @@
+---
+title       : "Sentiment Analysis"
+subtitle    : "감정사전 & 감정점수 만들기"
+author      : "김형준"
+job         : "Analytic Director / (주) 퀀트랩 / kim@mindscale.kr "
+logo        : logo_03.png
+license     : by-nc-sa
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+widgets     : [mathjax]            # {mathjax, bootstrap, quiz}
+mode        : selfcontained
+hitheme     : tomorrow      # {tomorrow, tomorrow_night, solarized_dark, solarized_light}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+knit        : slidify::knit2slides
+
+---
+
+## 퀀트랩 소개
+
+<center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center>
+
+--- .new-background
+
+## 워크숍 관련 온라인 사이트
+
+http://course.mindscale.kr/course/text-analysis
+
+<left><img src="assets/img/courses.png" height=450px width=600px></left>
+
+--- .new-background
+
+## 오늘의 목표  
+
+<h3b> - 감정 사전 만들기</h3b>  
+<h3b> - 감정 점수 만들기</h3b>  
+
+<h3b> - 상관관계 이해하기</h3b>  
+<h3b> - 회귀분석 이해하기</h3b>  
+<h3b> - 모형평가 이해하기</h3b>  
+
+--- .newbackground
+
+## 왜 감정분석을 하는가?
+
+<h3b> 설문지의 단점</h3b>  
+<h3b> 1) 조사 비용 발생 </h3b>  
+<h3b> 2) 미리 정해진 문항만 측정 가능</h3b>  
+<h3b> 3) 사회적 바람직성 등 편향 발생</h3b>  
+
+--- .newbackground
+
+## 감정분석
+
+<h3b> 텍스트에서 감정 단어를 추출하여 점수화</h3b>  
+<h3b> 1) 기계 학습 (Machine Learning) </h3b>  
+<h3b> 2) 단어 사전 기반 </h3b>
+
+--- .newbackground
+
+## 사전 기반 분석
+
+<h3b> 장점 </h3b>  
+<h3b> - 사용하기 간편 </h3b>  
+<h3b> 단점 </h3b>  
+<h3b> - 주제에 따라 사전이 달라 짐 </h3b>  
+<h3b> - 동음이의어 처리 힘듦 e.g) bank </h3b>  
+
+--- .newbackground
+
+## 기계학습 기반 분석
+
+<h3b> 장점 </h3b>  
+<h3b> - 높은 정확도  </h3b>  
+<h3b> 단점 </h3b>  
+<h3b> - Over-fitting 해결 </h3b>  
+<h3b> - 많은 데이터 필요 </h3b>  
+<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트지지벡터머신 / </h3b>  
+<h3b>  랜덤 포레스트 / 토픽 모델 </h3b>
+
+--- .newbackground
+
+## 감정 분석 예시
+
+<center><img src="assets/img/election.png" height=450px width=800px></center>
+
+--- .newbackground
+
+## 감정 분석 예시
+
+<center><img src="assets/img/twitter.png" height=450px width=800px></center>
+
+
+--- .newbackground
+
+## 사전 지식 
+
+<h3b> 예측이란 무엇? </h3b> 
+
+<h4b>자기자신(Y) : Y가 변화하는 추세  </h4b>    
+<h4b>다른변수(X,Y) : X가 Y를 예측  </h4b>    
+<h4b> - 키로 몸무게를 예측! </h4b>    
+<h4b> - 키로 성적을 예측?   </h4b>    
+
+<h3b> 예측이 잘 되려면 서로 상관(관련성)이 높아야 함</h3b>  
+<h4b> -> 감정단어로 영화 평점을 예측 </h4b>  
+
+--- .newbackground
+
+## 회귀분석(선형(직선) 모형) 
+
+<h3b> 예시 </h3b>
+
+<h4b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h4b>  
+<h4b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h4b>   
+<h4b>- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  </h4b>  
+<h4b>- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  </h4b>  
+
+--- &twocol .modal
+
+## 상관관계
+
+*** =left
+
+```{r, echo = F}
+x <- 1:10
+y <- 1:10
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(x, y, cex.lab = 2)
+cor(x, y)
+```
+
+*** =right
+
+```{r, echo = F}
+x <- 1:10
+y <- 1:10
+y[2] <- 10
+y[8] <- 3
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(x, y, cex.lab = 2)
+cor(x, y)
+```
+
+--- .newbackground .modal
+
+## 상관관계
+
+<h3b> x가 증가(혹은 감소)할때 y가 선형적으로 증가(혹은 감소)하는 정도 </h3b>
+
+<h3b> scale </h3b>
+
+<h4b> 키가 만약 cm라면, 키가 1cm 증가하면 몸무게는 1kg증가  </h4b>   
+<h4b> 키가 만약 mm라면, 키가 1mm 증가하면 몸무게는 0.1kg 증가  </h4b>   
+
+<h3b> -> 표준화해야 한다 </h3b>
+
+--- &twocol .modal
+
+## 둘 중 무엇이 상관이 더 클까요?
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, ylim = c(70,90), cex.lab = 2)
+#cor(weights, heights)
+```
+
+*** =right
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+weights = weights / 10 + 70
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, ylim = c(70,90), cex.lab = 2)
+#cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6}
+plot(heights, weights, pch = 16, ylim = c(70,90), cex.lab = 2)
+abline(lm(weights ~ heights), col="red")
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=5, message=F}
+library(xtable)
+library(lm.beta)
+print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
+```
+
+```{r}
+cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo = F}
+weights = weights / 10 + 70
+#hist(weights);hist(heights)
+```
+
+```{r, echo=F,warning=F, fig.width=6}
+plot(heights, weights, pch = 16, ylim = c(70,90), cex.lab = 2)
+abline(lm(weights ~ heights), col="red")
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=5, message=F}
+library(xtable)
+library(lm.beta)
+print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
+```
+
+```{r}
+cor(weights, heights)
+```
+
+--- &twocol
+
+## 상관관계 및 회귀분석
+
+*** =left
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, cex.lab = 2)
+abline(lm(weights ~ heights), col="red")
+#cor(weights, heights)
+```
+
+*** =right
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+plot(heights, weights, pch = 16, cex.lab = 2)
+abline(lm(weights ~ heights), col="red")
+```
+
+--- &twocol
+
+## X가 2개라면?
+
+*** =left
+
+```{r, echo = F}
+set.seed(1)
+heights = rnorm(30,180,5)
+heights = sort(heights, decreasing = F)
+weights =  -10 + heights*.5 + rnorm(30,0,2)
+iq <- 87 + heights*0 + rnorm(30,0,5)
+```
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6, message=F}
+library(scatterplot3d)
+test <- scatterplot3d(heights,iq,weights,color='red',
+          pch=19,col.grid='lightblue',type='h', cex.lab = 2)
+
+my.lm<-lm(weights~heights+iq)
+test$plane3d(my.lm,col='blue')
+cor(weights, heights)
+```
+
+*** =right
+
+```{r, echo=F,warning=F, fig.width=6, fig.height=6}
+test <- scatterplot3d(iq,heights,weights,color='red',
+          pch=19,col.grid='lightblue',type='h', cex.lab = 2)
+
+my.lm<-lm(weights~iq+heights)
+test$plane3d(my.lm,col='blue')
+cor(weights, iq)
+```
+
+--- .newbackground
+
+## 다중회귀분석
+
+```{r results="asis", echo=F, fig.width=5}
+my.lm<-lm(weights~iq+heights)
+print(xtable(coef(summary(lm(weights ~ iq + heights)))),type="html")
+```
+
+--- .newbackground
+
+## 예측력  
+
+<h3b> MSE(Mean of Square Error) </h3b>
+$$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
+
+<h3b> 정확도(Accracy) </h3b>  
+
+<center><img src="assets/img/confusionMat.jpg" height=200px width=600px></center>
+<h3b> 정확도 = (TP + TN) / (TP + FP + TN + FN) </h3b>
+
+--- &twocol
+
+## Traninig Vs Test
+
+*** =left
+
+```{r results="asis", echo=F, fig.width=6}
+lm.1 <- lm(weights~heights)
+lm.2 <- lm(weights~iq+heights)
+plot(weights ~ heights, pch = 3, lwd = 5, main = "Sample(Training) Set", cex.lab = 2) 
+
+points((-10 + heights*.5) ~ heights, pch = 15, col = "red")
+points(predict(lm.1) ~ heights, pch = 15,  col = "blue")
+points(predict(lm.2) ~ heights , pch = 16,  col = "green")
+
+a <- apply(cbind(heights, heights, weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
+
+
+
+true_mse = sum((weights - (-10 + .5*heights))^2)
+lm_mse = sum((weights - predict(lm.1))^2)
+lm2_mse = sum((weights - predict(lm.2))^2)
+
+legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
+                       paste("LM MSE:",round(lm_mse,2)), 
+                       paste("LM2 MSE:",round(lm2_mse,2))),
+                         col=c("red","blue","green"),lty=1)
+
+```
+
+*** =right
+
+```{r results="asis", echo=F, fig.width=6}
+set.seed(12345)
+t.heights = rnorm(30,180,5)
+t.weights =  -10 + t.heights*.5 + rnorm(30,0,2)
+plot(t.weights ~ t.heights, pch = 3, lwd = 5, main = "Sample(Test) Set")
+points((-10 + t.heights*.5) ~ t.heights, pch = 15,  col = "red", cex.lab = 2)
+points(predict(lm.1) ~ t.heights, pch = 15,  col = "blue")
+points(predict(lm.2) ~ t.heights , pch = 16,  col = "green")
+
+a <- apply(cbind(t.heights, t.heights, t.weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
+
+true_mse = sum((t.weights - (-10 + .5*t.heights))^2)
+lm_mse = sum((t.weights - predict(lm.1))^2)
+lm2_mse = sum((t.weights - predict(lm.2))^2)
+
+legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
+                       paste("LM MSE:",round(lm_mse,2)), 
+                       paste("LM2 MSE:",round(lm2_mse,2))),
+                         col=c("red","blue","green"),lty=1)
+
+```
+
+--- .newbackground
+
+## Over-fitting
+
+<center><img src="assets/img/overfitting.png" height=450px width=700px></center>
+
+
+--- .newbackground
+
+## Over-fitting(과적합)
+
+<h3b> How to avoid Over-fitting </h3b>  
+<h3b>- Penality of Model Complexity (MSE 보정)  </h3b>  
+<h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b>  
+<h3b>- Bayesian  </h3b>  
+<h3b>- Drop Out, Bagging, Feature Bagging  </h3b>  
+
+--- .newbackground
+
+## Lasso Vs Ridge
+
+<center><img src="assets/img/lassoridge.png" height=450px width=800px></center>
+
+--- &twocol
+
+## Lasso Vs Ridge
+
+*** =left
+
+```{r, echo = F, message=F}
+library(glmnet)
+```
+
+```{r, echo = F, fig.width=6}
+#cv.res <- cv.glmnet(cbind(heights, iq), weights, family = "gaussian", alpha = 1)
+#cv.coef <- coef(cv.res, s = "lambda.min")
+#plot(cv.res)
+# 
+#lasso.res <- glmnet(cbind(heights, iq), weights, lambda = cv.res$lambda.min, alpha = 1)
+#plot(coefficients(lasso.res))
+#lasso_mse = sum((t.weights - predict(lasso.res, cbind(heights, iq)))^2)
+#lasso_mse
+
+lbs_fun <- function(fit, ...) {
+        L <- length(fit$lambda)
+        x <- log(fit$lambda[L])
+        y <- fit$beta[, L]
+        labs <- names(y)
+        text(x - .3*x, y , labels=labs, pos = 3, offset = .5, ...)
+        legend('topright', legend=labs, col=1:length(labs), lty=1) # <<< ADDED BY ME
+}
+
+lasso.res <- glmnet(cbind(heights, iq), weights, alpha = 1)
+plot(lasso.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "LASSO", ylim = c(0, .6), cex.lab = 2)
+lbs_fun(lasso.res)
+
+```
+
+*** =right
+
+```{r, echo = F, fig.width=6}
+
+ridge.res <- glmnet(cbind(heights, iq), weights, alpha = 0)
+plot(ridge.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "RIDGE", ylim = c(0, .6), cex.lab = 2)
+lbs_fun(ridge.res)
+```
+
+--- .newbackground
+
+## 감정분석
+
+<h3b> Data </h3b>  
+<h3b> 25,000 IMDB movie reviews 중에서 1,000개만 </h3b>  
+<h3b> Training Vs Test = 7 Vs 3 </h3b>  
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분할
+
+```{r, echo = F}
+setwd("~/Dropbox/repo/r_basic/sentiment_analysis/")
+```
+
+```{r}
+fileName <- "data/IMDBmovie/labeledTrainData.tsv"
+data <- read.csv(fileName, header=T, sep="\t", quote="")
+nrow(data)
+data <- data[1:2000, ]
+```
+
+--- .newbackground
+
+## Traing Set 과 Test Set 분할
+
+```{r}
+totalNum <- 1:nrow(data)
+set.seed(12345)
+shuffledNum <- sample(totalNum, nrow(data), replace = F)
+trainingNum <- shuffledNum[1:1400]
+testNum <- shuffledNum[1401:2000]
+data.train <- data[trainingNum, ]
+data.test <- data[testNum, ]
+```
+
+--- .newbackground
+
+## Term-DocumentMatrix
+
+```{r, warning=F, message=F}
+library(tm)
+```
+
+
+```{r}
+corpus <- Corpus(VectorSource(data.train$review))
+tdm.train <- TermDocumentMatrix(corpus, 
+                                control=list(tolower = T,
+                                             removePunctuation = T,
+                                             removeNumbers = T,
+                                             stopwords=stopwords("SMART")))
+
+dim(tdm.train)
+```
+
+--- .newbackground
+
+## LASSO Regression
+
+```{r}
+alpha <- 1
+cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
+                      type.measure = "class", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha)
+```
+
+--- .newbackground
+
+## LASSO Regression
+```{r}
+plot(cv.lasso)
+log(cv.lasso$lambda.min)
+```
+
+--- .newbackground
+
+## LASSO Regression
+```{r}
+plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
+```
+
+--- .newbackground
+
+## Ridge Regression
+
+```{r}
+alpha <- 0
+cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
+                      type.measure = "class", 
+                      nfolds = 4,
+                      family = "binomial", 
+                      alpha = alpha)
+```
+
+--- .newbackground
+
+## RIDGE Regression
+
+```{r}
+plot(cv.ridge)
+log(cv.ridge$lambda.min)
+```
+
+--- .newbackground
+
+## RIDGE Regression
+
+```{r}
+plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+alpha <- .3
+cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
+                        type.measure = "class", 
+                        nfolds = 4,
+                        family = "binomial", 
+                        alpha = alpha)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+plot(cv.elastic)
+log(cv.elastic$lambda.min)
+```
+
+--- .newbackground
+
+## ElasticNet Regression
+
+```{r}
+plot(cv.elastic$glmnet.fit, "lambda", label=TRUE)
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+coef.lasso <- coef(cv.lasso, s = "lambda.min")[,1]
+coef.ridge <- coef(cv.ridge, s = "lambda.min")[,1]
+coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+
+pos.lasso <- sort(coef.lasso[coef.lasso > 0])
+neg.lasso <- sort(coef.lasso[coef.lasso < 0])
+
+length(pos.lasso)
+length(neg.lasso)
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r, cache=F}
+
+pos.lasso[1:5]
+neg.lasso[1:5]
+```
+
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+
+pos.ridge <- sort(coef.ridge[coef.ridge > 0])
+neg.ridge <- sort(coef.ridge[coef.ridge < 0])
+
+length(pos.ridge)
+length(neg.ridge)
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r, cache=F}
+
+pos.ridge[1:5]
+neg.ridge[1:5]
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r}
+
+pos.elastic <- sort(coef.elastic[coef.elastic > 0])
+neg.elastic <- sort(coef.elastic[coef.elastic < 0])
+
+length(pos.elastic)
+length(neg.elastic)
+
+```
+
+--- .newbackground
+
+## 감정 단어 추출
+
+```{r, cache=F}
+
+pos.elastic[1:5]
+neg.elastic[1:5]
+
+```
+
+
+--- .newbackground
+
+## 감정 단어 점수화
+
+```{r, warning=F, message=F}
+library(tm.plugin.sentiment)
+```
+
+```{r}
+score.lasso <- polarity(tdm.train, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+```{r, warning=F, message=F, echo = F}
+library(ROCR)
+```
+
+```{r, echo = F}
+findCutpoint <- function(dataSentiment, predSentiment)
+    {
+    pred <- prediction(predSentiment, dataSentiment)
+    perf <- performance(pred,"tpr", "fpr")
+    auc <- performance(pred,"auc")
+    auc <- unlist(slot(auc, "y.values"))
+    acc <- performance(pred,"acc")
+    cutpoint <- as.numeric(unlist(slot(acc, "x.values"))[which.max(unlist(slot(acc, "y.values")))])
+    return(cutpoint)
+    }
+```
+
+
+```{r}
+findCutpoint(data.train$sentiment, score.lasso)
+findCutpoint(data.train$sentiment, score.ridge)
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+```{r, message=F}
+library(pROC)
+```
+
+```{r, message=F, fig.width=6, fig.height=5}
+plot.roc(data.train$sentiment, score.lasso, print.thres = T)
+```
+
+--- .newbackground
+
+## CUT-POINT
+
+
+```{r}
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+corpus <- Corpus(VectorSource(data.test$review))
+
+tdm.test <- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## Test Set
+
+
+```{r}
+score.lasso <- polarity(tdm.test, names(pos.lasso), names(neg.lasso))
+score.ridge <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r, message=F}
+library(caret)
+```
+
+```{r}
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+```{r}
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)), s = "lambda.min")
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)), s = "lambda.min")
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)), s = "lambda.min")
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+```{r}
+findCutpoint(data.train$sentiment, score.lasso)
+findCutpoint(data.train$sentiment, score.ridge)
+findCutpoint(data.train$sentiment, score.elastic)
+```
+
+```{r}
+cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
+cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
+cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
+```
+
+--- .newbackground
+
+## glmnet 활용
+
+```{r}
+score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)), s = "lambda.min")
+score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)), s = "lambda.min")
+score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)), s = "lambda.min")
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.lasso.b <- rep(0, length(score.lasso))
+score.lasso.b[score.lasso >= cut.lasso] <- 1
+confusionMatrix(score.lasso.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.ridge.b <- rep(0, length(score.ridge))
+score.ridge.b[score.ridge >= cut.ridge] <- 1
+confusionMatrix(score.ridge.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, data.test$sentiment)
+```
+
+--- .newbackground
+
+## 다른 데이터에 적용
+
+<h3b> Data </h3b>  
+<h3b> Amazon Books Reviews 중에서 2,000개</h3b>  
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+books.review <- read.csv("data/Amazon_books.csv", stringsAsFactors = F)
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+corpus <- Corpus(VectorSource(books.review$texts))
+
+tdm.test <- TermDocumentMatrix(corpus, 
+                               control=list(dictionary = Terms(tdm.train), 
+                                            tolower = T,
+                                            removePunctuation = T,
+                                            removeNumbers = T,
+                                            stopwords=stopwords("SMART")))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## Test Set
+
+```{r}
+score.elastic.b <- rep(0, length(score.elastic))
+score.elastic.b[score.elastic >= cut.elastic] <- 1
+confusionMatrix(score.elastic.b, books.review$sentiment)
+```
+

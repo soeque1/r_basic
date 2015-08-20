@@ -51,30 +51,6 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>퀀트랩 소개</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="new-background" id="slide-2" style="background:;">
-  <hgroup>
-    <h2>워크숍 관련 온라인 사이트</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><a href="http://course.mindscale.kr/course/text-analysis">http://course.mindscale.kr/course/text-analysis</a></p>
-
-<p><left><img src="assets/img/courses.png" height=450px width=600px></left></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="new-background" id="slide-3" style="background:;">
-  <hgroup>
     <h2>오늘의 목표</h2>
   </hgroup>
   <article data-timings="">
@@ -89,7 +65,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-4" style="background:;">
+<slide class="newbackground" id="slide-2" style="background:;">
   <hgroup>
     <h2>왜 감정분석을 하는가?</h2>
   </hgroup>
@@ -103,7 +79,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-5" style="background:;">
+<slide class="newbackground" id="slide-3" style="background:;">
   <hgroup>
     <h2>감정분석</h2>
   </hgroup>
@@ -116,7 +92,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-6" style="background:;">
+<slide class="newbackground" id="slide-4" style="background:;">
   <hgroup>
     <h2>사전 기반 분석</h2>
   </hgroup>
@@ -131,7 +107,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-7" style="background:;">
+<slide class="newbackground" id="slide-5" style="background:;">
   <hgroup>
     <h2>기계학습 기반 분석</h2>
   </hgroup>
@@ -141,14 +117,14 @@
 <h3b> 단점 </h3b><br>
 <h3b> - Over-fitting 해결 </h3b><br>
 <h3b> - 많은 데이터 필요 </h3b><br>
-<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트지지벡터머신 / </h3b><br>
+<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트벡터머신 / </h3b><br>
 <h3b>  랜덤 포레스트 / 토픽 모델 </h3b></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-8" style="background:;">
+<slide class="newbackground" id="slide-6" style="background:;">
   <hgroup>
     <h2>감정 분석 예시</h2>
   </hgroup>
@@ -159,7 +135,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-9" style="background:;">
+<slide class="newbackground" id="slide-7" style="background:;">
   <hgroup>
     <h2>감정 분석 예시</h2>
   </hgroup>
@@ -170,20 +146,49 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-10" style="background:;">
+<slide class="newbackground" id="slide-8" style="background:;">
   <hgroup>
     <h2>사전 지식</h2>
   </hgroup>
   <article data-timings="">
-    <p><h3b> 예측이란 무엇? </h3b> </p>
+    <p><h3b> 감정분석: 문장에 사용된 단어로 감정을 예측 </h3b> </p>
 
-<p><h4b>자기자신(Y) : Y가 변화하는 추세  </h4b><br>
-<h4b>다른변수(X,Y) : X가 Y를 예측  </h4b><br>
-<h4b> - 키로 몸무게를 예측! </h4b><br>
-<h4b> - 키로 성적을 예측?   </h4b>    </p>
+<p><h3b>예: &quot;이 영화는 좀 길지만 재미있고 신난다&quot;  </h3b><br>
+<h3b> - 길다 -&gt; 부정 </h3b><br>
+<h3b> - 재미있다 -&gt; 긍정 </h3b><br>
+<h3b> - 신나다 -&gt; 긍정  </h3b>    </p>
 
-<p><h3b> 예측이 잘 되려면 서로 상관(관련성)이 높아야 함</h3b><br>
-<h4b> -&gt; 감정단어로 영화 평점을 예측 </h4b>  </p>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>예측 분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> 예측분석 </h3b> </p>
+
+<p><h3b> 선형회귀분석 </h3b><br>
+<h3b> SVM </h3b><br>
+<h3b> RandomForest </h3b><br>
+<h3b> Deep Learning  </h3b>    </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>회귀분석(선형(직선) 모형)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> 예시 </h3b></p>
+
+<p><h3b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h3b><br>
+<h3b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h3b><br>
+<h3b>- 부정단어가 1개 증가할 때 마다 평점 1점 감점  </h3b><br>
+<h3b>- 긍정단어가 1개 증가할 때 마다 평점 1점 증가  </h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -191,21 +196,33 @@
 
 <slide class="newbackground" id="slide-11" style="background:;">
   <hgroup>
-    <h2>회귀분석(선형(직선) 모형)</h2>
+    <h2>회귀분석의 문제</h2>
   </hgroup>
   <article data-timings="">
-    <p><h3b> 예시 </h3b></p>
-
-<p><h4b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h4b><br>
-<h4b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h4b><br>
-<h4b>- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  </h4b><br>
-<h4b>- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  </h4b>  </p>
+    <p><h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b><br>
+<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b><br>
+<h3b>- 예측력이 떨어짐  </h3b><br>
+<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="modal" id="slide-12" style="background:;">
+<slide class="newbackground" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>과적합을 막는 법</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b><br>
+<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b><br>
+<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b><br>
+<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="modal" id="slide-13" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
@@ -229,7 +246,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground modal" id="slide-13" style="background:;">
+<slide class="newbackground modal" id="slide-14" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
@@ -247,9 +264,9 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="modal" id="slide-14" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>둘 중 무엇이 상관이 더 클까요?</h2>
+    <h2>상관관계 및 회귀분석</h2>
   </hgroup>
   <article data-timings="">
       
@@ -258,27 +275,9 @@
 
 </div>    
 <div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+ <!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
 
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-15" style="background:;">
-  <hgroup>
-    <h2>상관관계 및 회귀분석</h2>
-  </hgroup>
-  <article data-timings="">
-      
-<div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
-
-</div>    
-<div class='right' style='float:right;width:'>
- <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-
-<!-- Tue Jul 28 22:06:22 2015 -->
+<!-- Thu Aug 20 23:49:50 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -299,69 +298,19 @@
 
 <slide class="" id="slide-16" style="background:;">
   <hgroup>
-    <h2>상관관계 및 회귀분석</h2>
-  </hgroup>
-  <article data-timings="">
-      
-<div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
-
-</div>    
-<div class='right' style='float:right;width:'>
- <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-
-<!-- Tue Jul 28 22:06:23 2015 -->
-
-<table border=1>
-<tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
-  <tr> <td align="right"> (Intercept) </td> <td align="right"> 69.17 </td> <td align="right"> 1.17 </td> <td align="right"> 58.93 </td> <td align="right"> 0.00 </td> </tr>
-  <tr> <td align="right"> heights </td> <td align="right"> 0.05 </td> <td align="right"> 0.01 </td> <td align="right"> 7.56 </td> <td align="right"> 0.00 </td> </tr>
-   </table>
-
-<pre><code class="r">cor(weights, heights)
-</code></pre>
-
-<pre><code>## [1] 0.8194181
-</code></pre>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-17" style="background:;">
-  <hgroup>
-    <h2>상관관계 및 회귀분석</h2>
-  </hgroup>
-  <article data-timings="">
-      
-<div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
-
-</div>    
-<div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-18" style="background:;">
-  <hgroup>
     <h2>X가 2개라면?</h2>
   </hgroup>
   <article data-timings="">
       
 <div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+ <p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
 
 <pre><code>## [1] 0.8194181
 </code></pre>
 
 </div>    
 <div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+ <p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
 <pre><code>## [1] 0.09818667
 </code></pre>
@@ -371,14 +320,14 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-19" style="background:;">
+<slide class="newbackground" id="slide-17" style="background:;">
   <hgroup>
     <h2>다중회귀분석</h2>
   </hgroup>
   <article data-timings="">
-    <!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
+    <!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
 
-<!-- Tue Jul 28 22:06:24 2015 -->
+<!-- Thu Aug 20 23:49:50 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -391,7 +340,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-20" style="background:;">
+<slide class="newbackground" id="slide-18" style="background:;">
   <hgroup>
     <h2>예측력</h2>
   </hgroup>
@@ -408,36 +357,36 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Traninig Vs Test</h2>
   </hgroup>
   <article data-timings="">
       
 <div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"> </p>
+ <p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
 
 </div>    
 <div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"> </p>
+ <p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-22" style="background:;">
+<slide class="newbackground" id="slide-20" style="background:;">
   <hgroup>
     <h2>Over-fitting</h2>
   </hgroup>
   <article data-timings="">
-    <p><center><img src="assets/img/overfitting.png" height=450px width=700px></center></p>
+    <p><center><img src="assets/img/lambda.png" height=450px width=700px></center></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-23" style="background:;">
+<slide class="newbackground" id="slide-21" style="background:;">
   <hgroup>
     <h2>Over-fitting(과적합)</h2>
   </hgroup>
@@ -452,7 +401,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-24" style="background:;">
+<slide class="newbackground" id="slide-22" style="background:;">
   <hgroup>
     <h2>Lasso Vs Ridge</h2>
   </hgroup>
@@ -463,32 +412,281 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Lasso Vs Ridge</h2>
   </hgroup>
   <article data-timings="">
       
 <div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+ <p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
 
 </div>    
 <div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"> </p>
+ <p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-26" style="background:;">
+<slide class="newbackground" id="slide-24" style="background:;">
   <hgroup>
     <h2>감정분석</h2>
   </hgroup>
   <article data-timings="">
     <p><h3b> Data </h3b><br>
-<h3b> 25,000 IMDB movie reviews 중에서 1,000개만 </h3b><br>
-<h3b> Training Vs Test = 7 Vs 3 </h3b>  </p>
+<h3b> 아마존 모바일 폰 리뷰 중에서 2,000개만 </h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>5. 예제 데이터 불러오기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mobile &lt;- read.csv(&#39;mobile2014.csv&#39;, stringsAsFactors = F)
+</code></pre>
+
+<pre><code class="r">dim(mobile)
+</code></pre>
+
+<pre><code>## [1] 2000    7
+</code></pre>
+
+<pre><code class="r">table(mobile$Sentiment)
+</code></pre>
+
+<pre><code>## 
+##    0    1 
+## 1000 1000
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>6. DocumentTermMatrix 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(tm)
+</code></pre>
+
+<pre><code class="r">corpus &lt;- Corpus(VectorSource(mobile$Texts))
+
+##  제거할 단어 목록 확인
+stopwords()
+</code></pre>
+
+<pre><code>##   [1] &quot;i&quot;          &quot;me&quot;         &quot;my&quot;         &quot;myself&quot;     &quot;we&quot;        
+##   [6] &quot;our&quot;        &quot;ours&quot;       &quot;ourselves&quot;  &quot;you&quot;        &quot;your&quot;      
+##  [11] &quot;yours&quot;      &quot;yourself&quot;   &quot;yourselves&quot; &quot;he&quot;         &quot;him&quot;       
+##  [16] &quot;his&quot;        &quot;himself&quot;    &quot;she&quot;        &quot;her&quot;        &quot;hers&quot;      
+##  [21] &quot;herself&quot;    &quot;it&quot;         &quot;its&quot;        &quot;itself&quot;     &quot;they&quot;      
+##  [26] &quot;them&quot;       &quot;their&quot;      &quot;theirs&quot;     &quot;themselves&quot; &quot;what&quot;      
+##  [31] &quot;which&quot;      &quot;who&quot;        &quot;whom&quot;       &quot;this&quot;       &quot;that&quot;      
+##  [36] &quot;these&quot;      &quot;those&quot;      &quot;am&quot;         &quot;is&quot;         &quot;are&quot;       
+##  [41] &quot;was&quot;        &quot;were&quot;       &quot;be&quot;         &quot;been&quot;       &quot;being&quot;     
+##  [46] &quot;have&quot;       &quot;has&quot;        &quot;had&quot;        &quot;having&quot;     &quot;do&quot;        
+##  [51] &quot;does&quot;       &quot;did&quot;        &quot;doing&quot;      &quot;would&quot;      &quot;should&quot;    
+##  [56] &quot;could&quot;      &quot;ought&quot;      &quot;i&#39;m&quot;        &quot;you&#39;re&quot;     &quot;he&#39;s&quot;      
+##  [61] &quot;she&#39;s&quot;      &quot;it&#39;s&quot;       &quot;we&#39;re&quot;      &quot;they&#39;re&quot;    &quot;i&#39;ve&quot;      
+##  [66] &quot;you&#39;ve&quot;     &quot;we&#39;ve&quot;      &quot;they&#39;ve&quot;    &quot;i&#39;d&quot;        &quot;you&#39;d&quot;     
+##  [71] &quot;he&#39;d&quot;       &quot;she&#39;d&quot;      &quot;we&#39;d&quot;       &quot;they&#39;d&quot;     &quot;i&#39;ll&quot;      
+##  [76] &quot;you&#39;ll&quot;     &quot;he&#39;ll&quot;      &quot;she&#39;ll&quot;     &quot;we&#39;ll&quot;      &quot;they&#39;ll&quot;   
+##  [81] &quot;isn&#39;t&quot;      &quot;aren&#39;t&quot;     &quot;wasn&#39;t&quot;     &quot;weren&#39;t&quot;    &quot;hasn&#39;t&quot;    
+##  [86] &quot;haven&#39;t&quot;    &quot;hadn&#39;t&quot;     &quot;doesn&#39;t&quot;    &quot;don&#39;t&quot;      &quot;didn&#39;t&quot;    
+##  [91] &quot;won&#39;t&quot;      &quot;wouldn&#39;t&quot;   &quot;shan&#39;t&quot;     &quot;shouldn&#39;t&quot;  &quot;can&#39;t&quot;     
+##  [96] &quot;cannot&quot;     &quot;couldn&#39;t&quot;   &quot;mustn&#39;t&quot;    &quot;let&#39;s&quot;      &quot;that&#39;s&quot;    
+## [101] &quot;who&#39;s&quot;      &quot;what&#39;s&quot;     &quot;here&#39;s&quot;     &quot;there&#39;s&quot;    &quot;when&#39;s&quot;    
+## [106] &quot;where&#39;s&quot;    &quot;why&#39;s&quot;      &quot;how&#39;s&quot;      &quot;a&quot;          &quot;an&quot;        
+## [111] &quot;the&quot;        &quot;and&quot;        &quot;but&quot;        &quot;if&quot;         &quot;or&quot;        
+## [116] &quot;because&quot;    &quot;as&quot;         &quot;until&quot;      &quot;while&quot;      &quot;of&quot;        
+## [121] &quot;at&quot;         &quot;by&quot;         &quot;for&quot;        &quot;with&quot;       &quot;about&quot;     
+## [126] &quot;against&quot;    &quot;between&quot;    &quot;into&quot;       &quot;through&quot;    &quot;during&quot;    
+## [131] &quot;before&quot;     &quot;after&quot;      &quot;above&quot;      &quot;below&quot;      &quot;to&quot;        
+## [136] &quot;from&quot;       &quot;up&quot;         &quot;down&quot;       &quot;in&quot;         &quot;out&quot;       
+## [141] &quot;on&quot;         &quot;off&quot;        &quot;over&quot;       &quot;under&quot;      &quot;again&quot;     
+## [146] &quot;further&quot;    &quot;then&quot;       &quot;once&quot;       &quot;here&quot;       &quot;there&quot;     
+## [151] &quot;when&quot;       &quot;where&quot;      &quot;why&quot;        &quot;how&quot;        &quot;all&quot;       
+## [156] &quot;any&quot;        &quot;both&quot;       &quot;each&quot;       &quot;few&quot;        &quot;more&quot;      
+## [161] &quot;most&quot;       &quot;other&quot;      &quot;some&quot;       &quot;such&quot;       &quot;no&quot;        
+## [166] &quot;nor&quot;        &quot;not&quot;        &quot;only&quot;       &quot;own&quot;        &quot;same&quot;      
+## [171] &quot;so&quot;         &quot;than&quot;       &quot;too&quot;        &quot;very&quot;
+</code></pre>
+
+<pre><code class="r">stopwords(&quot;SMART&quot;)
+</code></pre>
+
+<pre><code>##   [1] &quot;a&quot;             &quot;a&#39;s&quot;           &quot;able&quot;          &quot;about&quot;        
+##   [5] &quot;above&quot;         &quot;according&quot;     &quot;accordingly&quot;   &quot;across&quot;       
+##   [9] &quot;actually&quot;      &quot;after&quot;         &quot;afterwards&quot;    &quot;again&quot;        
+##  [13] &quot;against&quot;       &quot;ain&#39;t&quot;         &quot;all&quot;           &quot;allow&quot;        
+##  [17] &quot;allows&quot;        &quot;almost&quot;        &quot;alone&quot;         &quot;along&quot;        
+##  [21] &quot;already&quot;       &quot;also&quot;          &quot;although&quot;      &quot;always&quot;       
+##  [25] &quot;am&quot;            &quot;among&quot;         &quot;amongst&quot;       &quot;an&quot;           
+##  [29] &quot;and&quot;           &quot;another&quot;       &quot;any&quot;           &quot;anybody&quot;      
+##  [33] &quot;anyhow&quot;        &quot;anyone&quot;        &quot;anything&quot;      &quot;anyway&quot;       
+##  [37] &quot;anyways&quot;       &quot;anywhere&quot;      &quot;apart&quot;         &quot;appear&quot;       
+##  [41] &quot;appreciate&quot;    &quot;appropriate&quot;   &quot;are&quot;           &quot;aren&#39;t&quot;       
+##  [45] &quot;around&quot;        &quot;as&quot;            &quot;aside&quot;         &quot;ask&quot;          
+##  [49] &quot;asking&quot;        &quot;associated&quot;    &quot;at&quot;            &quot;available&quot;    
+##  [53] &quot;away&quot;          &quot;awfully&quot;       &quot;b&quot;             &quot;be&quot;           
+##  [57] &quot;became&quot;        &quot;because&quot;       &quot;become&quot;        &quot;becomes&quot;      
+##  [61] &quot;becoming&quot;      &quot;been&quot;          &quot;before&quot;        &quot;beforehand&quot;   
+##  [65] &quot;behind&quot;        &quot;being&quot;         &quot;believe&quot;       &quot;below&quot;        
+##  [69] &quot;beside&quot;        &quot;besides&quot;       &quot;best&quot;          &quot;better&quot;       
+##  [73] &quot;between&quot;       &quot;beyond&quot;        &quot;both&quot;          &quot;brief&quot;        
+##  [77] &quot;but&quot;           &quot;by&quot;            &quot;c&quot;             &quot;c&#39;mon&quot;        
+##  [81] &quot;c&#39;s&quot;           &quot;came&quot;          &quot;can&quot;           &quot;can&#39;t&quot;        
+##  [85] &quot;cannot&quot;        &quot;cant&quot;          &quot;cause&quot;         &quot;causes&quot;       
+##  [89] &quot;certain&quot;       &quot;certainly&quot;     &quot;changes&quot;       &quot;clearly&quot;      
+##  [93] &quot;co&quot;            &quot;com&quot;           &quot;come&quot;          &quot;comes&quot;        
+##  [97] &quot;concerning&quot;    &quot;consequently&quot;  &quot;consider&quot;      &quot;considering&quot;  
+## [101] &quot;contain&quot;       &quot;containing&quot;    &quot;contains&quot;      &quot;corresponding&quot;
+## [105] &quot;could&quot;         &quot;couldn&#39;t&quot;      &quot;course&quot;        &quot;currently&quot;    
+## [109] &quot;d&quot;             &quot;definitely&quot;    &quot;described&quot;     &quot;despite&quot;      
+## [113] &quot;did&quot;           &quot;didn&#39;t&quot;        &quot;different&quot;     &quot;do&quot;           
+## [117] &quot;does&quot;          &quot;doesn&#39;t&quot;       &quot;doing&quot;         &quot;don&#39;t&quot;        
+## [121] &quot;done&quot;          &quot;down&quot;          &quot;downwards&quot;     &quot;during&quot;       
+## [125] &quot;e&quot;             &quot;each&quot;          &quot;edu&quot;           &quot;eg&quot;           
+## [129] &quot;eight&quot;         &quot;either&quot;        &quot;else&quot;          &quot;elsewhere&quot;    
+## [133] &quot;enough&quot;        &quot;entirely&quot;      &quot;especially&quot;    &quot;et&quot;           
+## [137] &quot;etc&quot;           &quot;even&quot;          &quot;ever&quot;          &quot;every&quot;        
+## [141] &quot;everybody&quot;     &quot;everyone&quot;      &quot;everything&quot;    &quot;everywhere&quot;   
+## [145] &quot;ex&quot;            &quot;exactly&quot;       &quot;example&quot;       &quot;except&quot;       
+## [149] &quot;f&quot;             &quot;far&quot;           &quot;few&quot;           &quot;fifth&quot;        
+## [153] &quot;first&quot;         &quot;five&quot;          &quot;followed&quot;      &quot;following&quot;    
+## [157] &quot;follows&quot;       &quot;for&quot;           &quot;former&quot;        &quot;formerly&quot;     
+## [161] &quot;forth&quot;         &quot;four&quot;          &quot;from&quot;          &quot;further&quot;      
+## [165] &quot;furthermore&quot;   &quot;g&quot;             &quot;get&quot;           &quot;gets&quot;         
+## [169] &quot;getting&quot;       &quot;given&quot;         &quot;gives&quot;         &quot;go&quot;           
+## [173] &quot;goes&quot;          &quot;going&quot;         &quot;gone&quot;          &quot;got&quot;          
+## [177] &quot;gotten&quot;        &quot;greetings&quot;     &quot;h&quot;             &quot;had&quot;          
+## [181] &quot;hadn&#39;t&quot;        &quot;happens&quot;       &quot;hardly&quot;        &quot;has&quot;          
+## [185] &quot;hasn&#39;t&quot;        &quot;have&quot;          &quot;haven&#39;t&quot;       &quot;having&quot;       
+## [189] &quot;he&quot;            &quot;he&#39;s&quot;          &quot;hello&quot;         &quot;help&quot;         
+## [193] &quot;hence&quot;         &quot;her&quot;           &quot;here&quot;          &quot;here&#39;s&quot;       
+## [197] &quot;hereafter&quot;     &quot;hereby&quot;        &quot;herein&quot;        &quot;hereupon&quot;     
+## [201] &quot;hers&quot;          &quot;herself&quot;       &quot;hi&quot;            &quot;him&quot;          
+## [205] &quot;himself&quot;       &quot;his&quot;           &quot;hither&quot;        &quot;hopefully&quot;    
+## [209] &quot;how&quot;           &quot;howbeit&quot;       &quot;however&quot;       &quot;i&quot;            
+## [213] &quot;i&#39;d&quot;           &quot;i&#39;ll&quot;          &quot;i&#39;m&quot;           &quot;i&#39;ve&quot;         
+## [217] &quot;ie&quot;            &quot;if&quot;            &quot;ignored&quot;       &quot;immediate&quot;    
+## [221] &quot;in&quot;            &quot;inasmuch&quot;      &quot;inc&quot;           &quot;indeed&quot;       
+## [225] &quot;indicate&quot;      &quot;indicated&quot;     &quot;indicates&quot;     &quot;inner&quot;        
+## [229] &quot;insofar&quot;       &quot;instead&quot;       &quot;into&quot;          &quot;inward&quot;       
+## [233] &quot;is&quot;            &quot;isn&#39;t&quot;         &quot;it&quot;            &quot;it&#39;d&quot;         
+## [237] &quot;it&#39;ll&quot;         &quot;it&#39;s&quot;          &quot;its&quot;           &quot;itself&quot;       
+## [241] &quot;j&quot;             &quot;just&quot;          &quot;k&quot;             &quot;keep&quot;         
+## [245] &quot;keeps&quot;         &quot;kept&quot;          &quot;know&quot;          &quot;knows&quot;        
+## [249] &quot;known&quot;         &quot;l&quot;             &quot;last&quot;          &quot;lately&quot;       
+## [253] &quot;later&quot;         &quot;latter&quot;        &quot;latterly&quot;      &quot;least&quot;        
+## [257] &quot;less&quot;          &quot;lest&quot;          &quot;let&quot;           &quot;let&#39;s&quot;        
+## [261] &quot;like&quot;          &quot;liked&quot;         &quot;likely&quot;        &quot;little&quot;       
+## [265] &quot;look&quot;          &quot;looking&quot;       &quot;looks&quot;         &quot;ltd&quot;          
+## [269] &quot;m&quot;             &quot;mainly&quot;        &quot;many&quot;          &quot;may&quot;          
+## [273] &quot;maybe&quot;         &quot;me&quot;            &quot;mean&quot;          &quot;meanwhile&quot;    
+## [277] &quot;merely&quot;        &quot;might&quot;         &quot;more&quot;          &quot;moreover&quot;     
+## [281] &quot;most&quot;          &quot;mostly&quot;        &quot;much&quot;          &quot;must&quot;         
+## [285] &quot;my&quot;            &quot;myself&quot;        &quot;n&quot;             &quot;name&quot;         
+## [289] &quot;namely&quot;        &quot;nd&quot;            &quot;near&quot;          &quot;nearly&quot;       
+## [293] &quot;necessary&quot;     &quot;need&quot;          &quot;needs&quot;         &quot;neither&quot;      
+## [297] &quot;never&quot;         &quot;nevertheless&quot;  &quot;new&quot;           &quot;next&quot;         
+## [301] &quot;nine&quot;          &quot;no&quot;            &quot;nobody&quot;        &quot;non&quot;          
+## [305] &quot;none&quot;          &quot;noone&quot;         &quot;nor&quot;           &quot;normally&quot;     
+## [309] &quot;not&quot;           &quot;nothing&quot;       &quot;novel&quot;         &quot;now&quot;          
+## [313] &quot;nowhere&quot;       &quot;o&quot;             &quot;obviously&quot;     &quot;of&quot;           
+## [317] &quot;off&quot;           &quot;often&quot;         &quot;oh&quot;            &quot;ok&quot;           
+## [321] &quot;okay&quot;          &quot;old&quot;           &quot;on&quot;            &quot;once&quot;         
+## [325] &quot;one&quot;           &quot;ones&quot;          &quot;only&quot;          &quot;onto&quot;         
+## [329] &quot;or&quot;            &quot;other&quot;         &quot;others&quot;        &quot;otherwise&quot;    
+## [333] &quot;ought&quot;         &quot;our&quot;           &quot;ours&quot;          &quot;ourselves&quot;    
+## [337] &quot;out&quot;           &quot;outside&quot;       &quot;over&quot;          &quot;overall&quot;      
+## [341] &quot;own&quot;           &quot;p&quot;             &quot;particular&quot;    &quot;particularly&quot; 
+## [345] &quot;per&quot;           &quot;perhaps&quot;       &quot;placed&quot;        &quot;please&quot;       
+## [349] &quot;plus&quot;          &quot;possible&quot;      &quot;presumably&quot;    &quot;probably&quot;     
+## [353] &quot;provides&quot;      &quot;q&quot;             &quot;que&quot;           &quot;quite&quot;        
+## [357] &quot;qv&quot;            &quot;r&quot;             &quot;rather&quot;        &quot;rd&quot;           
+## [361] &quot;re&quot;            &quot;really&quot;        &quot;reasonably&quot;    &quot;regarding&quot;    
+## [365] &quot;regardless&quot;    &quot;regards&quot;       &quot;relatively&quot;    &quot;respectively&quot; 
+## [369] &quot;right&quot;         &quot;s&quot;             &quot;said&quot;          &quot;same&quot;         
+## [373] &quot;saw&quot;           &quot;say&quot;           &quot;saying&quot;        &quot;says&quot;         
+## [377] &quot;second&quot;        &quot;secondly&quot;      &quot;see&quot;           &quot;seeing&quot;       
+## [381] &quot;seem&quot;          &quot;seemed&quot;        &quot;seeming&quot;       &quot;seems&quot;        
+## [385] &quot;seen&quot;          &quot;self&quot;          &quot;selves&quot;        &quot;sensible&quot;     
+## [389] &quot;sent&quot;          &quot;serious&quot;       &quot;seriously&quot;     &quot;seven&quot;        
+## [393] &quot;several&quot;       &quot;shall&quot;         &quot;she&quot;           &quot;should&quot;       
+## [397] &quot;shouldn&#39;t&quot;     &quot;since&quot;         &quot;six&quot;           &quot;so&quot;           
+## [401] &quot;some&quot;          &quot;somebody&quot;      &quot;somehow&quot;       &quot;someone&quot;      
+## [405] &quot;something&quot;     &quot;sometime&quot;      &quot;sometimes&quot;     &quot;somewhat&quot;     
+## [409] &quot;somewhere&quot;     &quot;soon&quot;          &quot;sorry&quot;         &quot;specified&quot;    
+## [413] &quot;specify&quot;       &quot;specifying&quot;    &quot;still&quot;         &quot;sub&quot;          
+## [417] &quot;such&quot;          &quot;sup&quot;           &quot;sure&quot;          &quot;t&quot;            
+## [421] &quot;t&#39;s&quot;           &quot;take&quot;          &quot;taken&quot;         &quot;tell&quot;         
+## [425] &quot;tends&quot;         &quot;th&quot;            &quot;than&quot;          &quot;thank&quot;        
+## [429] &quot;thanks&quot;        &quot;thanx&quot;         &quot;that&quot;          &quot;that&#39;s&quot;       
+## [433] &quot;thats&quot;         &quot;the&quot;           &quot;their&quot;         &quot;theirs&quot;       
+## [437] &quot;them&quot;          &quot;themselves&quot;    &quot;then&quot;          &quot;thence&quot;       
+## [441] &quot;there&quot;         &quot;there&#39;s&quot;       &quot;thereafter&quot;    &quot;thereby&quot;      
+## [445] &quot;therefore&quot;     &quot;therein&quot;       &quot;theres&quot;        &quot;thereupon&quot;    
+## [449] &quot;these&quot;         &quot;they&quot;          &quot;they&#39;d&quot;        &quot;they&#39;ll&quot;      
+## [453] &quot;they&#39;re&quot;       &quot;they&#39;ve&quot;       &quot;think&quot;         &quot;third&quot;        
+## [457] &quot;this&quot;          &quot;thorough&quot;      &quot;thoroughly&quot;    &quot;those&quot;        
+## [461] &quot;though&quot;        &quot;three&quot;         &quot;through&quot;       &quot;throughout&quot;   
+## [465] &quot;thru&quot;          &quot;thus&quot;          &quot;to&quot;            &quot;together&quot;     
+## [469] &quot;too&quot;           &quot;took&quot;          &quot;toward&quot;        &quot;towards&quot;      
+## [473] &quot;tried&quot;         &quot;tries&quot;         &quot;truly&quot;         &quot;try&quot;          
+## [477] &quot;trying&quot;        &quot;twice&quot;         &quot;two&quot;           &quot;u&quot;            
+## [481] &quot;un&quot;            &quot;under&quot;         &quot;unfortunately&quot; &quot;unless&quot;       
+## [485] &quot;unlikely&quot;      &quot;until&quot;         &quot;unto&quot;          &quot;up&quot;           
+## [489] &quot;upon&quot;          &quot;us&quot;            &quot;use&quot;           &quot;used&quot;         
+## [493] &quot;useful&quot;        &quot;uses&quot;          &quot;using&quot;         &quot;usually&quot;      
+## [497] &quot;uucp&quot;          &quot;v&quot;             &quot;value&quot;         &quot;various&quot;      
+## [501] &quot;very&quot;          &quot;via&quot;           &quot;viz&quot;           &quot;vs&quot;           
+## [505] &quot;w&quot;             &quot;want&quot;          &quot;wants&quot;         &quot;was&quot;          
+## [509] &quot;wasn&#39;t&quot;        &quot;way&quot;           &quot;we&quot;            &quot;we&#39;d&quot;         
+## [513] &quot;we&#39;ll&quot;         &quot;we&#39;re&quot;         &quot;we&#39;ve&quot;         &quot;welcome&quot;      
+## [517] &quot;well&quot;          &quot;went&quot;          &quot;were&quot;          &quot;weren&#39;t&quot;      
+## [521] &quot;what&quot;          &quot;what&#39;s&quot;        &quot;whatever&quot;      &quot;when&quot;         
+## [525] &quot;whence&quot;        &quot;whenever&quot;      &quot;where&quot;         &quot;where&#39;s&quot;      
+## [529] &quot;whereafter&quot;    &quot;whereas&quot;       &quot;whereby&quot;       &quot;wherein&quot;      
+## [533] &quot;whereupon&quot;     &quot;wherever&quot;      &quot;whether&quot;       &quot;which&quot;        
+## [537] &quot;while&quot;         &quot;whither&quot;       &quot;who&quot;           &quot;who&#39;s&quot;        
+## [541] &quot;whoever&quot;       &quot;whole&quot;         &quot;whom&quot;          &quot;whose&quot;        
+## [545] &quot;why&quot;           &quot;will&quot;          &quot;willing&quot;       &quot;wish&quot;         
+## [549] &quot;with&quot;          &quot;within&quot;        &quot;without&quot;       &quot;won&#39;t&quot;        
+## [553] &quot;wonder&quot;        &quot;would&quot;         &quot;would&quot;         &quot;wouldn&#39;t&quot;     
+## [557] &quot;x&quot;             &quot;y&quot;             &quot;yes&quot;           &quot;yet&quot;          
+## [561] &quot;you&quot;           &quot;you&#39;d&quot;         &quot;you&#39;ll&quot;        &quot;you&#39;re&quot;       
+## [565] &quot;you&#39;ve&quot;        &quot;your&quot;          &quot;yours&quot;         &quot;yourself&quot;     
+## [569] &quot;yourselves&quot;    &quot;z&quot;             &quot;zero&quot;
+</code></pre>
+
+<pre><code class="r">dtm &lt;- DocumentTermMatrix(corpus,
+                          control = list(tolower = T,
+                                         removePunctuation = T,
+                                         removeNumbers = T,
+                                         stopwords = stopwords(&quot;SMART&quot;),
+                                         weighting = weightTfIdf))
+</code></pre>
+
+<pre><code>## Warning in weighting(x): empty document(s): 1948
+</code></pre>
+
+<pre><code class="r">dtm
+</code></pre>
+
+<pre><code>## &lt;&lt;DocumentTermMatrix (documents: 2000, terms: 8446)&gt;&gt;
+## Non-/sparse entries: 46461/16845539
+## Sparsity           : 100%
+## Maximal term length: 132
+## Weighting          : term frequency - inverse document frequency (normalized) (tf-idf)
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -496,18 +694,17 @@
 
 <slide class="newbackground" id="slide-27" style="background:;">
   <hgroup>
-    <h2>Traing Set 과 Test Set 분할</h2>
+    <h2>7. 회귀분석으로 감정 사전 만들기</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">fileName &lt;- &quot;data/IMDBmovie/labeledTrainData.tsv&quot;
-data &lt;- read.csv(fileName, header=T, sep=&quot;\t&quot;, quote=&quot;&quot;)
-nrow(data)
+    <pre><code class="r">library(glmnet)
 </code></pre>
 
-<pre><code>## [1] 25000
+<pre><code class="r">X &lt;- as.matrix(dtm)
+Y &lt;- mobile$Sentiment
 </code></pre>
 
-<pre><code class="r">data &lt;- data[1:2000, ]
+<pre><code class="r">res.lm &lt;- glmnet(X, Y, family = &quot;binomial&quot;, lambda = 0) 
 </code></pre>
 
   </article>
@@ -516,881 +713,14 @@ nrow(data)
 
 <slide class="newbackground" id="slide-28" style="background:;">
   <hgroup>
-    <h2>Traing Set 과 Test Set 분할</h2>
+    <h2>7. 회귀분석으로 감정 사전 만들기</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">totalNum &lt;- 1:nrow(data)
-set.seed(12345)
-shuffledNum &lt;- sample(totalNum, nrow(data), replace = F)
-trainingNum &lt;- shuffledNum[1:1400]
-testNum &lt;- shuffledNum[1401:2000]
-data.train &lt;- data[trainingNum, ]
-data.test &lt;- data[testNum, ]
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-29" style="background:;">
-  <hgroup>
-    <h2>Term-DocumentMatrix</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">library(tm)
-</code></pre>
-
-<pre><code class="r">corpus &lt;- Corpus(VectorSource(data.train$review))
-tdm.train &lt;- TermDocumentMatrix(corpus, 
-                                control=list(tolower = T,
-                                             removePunctuation = T,
-                                             removeNumbers = T,
-                                             stopwords=stopwords(&quot;SMART&quot;)))
-
-dim(tdm.train)
-</code></pre>
-
-<pre><code>## [1] 24865  1400
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-30" style="background:;">
-  <hgroup>
-    <h2>LASSO Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">alpha &lt;- 1
-cv.lasso &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                      type.measure = &quot;class&quot;, 
-                      nfolds = 4,
-                      family = &quot;binomial&quot;, 
-                      alpha = alpha)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-31" style="background:;">
-  <hgroup>
-    <h2>LASSO Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.lasso)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
-
-<pre><code class="r">log(cv.lasso$lambda.min)
-</code></pre>
-
-<pre><code>## [1] -5.833378
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-32" style="background:;">
-  <hgroup>
-    <h2>LASSO Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.lasso$glmnet.fit, &quot;lambda&quot;, label=TRUE)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-33" style="background:;">
-  <hgroup>
-    <h2>Ridge Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">alpha &lt;- 0
-cv.ridge &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                      type.measure = &quot;class&quot;, 
-                      nfolds = 4,
-                      family = &quot;binomial&quot;, 
-                      alpha = alpha)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-34" style="background:;">
-  <hgroup>
-    <h2>RIDGE Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.ridge)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"> </p>
-
-<pre><code class="r">log(cv.ridge$lambda.min)
-</code></pre>
-
-<pre><code>## [1] 1.493029
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-35" style="background:;">
-  <hgroup>
-    <h2>RIDGE Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.ridge$glmnet.fit, &quot;lambda&quot;, label=TRUE)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-36" style="background:;">
-  <hgroup>
-    <h2>ElasticNet Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">alpha &lt;- .3
-cv.elastic &lt;- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                        type.measure = &quot;class&quot;, 
-                        nfolds = 4,
-                        family = &quot;binomial&quot;, 
-                        alpha = alpha)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-37" style="background:;">
-  <hgroup>
-    <h2>ElasticNet Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.elastic)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
-
-<pre><code class="r">log(cv.elastic$lambda.min)
-</code></pre>
-
-<pre><code>## [1] -3.280416
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-38" style="background:;">
-  <hgroup>
-    <h2>ElasticNet Regression</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">plot(cv.elastic$glmnet.fit, &quot;lambda&quot;, label=TRUE)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-39" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">coef.lasso &lt;- coef(cv.lasso, s = &quot;lambda.min&quot;)[,1]
-coef.ridge &lt;- coef(cv.ridge, s = &quot;lambda.min&quot;)[,1]
-coef.elastic &lt;- coef(cv.elastic, s = &quot;lambda.min&quot;)[,1]
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-40" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.lasso &lt;- sort(coef.lasso[coef.lasso &gt; 0])
-neg.lasso &lt;- sort(coef.lasso[coef.lasso &lt; 0])
-
-length(pos.lasso)
-</code></pre>
-
-<pre><code>## [1] 475
-</code></pre>
-
-<pre><code class="r">length(neg.lasso)
-</code></pre>
-
-<pre><code>## [1] 606
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-41" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.lasso[1:5]
-</code></pre>
-
-<pre><code>##  patricyoure        tonks       ahmads   unorthodox         lori 
-## 2.331122e-15 5.989465e-15 6.367617e-13 1.169503e-05 1.214698e-05
-</code></pre>
-
-<pre><code class="r">neg.lasso[1:5]
-</code></pre>
-
-<pre><code>## differentokay           pic distinguished    decoration        inform 
-##     -3.918694     -3.835755     -3.390117     -3.359009     -3.290011
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-42" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.ridge &lt;- sort(coef.ridge[coef.ridge &gt; 0])
-neg.ridge &lt;- sort(coef.ridge[coef.ridge &lt; 0])
-
-length(pos.ridge)
-</code></pre>
-
-<pre><code>## [1] 12963
-</code></pre>
-
-<pre><code class="r">length(neg.ridge)
-</code></pre>
-
-<pre><code>## [1] 11903
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-43" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.ridge[1:5]
-</code></pre>
-
-<pre><code>##          jew      streets          rob         plan        stall 
-## 3.042999e-07 2.091328e-05 2.313824e-05 2.362472e-05 2.417472e-05
-</code></pre>
-
-<pre><code class="r">neg.ridge[1:5]
-</code></pre>
-
-<pre><code>##        evolving     typecasting       cancelled     cameosimans 
-##     -0.10789309     -0.10340770     -0.10157122     -0.09999705 
-## selfdeprecating 
-##     -0.09974657
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-44" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.elastic &lt;- sort(coef.elastic[coef.elastic &gt; 0])
-neg.elastic &lt;- sort(coef.elastic[coef.elastic &lt; 0])
-
-length(pos.elastic)
-</code></pre>
-
-<pre><code>## [1] 463
-</code></pre>
-
-<pre><code class="r">length(neg.elastic)
-</code></pre>
-
-<pre><code>## [1] 612
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-45" style="background:;">
-  <hgroup>
-    <h2>감정 단어 추출</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">pos.elastic[1:5]
-</code></pre>
-
-<pre><code>##            theni       mutilating              ive             ride 
-##     0.0002650247     0.0003448974     0.0003601619     0.0003829296 
-## weirdstrangeeven 
-##     0.0009908731
-</code></pre>
-
-<pre><code class="r">neg.elastic[1:5]
-</code></pre>
-
-<pre><code>##          pic     returned       commit economically     enamored 
-##    -1.332630    -1.270371    -1.207446    -1.156321    -1.140002
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-46" style="background:;">
-  <hgroup>
-    <h2>감정 단어 점수화</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">library(tm.plugin.sentiment)
-</code></pre>
-
-<pre><code class="r">score.lasso &lt;- polarity(tdm.train, names(pos.lasso), names(neg.lasso))
-score.ridge &lt;- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
-score.elastic &lt;- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-47" style="background:;">
-  <hgroup>
-    <h2>CUT-POINT</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
-</code></pre>
-
-<pre><code>## [1] 0.1428571
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.ridge)
-</code></pre>
-
-<pre><code>## [1] 0.106383
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.elastic)
-</code></pre>
-
-<pre><code>## [1] 0.106383
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-48" style="background:;">
-  <hgroup>
-    <h2>CUT-POINT</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">library(pROC)
-</code></pre>
-
-<pre><code class="r">plot.roc(data.train$sentiment, score.lasso, print.thres = T)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-56-1.png" alt="plot of chunk unnamed-chunk-56"> </p>
-
-<pre><code>## 
-## Call:
-## plot.roc.default(x = data.train$sentiment, predictor = score.lasso,     print.thres = T)
-## 
-## Data: score.lasso in 694 controls (data.train$sentiment 0) &lt; 706 cases (data.train$sentiment 1).
-## Area under the curve: 0.9971
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-49" style="background:;">
-  <hgroup>
-    <h2>CUT-POINT</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
-cut.ridge &lt;- findCutpoint(data.train$sentiment, score.ridge)
-cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-50" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">corpus &lt;- Corpus(VectorSource(data.test$review))
-
-tdm.test &lt;- TermDocumentMatrix(corpus, 
-                               control=list(dictionary = Terms(tdm.train), 
-                                            tolower = T,
-                                            removePunctuation = T,
-                                            removeNumbers = T,
-                                            stopwords=stopwords(&quot;SMART&quot;)))
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-51" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- polarity(tdm.test, names(pos.lasso), names(neg.lasso))
-score.ridge &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-score.elastic &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-52" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">library(caret)
-</code></pre>
-
-<pre><code class="r">score.lasso.b &lt;- rep(0, length(score.lasso))
-score.lasso.b[score.lasso &gt;= cut.lasso] &lt;- 1
-confusionMatrix(score.lasso.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 251  68
-##          1  58 223
-##                                           
-##                Accuracy : 0.79            
-##                  95% CI : (0.7552, 0.8219)
-##     No Information Rate : 0.515           
-##     P-Value [Acc &gt; NIR] : &lt;2e-16          
-##                                           
-##                   Kappa : 0.5792          
-##  Mcnemar&#39;s Test P-Value : 0.4227          
-##                                           
-##             Sensitivity : 0.8123          
-##             Specificity : 0.7663          
-##          Pos Pred Value : 0.7868          
-##          Neg Pred Value : 0.7936          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4183          
-##    Detection Prevalence : 0.5317          
-##       Balanced Accuracy : 0.7893          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-53" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.ridge.b &lt;- rep(0, length(score.ridge))
-score.ridge.b[score.ridge &gt;= cut.ridge] &lt;- 1
-confusionMatrix(score.ridge.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  58
-##          1  61 233
-##                                           
-##                Accuracy : 0.8017          
-##                  95% CI : (0.7675, 0.8329)
-##     No Information Rate : 0.515           
-##     P-Value [Acc &gt; NIR] : &lt;2e-16          
-##                                           
-##                   Kappa : 0.6031          
-##  Mcnemar&#39;s Test P-Value : 0.8545          
-##                                           
-##             Sensitivity : 0.8026          
-##             Specificity : 0.8007          
-##          Pos Pred Value : 0.8105          
-##          Neg Pred Value : 0.7925          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4133          
-##    Detection Prevalence : 0.5100          
-##       Balanced Accuracy : 0.8016          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-54" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
-score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
-confusionMatrix(score.elastic.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  58
-##          1  61 233
-##                                           
-##                Accuracy : 0.8017          
-##                  95% CI : (0.7675, 0.8329)
-##     No Information Rate : 0.515           
-##     P-Value [Acc &gt; NIR] : &lt;2e-16          
-##                                           
-##                   Kappa : 0.6031          
-##  Mcnemar&#39;s Test P-Value : 0.8545          
-##                                           
-##             Sensitivity : 0.8026          
-##             Specificity : 0.8007          
-##          Pos Pred Value : 0.8105          
-##          Neg Pred Value : 0.7925          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4133          
-##    Detection Prevalence : 0.5100          
-##       Balanced Accuracy : 0.8016          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-55" style="background:;">
-  <hgroup>
-    <h2>glmnet 활용</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
-score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
-score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.train)), s = &quot;lambda.min&quot;)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-56" style="background:;">
-  <hgroup>
-    <h2>glmnet 활용</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">findCutpoint(data.train$sentiment, score.lasso)
-</code></pre>
-
-<pre><code>## [1] 0.6222667
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.ridge)
-</code></pre>
-
-<pre><code>## [1] -0.01393038
-</code></pre>
-
-<pre><code class="r">findCutpoint(data.train$sentiment, score.elastic)
-</code></pre>
-
-<pre><code>## [1] -0.06572849
-</code></pre>
-
-<pre><code class="r">cut.lasso &lt;- findCutpoint(data.train$sentiment, score.lasso)
-cut.ridge &lt;- findCutpoint(data.train$sentiment, score.ridge)
-cut.elastic &lt;- findCutpoint(data.train$sentiment, score.elastic)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-57" style="background:;">
-  <hgroup>
-    <h2>glmnet 활용</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.lasso &lt;- predict(cv.lasso, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
-score.ridge &lt;- predict(cv.ridge, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
-score.elastic &lt;- predict(cv.elastic, as.matrix(t(tdm.test)), s = &quot;lambda.min&quot;)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-58" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.lasso.b &lt;- rep(0, length(score.lasso))
-score.lasso.b[score.lasso &gt;= cut.lasso] &lt;- 1
-confusionMatrix(score.lasso.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 260  68
-##          1  49 223
-##                                         
-##                Accuracy : 0.805         
-##                  95% CI : (0.771, 0.836)
-##     No Information Rate : 0.515         
-##     P-Value [Acc &gt; NIR] : &lt; 2e-16       
-##                                         
-##                   Kappa : 0.6089        
-##  Mcnemar&#39;s Test P-Value : 0.09609       
-##                                         
-##             Sensitivity : 0.8414        
-##             Specificity : 0.7663        
-##          Pos Pred Value : 0.7927        
-##          Neg Pred Value : 0.8199        
-##              Prevalence : 0.5150        
-##          Detection Rate : 0.4333        
-##    Detection Prevalence : 0.5467        
-##       Balanced Accuracy : 0.8039        
-##                                         
-##        &#39;Positive&#39; Class : 0             
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-59" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.ridge.b &lt;- rep(0, length(score.ridge))
-score.ridge.b[score.ridge &gt;= cut.ridge] &lt;- 1
-confusionMatrix(score.ridge.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 238  40
-##          1  71 251
-##                                           
-##                Accuracy : 0.815           
-##                  95% CI : (0.7816, 0.8453)
-##     No Information Rate : 0.515           
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-##                                           
-##                   Kappa : 0.6308          
-##  Mcnemar&#39;s Test P-Value : 0.004407        
-##                                           
-##             Sensitivity : 0.7702          
-##             Specificity : 0.8625          
-##          Pos Pred Value : 0.8561          
-##          Neg Pred Value : 0.7795          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.3967          
-##    Detection Prevalence : 0.4633          
-##       Balanced Accuracy : 0.8164          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-60" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
-score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
-confusionMatrix(score.elastic.b, data.test$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  34
-##          1  61 257
-##                                       
-##                Accuracy : 0.8417      
-##                  95% CI : (0.81, 0.87)
-##     No Information Rate : 0.515       
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16   
-##                                       
-##                   Kappa : 0.6839      
-##  Mcnemar&#39;s Test P-Value : 0.007641    
-##                                       
-##             Sensitivity : 0.8026      
-##             Specificity : 0.8832      
-##          Pos Pred Value : 0.8794      
-##          Neg Pred Value : 0.8082      
-##              Prevalence : 0.5150      
-##          Detection Rate : 0.4133      
-##    Detection Prevalence : 0.4700      
-##       Balanced Accuracy : 0.8429      
-##                                       
-##        &#39;Positive&#39; Class : 0           
-## 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-61" style="background:;">
-  <hgroup>
-    <h2>다른 데이터에 적용</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><h3b> Data </h3b><br>
-<h3b> Amazon Books Reviews 중에서 2,000개</h3b>  </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-62" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">books.review &lt;- read.csv(&quot;data/Amazon_books.csv&quot;, stringsAsFactors = F)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-63" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">corpus &lt;- Corpus(VectorSource(books.review$texts))
-
-tdm.test &lt;- TermDocumentMatrix(corpus, 
-                               control=list(dictionary = Terms(tdm.train), 
-                                            tolower = T,
-                                            removePunctuation = T,
-                                            removeNumbers = T,
-                                            stopwords=stopwords(&quot;SMART&quot;)))
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-64" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.elastic &lt;- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-65" style="background:;">
-  <hgroup>
-    <h2>Test Set</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">score.elastic.b &lt;- rep(0, length(score.elastic))
-score.elastic.b[score.elastic &gt;= cut.elastic] &lt;- 1
-confusionMatrix(score.elastic.b, books.review$sentiment)
-</code></pre>
-
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 490 154
-##          1 510 846
-##                                           
-##                Accuracy : 0.668           
-##                  95% CI : (0.6469, 0.6886)
-##     No Information Rate : 0.5             
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-##                                           
-##                   Kappa : 0.336           
-##  Mcnemar&#39;s Test P-Value : &lt; 2.2e-16       
-##                                           
-##             Sensitivity : 0.4900          
-##             Specificity : 0.8460          
-##          Pos Pred Value : 0.7609          
-##          Neg Pred Value : 0.6239          
-##              Prevalence : 0.5000          
-##          Detection Rate : 0.2450          
-##    Detection Prevalence : 0.3220          
-##       Balanced Accuracy : 0.6680          
-##                                           
-##        &#39;Positive&#39; Class : 0               
-## 
+    <pre><code class="r">coef.lm &lt;- coef(res.lm)[,1]
+pos.lm &lt;- coef.lm[coef.lm &gt; 0]
+neg.lm &lt;- coef.lm[coef.lm &lt; 0]
+pos.lm &lt;- sort(pos.lm, decreasing = T)
+neg.lm &lt;- sort(neg.lm, decreasing = F)
 </code></pre>
 
   </article>
@@ -1403,73 +733,73 @@ confusionMatrix(score.elastic.b, books.review$sentiment)
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='퀀트랩 소개'>
+        data-slide=1 title='오늘의 목표'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='워크숍 관련 온라인 사이트'>
+        data-slide=2 title='왜 감정분석을 하는가?'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='오늘의 목표'>
+        data-slide=3 title='감정분석'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='왜 감정분석을 하는가?'>
+        data-slide=4 title='사전 기반 분석'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='감정분석'>
+        data-slide=5 title='기계학습 기반 분석'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='사전 기반 분석'>
+        data-slide=6 title='감정 분석 예시'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='기계학습 기반 분석'>
+        data-slide=7 title='감정 분석 예시'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='감정 분석 예시'>
+        data-slide=8 title='사전 지식'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='감정 분석 예시'>
+        data-slide=9 title='예측 분석'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='사전 지식'>
+        data-slide=10 title='회귀분석(선형(직선) 모형)'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='회귀분석(선형(직선) 모형)'>
+        data-slide=11 title='회귀분석의 문제'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='상관관계'>
+        data-slide=12 title='과적합을 막는 법'>
          12
       </a>
     </li>
@@ -1481,7 +811,7 @@ confusionMatrix(score.elastic.b, books.review$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='둘 중 무엇이 상관이 더 클까요?'>
+        data-slide=14 title='상관관계'>
          14
       </a>
     </li>
@@ -1493,302 +823,80 @@ confusionMatrix(score.elastic.b, books.review$sentiment)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='상관관계 및 회귀분석'>
+        data-slide=16 title='X가 2개라면?'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='상관관계 및 회귀분석'>
+        data-slide=17 title='다중회귀분석'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='X가 2개라면?'>
+        data-slide=18 title='예측력'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='다중회귀분석'>
+        data-slide=19 title='Traninig Vs Test'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='예측력'>
+        data-slide=20 title='Over-fitting'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Traninig Vs Test'>
+        data-slide=21 title='Over-fitting(과적합)'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Over-fitting'>
+        data-slide=22 title='Lasso Vs Ridge'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Over-fitting(과적합)'>
+        data-slide=23 title='Lasso Vs Ridge'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Lasso Vs Ridge'>
+        data-slide=24 title='감정분석'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Lasso Vs Ridge'>
+        data-slide=25 title='5. 예제 데이터 불러오기'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='감정분석'>
+        data-slide=26 title='6. DocumentTermMatrix 만들기'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Traing Set 과 Test Set 분할'>
+        data-slide=27 title='7. 회귀분석으로 감정 사전 만들기'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Traing Set 과 Test Set 분할'>
+        data-slide=28 title='7. 회귀분석으로 감정 사전 만들기'>
          28
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Term-DocumentMatrix'>
-         29
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='LASSO Regression'>
-         30
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='LASSO Regression'>
-         31
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='LASSO Regression'>
-         32
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Ridge Regression'>
-         33
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='RIDGE Regression'>
-         34
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='RIDGE Regression'>
-         35
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='ElasticNet Regression'>
-         36
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='ElasticNet Regression'>
-         37
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='ElasticNet Regression'>
-         38
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='감정 단어 추출'>
-         39
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='감정 단어 추출'>
-         40
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='감정 단어 추출'>
-         41
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='감정 단어 추출'>
-         42
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='감정 단어 추출'>
-         43
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='감정 단어 추출'>
-         44
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='감정 단어 추출'>
-         45
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title='감정 단어 점수화'>
-         46
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='CUT-POINT'>
-         47
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=48 title='CUT-POINT'>
-         48
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=49 title='CUT-POINT'>
-         49
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=50 title='Test Set'>
-         50
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=51 title='Test Set'>
-         51
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=52 title='Test Set'>
-         52
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='Test Set'>
-         53
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title='Test Set'>
-         54
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=55 title='glmnet 활용'>
-         55
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=56 title='glmnet 활용'>
-         56
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=57 title='glmnet 활용'>
-         57
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=58 title='Test Set'>
-         58
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=59 title='Test Set'>
-         59
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=60 title='Test Set'>
-         60
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=61 title='다른 데이터에 적용'>
-         61
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=62 title='Test Set'>
-         62
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=63 title='Test Set'>
-         63
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=64 title='Test Set'>
-         64
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=65 title='Test Set'>
-         65
       </a>
     </li>
   </ul>

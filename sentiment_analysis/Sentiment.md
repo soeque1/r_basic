@@ -14,20 +14,6 @@ knit        : slidify::knit2slides
 
 ---
 
-## 퀀트랩 소개
-
-<center><img src="assets/img/quantlab_intro.jpg" height=450px width=800px></center>
-
---- .new-background
-
-## 워크숍 관련 온라인 사이트
-
-http://course.mindscale.kr/course/text-analysis
-
-<left><img src="assets/img/courses.png" height=450px width=600px></left>
-
---- .new-background
-
 ## 오늘의 목표  
 
 <h3b> - 감정 사전 만들기</h3b>  
@@ -73,7 +59,7 @@ http://course.mindscale.kr/course/text-analysis
 <h3b> 단점 </h3b>  
 <h3b> - Over-fitting 해결 </h3b>  
 <h3b> - 많은 데이터 필요 </h3b>  
-<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트지지벡터머신 / </h3b>  
+<h3b> 예) 나이브 베이즈 / 최대 엔트로피 / 서포트벡터머신 / </h3b>  
 <h3b>  랜덤 포레스트 / 토픽 모델 </h3b>
 
 --- .newbackground
@@ -93,26 +79,53 @@ http://course.mindscale.kr/course/text-analysis
 
 ## 사전 지식 
 
-<h3b> 예측이란 무엇? </h3b> 
+<h3b> 감정분석: 문장에 사용된 단어로 감정을 예측 </h3b> 
 
-<h4b>자기자신(Y) : Y가 변화하는 추세  </h4b>    
-<h4b>다른변수(X,Y) : X가 Y를 예측  </h4b>    
-<h4b> - 키로 몸무게를 예측! </h4b>    
-<h4b> - 키로 성적을 예측?   </h4b>    
-
-<h3b> 예측이 잘 되려면 서로 상관(관련성)이 높아야 함</h3b>  
-<h4b> -> 감정단어로 영화 평점을 예측 </h4b>  
+<h3b>예: "이 영화는 좀 길지만 재미있고 신난다"  </h3b>    
+<h3b> - 길다 -> 부정 </h3b>    
+<h3b> - 재미있다 -> 긍정 </h3b>    
+<h3b> - 신나다 -> 긍정  </h3b>    
 
 --- .newbackground
+
+## 예측 분석 
+
+<h3b> 예측분석 </h3b> 
+
+<h3b> 선형회귀분석 </h3b>    
+<h3b> SVM </h3b>    
+<h3b> RandomForest </h3b>    
+<h3b> Deep Learning  </h3b>    
+
+--- .newbackground
+
 
 ## 회귀분석(선형(직선) 모형) 
 
 <h3b> 예시 </h3b>
 
-<h4b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h4b>  
-<h4b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h4b>   
-<h4b>- 부정단어가 1개 증가할 때 마다 평점 .1점 감점  </h4b>  
-<h4b>- 긍정단어가 1개 증가할 때 마다 평점 .1점 증가  </h4b>  
+<h3b>- 키가 1cm 증가할 때마다 몸무게가 1kg 증가  </h3b>  
+<h3b>- 월 소득이 100만원 증가할 때마다 몸무게가 1kg 감소 </h3b>   
+<h3b>- 부정단어가 1개 증가할 때 마다 평점 1점 감점  </h3b>  
+<h3b>- 긍정단어가 1개 증가할 때 마다 평점 1점 증가  </h3b>  
+
+--- .newbackground
+
+## 회귀분석의 문제 
+
+<h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b>  
+<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b>   
+<h3b>- 예측력이 떨어짐  </h3b>  
+<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  
+
+--- .newbackground
+
+## 과적합을 막는 법 
+
+<h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b>  
+<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b>   
+<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b>  
+<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  
 
 --- &twocol .modal
 
@@ -151,9 +164,9 @@ http://course.mindscale.kr/course/text-analysis
 
 <h3b> -> 표준화해야 한다 </h3b>
 
---- &twocol .modal
+--- &twocol
 
-## 둘 중 무엇이 상관이 더 클까요?
+## 상관관계 및 회귀분석
 
 *** =left
 
@@ -163,24 +176,8 @@ http://course.mindscale.kr/course/text-analysis
 
 *** =right
 
-
-
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
-
---- &twocol
-
-## 상관관계 및 회귀분석
-
-*** =left
-
-
-
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
-
-*** =right
-
-<!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-<!-- Tue Jul 28 22:06:22 2015 -->
+<!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
+<!-- Thu Aug 20 23:49:50 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
   <tr> <td align="right"> (Intercept) </td> <td align="right"> -8.29 </td> <td align="right"> 11.74 </td> <td align="right"> -0.71 </td> <td align="right"> 0.49 </td> </tr>
@@ -198,56 +195,13 @@ cor(weights, heights)
 
 --- &twocol
 
-## 상관관계 및 회귀분석
-
-*** =left
-
-
-
-![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
-
-*** =right
-
-<!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-<!-- Tue Jul 28 22:06:23 2015 -->
-<table border=1>
-<tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
-  <tr> <td align="right"> (Intercept) </td> <td align="right"> 69.17 </td> <td align="right"> 1.17 </td> <td align="right"> 58.93 </td> <td align="right"> 0.00 </td> </tr>
-  <tr> <td align="right"> heights </td> <td align="right"> 0.05 </td> <td align="right"> 0.01 </td> <td align="right"> 7.56 </td> <td align="right"> 0.00 </td> </tr>
-   </table>
-
-
-```r
-cor(weights, heights)
-```
-
-```
-## [1] 0.8194181
-```
-
---- &twocol
-
-## 상관관계 및 회귀분석
-
-*** =left
-
-![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
-
-*** =right
-
-
-
-![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png) 
-
---- &twocol
-
 ## X가 2개라면?
 
 *** =left
 
 
 
-![plot of chunk unnamed-chunk-21](assets/fig/unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) 
 
 ```
 ## [1] 0.8194181
@@ -255,7 +209,7 @@ cor(weights, heights)
 
 *** =right
 
-![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png) 
 
 ```
 ## [1] 0.09818667
@@ -265,8 +219,8 @@ cor(weights, heights)
 
 ## 다중회귀분석
 
-<!-- html table generated in R 3.1.3 by xtable 1.7-4 package -->
-<!-- Tue Jul 28 22:06:24 2015 -->
+<!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
+<!-- Thu Aug 20 23:49:50 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
   <tr> <td align="right"> (Intercept) </td> <td align="right"> -27.49 </td> <td align="right"> 12.81 </td> <td align="right"> -2.15 </td> <td align="right"> 0.04 </td> </tr>
@@ -292,18 +246,17 @@ $$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
 
 *** =left
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png) 
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png) 
 
 *** =right
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png) 
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png) 
 
 --- .newbackground
 
 ## Over-fitting
 
-<center><img src="assets/img/overfitting.png" height=450px width=700px></center>
-
+<center><img src="assets/img/lambda.png" height=450px width=700px></center>
 
 --- .newbackground
 
@@ -329,59 +282,52 @@ $$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
 
 
 
-![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
 
 *** =right
 
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png) 
+![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png) 
 
 --- .newbackground
 
 ## 감정분석
 
 <h3b> Data </h3b>  
-<h3b> 25,000 IMDB movie reviews 중에서 1,000개만 </h3b>  
-<h3b> Training Vs Test = 7 Vs 3 </h3b>  
+<h3b> 아마존 모바일 폰 리뷰 중에서 2,000개만 </h3b>  
 
 --- .newbackground
 
-## Traing Set 과 Test Set 분할
+## 5. 예제 데이터 불러오기
 
 
 
 
 ```r
-fileName <- "data/IMDBmovie/labeledTrainData.tsv"
-data <- read.csv(fileName, header=T, sep="\t", quote="")
-nrow(data)
+mobile <- read.csv('mobile2014.csv', stringsAsFactors = F)
+```
+
+
+```r
+dim(mobile)
 ```
 
 ```
-## [1] 25000
+## [1] 2000    7
 ```
 
 ```r
-data <- data[1:2000, ]
+table(mobile$Sentiment)
+```
+
+```
+## 
+##    0    1 
+## 1000 1000
 ```
 
 --- .newbackground
 
-## Traing Set 과 Test Set 분할
-
-
-```r
-totalNum <- 1:nrow(data)
-set.seed(12345)
-shuffledNum <- sample(totalNum, nrow(data), replace = F)
-trainingNum <- shuffledNum[1:1400]
-testNum <- shuffledNum[1401:2000]
-data.train <- data[trainingNum, ]
-data.test <- data[testNum, ]
-```
-
---- .newbackground
-
-## Term-DocumentMatrix
+## 6. DocumentTermMatrix 만들기
 
 
 ```r
@@ -391,805 +337,255 @@ library(tm)
 
 
 ```r
-corpus <- Corpus(VectorSource(data.train$review))
-tdm.train <- TermDocumentMatrix(corpus, 
-                                control=list(tolower = T,
-                                             removePunctuation = T,
-                                             removeNumbers = T,
-                                             stopwords=stopwords("SMART")))
+corpus <- Corpus(VectorSource(mobile$Texts))
 
-dim(tdm.train)
+##  제거할 단어 목록 확인
+stopwords()
 ```
 
 ```
-## [1] 24865  1400
+##   [1] "i"          "me"         "my"         "myself"     "we"        
+##   [6] "our"        "ours"       "ourselves"  "you"        "your"      
+##  [11] "yours"      "yourself"   "yourselves" "he"         "him"       
+##  [16] "his"        "himself"    "she"        "her"        "hers"      
+##  [21] "herself"    "it"         "its"        "itself"     "they"      
+##  [26] "them"       "their"      "theirs"     "themselves" "what"      
+##  [31] "which"      "who"        "whom"       "this"       "that"      
+##  [36] "these"      "those"      "am"         "is"         "are"       
+##  [41] "was"        "were"       "be"         "been"       "being"     
+##  [46] "have"       "has"        "had"        "having"     "do"        
+##  [51] "does"       "did"        "doing"      "would"      "should"    
+##  [56] "could"      "ought"      "i'm"        "you're"     "he's"      
+##  [61] "she's"      "it's"       "we're"      "they're"    "i've"      
+##  [66] "you've"     "we've"      "they've"    "i'd"        "you'd"     
+##  [71] "he'd"       "she'd"      "we'd"       "they'd"     "i'll"      
+##  [76] "you'll"     "he'll"      "she'll"     "we'll"      "they'll"   
+##  [81] "isn't"      "aren't"     "wasn't"     "weren't"    "hasn't"    
+##  [86] "haven't"    "hadn't"     "doesn't"    "don't"      "didn't"    
+##  [91] "won't"      "wouldn't"   "shan't"     "shouldn't"  "can't"     
+##  [96] "cannot"     "couldn't"   "mustn't"    "let's"      "that's"    
+## [101] "who's"      "what's"     "here's"     "there's"    "when's"    
+## [106] "where's"    "why's"      "how's"      "a"          "an"        
+## [111] "the"        "and"        "but"        "if"         "or"        
+## [116] "because"    "as"         "until"      "while"      "of"        
+## [121] "at"         "by"         "for"        "with"       "about"     
+## [126] "against"    "between"    "into"       "through"    "during"    
+## [131] "before"     "after"      "above"      "below"      "to"        
+## [136] "from"       "up"         "down"       "in"         "out"       
+## [141] "on"         "off"        "over"       "under"      "again"     
+## [146] "further"    "then"       "once"       "here"       "there"     
+## [151] "when"       "where"      "why"        "how"        "all"       
+## [156] "any"        "both"       "each"       "few"        "more"      
+## [161] "most"       "other"      "some"       "such"       "no"        
+## [166] "nor"        "not"        "only"       "own"        "same"      
+## [171] "so"         "than"       "too"        "very"
+```
+
+```r
+stopwords("SMART")
+```
+
+```
+##   [1] "a"             "a's"           "able"          "about"        
+##   [5] "above"         "according"     "accordingly"   "across"       
+##   [9] "actually"      "after"         "afterwards"    "again"        
+##  [13] "against"       "ain't"         "all"           "allow"        
+##  [17] "allows"        "almost"        "alone"         "along"        
+##  [21] "already"       "also"          "although"      "always"       
+##  [25] "am"            "among"         "amongst"       "an"           
+##  [29] "and"           "another"       "any"           "anybody"      
+##  [33] "anyhow"        "anyone"        "anything"      "anyway"       
+##  [37] "anyways"       "anywhere"      "apart"         "appear"       
+##  [41] "appreciate"    "appropriate"   "are"           "aren't"       
+##  [45] "around"        "as"            "aside"         "ask"          
+##  [49] "asking"        "associated"    "at"            "available"    
+##  [53] "away"          "awfully"       "b"             "be"           
+##  [57] "became"        "because"       "become"        "becomes"      
+##  [61] "becoming"      "been"          "before"        "beforehand"   
+##  [65] "behind"        "being"         "believe"       "below"        
+##  [69] "beside"        "besides"       "best"          "better"       
+##  [73] "between"       "beyond"        "both"          "brief"        
+##  [77] "but"           "by"            "c"             "c'mon"        
+##  [81] "c's"           "came"          "can"           "can't"        
+##  [85] "cannot"        "cant"          "cause"         "causes"       
+##  [89] "certain"       "certainly"     "changes"       "clearly"      
+##  [93] "co"            "com"           "come"          "comes"        
+##  [97] "concerning"    "consequently"  "consider"      "considering"  
+## [101] "contain"       "containing"    "contains"      "corresponding"
+## [105] "could"         "couldn't"      "course"        "currently"    
+## [109] "d"             "definitely"    "described"     "despite"      
+## [113] "did"           "didn't"        "different"     "do"           
+## [117] "does"          "doesn't"       "doing"         "don't"        
+## [121] "done"          "down"          "downwards"     "during"       
+## [125] "e"             "each"          "edu"           "eg"           
+## [129] "eight"         "either"        "else"          "elsewhere"    
+## [133] "enough"        "entirely"      "especially"    "et"           
+## [137] "etc"           "even"          "ever"          "every"        
+## [141] "everybody"     "everyone"      "everything"    "everywhere"   
+## [145] "ex"            "exactly"       "example"       "except"       
+## [149] "f"             "far"           "few"           "fifth"        
+## [153] "first"         "five"          "followed"      "following"    
+## [157] "follows"       "for"           "former"        "formerly"     
+## [161] "forth"         "four"          "from"          "further"      
+## [165] "furthermore"   "g"             "get"           "gets"         
+## [169] "getting"       "given"         "gives"         "go"           
+## [173] "goes"          "going"         "gone"          "got"          
+## [177] "gotten"        "greetings"     "h"             "had"          
+## [181] "hadn't"        "happens"       "hardly"        "has"          
+## [185] "hasn't"        "have"          "haven't"       "having"       
+## [189] "he"            "he's"          "hello"         "help"         
+## [193] "hence"         "her"           "here"          "here's"       
+## [197] "hereafter"     "hereby"        "herein"        "hereupon"     
+## [201] "hers"          "herself"       "hi"            "him"          
+## [205] "himself"       "his"           "hither"        "hopefully"    
+## [209] "how"           "howbeit"       "however"       "i"            
+## [213] "i'd"           "i'll"          "i'm"           "i've"         
+## [217] "ie"            "if"            "ignored"       "immediate"    
+## [221] "in"            "inasmuch"      "inc"           "indeed"       
+## [225] "indicate"      "indicated"     "indicates"     "inner"        
+## [229] "insofar"       "instead"       "into"          "inward"       
+## [233] "is"            "isn't"         "it"            "it'd"         
+## [237] "it'll"         "it's"          "its"           "itself"       
+## [241] "j"             "just"          "k"             "keep"         
+## [245] "keeps"         "kept"          "know"          "knows"        
+## [249] "known"         "l"             "last"          "lately"       
+## [253] "later"         "latter"        "latterly"      "least"        
+## [257] "less"          "lest"          "let"           "let's"        
+## [261] "like"          "liked"         "likely"        "little"       
+## [265] "look"          "looking"       "looks"         "ltd"          
+## [269] "m"             "mainly"        "many"          "may"          
+## [273] "maybe"         "me"            "mean"          "meanwhile"    
+## [277] "merely"        "might"         "more"          "moreover"     
+## [281] "most"          "mostly"        "much"          "must"         
+## [285] "my"            "myself"        "n"             "name"         
+## [289] "namely"        "nd"            "near"          "nearly"       
+## [293] "necessary"     "need"          "needs"         "neither"      
+## [297] "never"         "nevertheless"  "new"           "next"         
+## [301] "nine"          "no"            "nobody"        "non"          
+## [305] "none"          "noone"         "nor"           "normally"     
+## [309] "not"           "nothing"       "novel"         "now"          
+## [313] "nowhere"       "o"             "obviously"     "of"           
+## [317] "off"           "often"         "oh"            "ok"           
+## [321] "okay"          "old"           "on"            "once"         
+## [325] "one"           "ones"          "only"          "onto"         
+## [329] "or"            "other"         "others"        "otherwise"    
+## [333] "ought"         "our"           "ours"          "ourselves"    
+## [337] "out"           "outside"       "over"          "overall"      
+## [341] "own"           "p"             "particular"    "particularly" 
+## [345] "per"           "perhaps"       "placed"        "please"       
+## [349] "plus"          "possible"      "presumably"    "probably"     
+## [353] "provides"      "q"             "que"           "quite"        
+## [357] "qv"            "r"             "rather"        "rd"           
+## [361] "re"            "really"        "reasonably"    "regarding"    
+## [365] "regardless"    "regards"       "relatively"    "respectively" 
+## [369] "right"         "s"             "said"          "same"         
+## [373] "saw"           "say"           "saying"        "says"         
+## [377] "second"        "secondly"      "see"           "seeing"       
+## [381] "seem"          "seemed"        "seeming"       "seems"        
+## [385] "seen"          "self"          "selves"        "sensible"     
+## [389] "sent"          "serious"       "seriously"     "seven"        
+## [393] "several"       "shall"         "she"           "should"       
+## [397] "shouldn't"     "since"         "six"           "so"           
+## [401] "some"          "somebody"      "somehow"       "someone"      
+## [405] "something"     "sometime"      "sometimes"     "somewhat"     
+## [409] "somewhere"     "soon"          "sorry"         "specified"    
+## [413] "specify"       "specifying"    "still"         "sub"          
+## [417] "such"          "sup"           "sure"          "t"            
+## [421] "t's"           "take"          "taken"         "tell"         
+## [425] "tends"         "th"            "than"          "thank"        
+## [429] "thanks"        "thanx"         "that"          "that's"       
+## [433] "thats"         "the"           "their"         "theirs"       
+## [437] "them"          "themselves"    "then"          "thence"       
+## [441] "there"         "there's"       "thereafter"    "thereby"      
+## [445] "therefore"     "therein"       "theres"        "thereupon"    
+## [449] "these"         "they"          "they'd"        "they'll"      
+## [453] "they're"       "they've"       "think"         "third"        
+## [457] "this"          "thorough"      "thoroughly"    "those"        
+## [461] "though"        "three"         "through"       "throughout"   
+## [465] "thru"          "thus"          "to"            "together"     
+## [469] "too"           "took"          "toward"        "towards"      
+## [473] "tried"         "tries"         "truly"         "try"          
+## [477] "trying"        "twice"         "two"           "u"            
+## [481] "un"            "under"         "unfortunately" "unless"       
+## [485] "unlikely"      "until"         "unto"          "up"           
+## [489] "upon"          "us"            "use"           "used"         
+## [493] "useful"        "uses"          "using"         "usually"      
+## [497] "uucp"          "v"             "value"         "various"      
+## [501] "very"          "via"           "viz"           "vs"           
+## [505] "w"             "want"          "wants"         "was"          
+## [509] "wasn't"        "way"           "we"            "we'd"         
+## [513] "we'll"         "we're"         "we've"         "welcome"      
+## [517] "well"          "went"          "were"          "weren't"      
+## [521] "what"          "what's"        "whatever"      "when"         
+## [525] "whence"        "whenever"      "where"         "where's"      
+## [529] "whereafter"    "whereas"       "whereby"       "wherein"      
+## [533] "whereupon"     "wherever"      "whether"       "which"        
+## [537] "while"         "whither"       "who"           "who's"        
+## [541] "whoever"       "whole"         "whom"          "whose"        
+## [545] "why"           "will"          "willing"       "wish"         
+## [549] "with"          "within"        "without"       "won't"        
+## [553] "wonder"        "would"         "would"         "wouldn't"     
+## [557] "x"             "y"             "yes"           "yet"          
+## [561] "you"           "you'd"         "you'll"        "you're"       
+## [565] "you've"        "your"          "yours"         "yourself"     
+## [569] "yourselves"    "z"             "zero"
+```
+
+```r
+dtm <- DocumentTermMatrix(corpus,
+                          control = list(tolower = T,
+                                         removePunctuation = T,
+                                         removeNumbers = T,
+                                         stopwords = stopwords("SMART"),
+                                         weighting = weightTfIdf))
+```
+
+```
+## Warning in weighting(x): empty document(s): 1948
+```
+
+```r
+dtm
+```
+
+```
+## <<DocumentTermMatrix (documents: 2000, terms: 8446)>>
+## Non-/sparse entries: 46461/16845539
+## Sparsity           : 100%
+## Maximal term length: 132
+## Weighting          : term frequency - inverse document frequency (normalized) (tf-idf)
 ```
 
 --- .newbackground
 
-## LASSO Regression
+## 7. 회귀분석으로 감정 사전 만들기
 
 
 ```r
-alpha <- 1
-cv.lasso <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                      type.measure = "class", 
-                      nfolds = 4,
-                      family = "binomial", 
-                      alpha = alpha)
+library(glmnet)
+```
+
+
+```r
+X <- as.matrix(dtm)
+Y <- mobile$Sentiment
+```
+
+
+```r
+res.lm <- glmnet(X, Y, family = "binomial", lambda = 0) 
 ```
 
 --- .newbackground
-
-## LASSO Regression
-
-```r
-plot(cv.lasso)
-```
-
-![plot of chunk unnamed-chunk-35](assets/fig/unnamed-chunk-35-1.png) 
+    
+## 7. 회귀분석으로 감정 사전 만들기
+    
 
 ```r
-log(cv.lasso$lambda.min)
+coef.lm <- coef(res.lm)[,1]
+pos.lm <- coef.lm[coef.lm > 0]
+neg.lm <- coef.lm[coef.lm < 0]
+pos.lm <- sort(pos.lm, decreasing = T)
+neg.lm <- sort(neg.lm, decreasing = F)
 ```
-
-```
-## [1] -5.833378
-```
-
---- .newbackground
-
-## LASSO Regression
-
-```r
-plot(cv.lasso$glmnet.fit, "lambda", label=TRUE)
-```
-
-![plot of chunk unnamed-chunk-36](assets/fig/unnamed-chunk-36-1.png) 
-
---- .newbackground
-
-## Ridge Regression
-
-
-```r
-alpha <- 0
-cv.ridge <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                      type.measure = "class", 
-                      nfolds = 4,
-                      family = "binomial", 
-                      alpha = alpha)
-```
-
---- .newbackground
-
-## RIDGE Regression
-
-
-```r
-plot(cv.ridge)
-```
-
-![plot of chunk unnamed-chunk-38](assets/fig/unnamed-chunk-38-1.png) 
-
-```r
-log(cv.ridge$lambda.min)
-```
-
-```
-## [1] 1.493029
-```
-
---- .newbackground
-
-## RIDGE Regression
-
-
-```r
-plot(cv.ridge$glmnet.fit, "lambda", label=TRUE)
-```
-
-![plot of chunk unnamed-chunk-39](assets/fig/unnamed-chunk-39-1.png) 
-
---- .newbackground
-
-## ElasticNet Regression
-
-
-```r
-alpha <- .3
-cv.elastic <- cv.glmnet(as.matrix(t(tdm.train)), data.train$sentiment, 
-                        type.measure = "class", 
-                        nfolds = 4,
-                        family = "binomial", 
-                        alpha = alpha)
-```
-
---- .newbackground
-
-## ElasticNet Regression
-
-
-```r
-plot(cv.elastic)
-```
-
-![plot of chunk unnamed-chunk-41](assets/fig/unnamed-chunk-41-1.png) 
-
-```r
-log(cv.elastic$lambda.min)
-```
-
-```
-## [1] -3.280416
-```
-
---- .newbackground
-
-## ElasticNet Regression
-
-
-```r
-plot(cv.elastic$glmnet.fit, "lambda", label=TRUE)
-```
-
-![plot of chunk unnamed-chunk-42](assets/fig/unnamed-chunk-42-1.png) 
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-coef.lasso <- coef(cv.lasso, s = "lambda.min")[,1]
-coef.ridge <- coef(cv.ridge, s = "lambda.min")[,1]
-coef.elastic <- coef(cv.elastic, s = "lambda.min")[,1]
-```
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.lasso <- sort(coef.lasso[coef.lasso > 0])
-neg.lasso <- sort(coef.lasso[coef.lasso < 0])
-
-length(pos.lasso)
-```
-
-```
-## [1] 475
-```
-
-```r
-length(neg.lasso)
-```
-
-```
-## [1] 606
-```
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.lasso[1:5]
-```
-
-```
-##  patricyoure        tonks       ahmads   unorthodox         lori 
-## 2.331122e-15 5.989465e-15 6.367617e-13 1.169503e-05 1.214698e-05
-```
-
-```r
-neg.lasso[1:5]
-```
-
-```
-## differentokay           pic distinguished    decoration        inform 
-##     -3.918694     -3.835755     -3.390117     -3.359009     -3.290011
-```
-
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.ridge <- sort(coef.ridge[coef.ridge > 0])
-neg.ridge <- sort(coef.ridge[coef.ridge < 0])
-
-length(pos.ridge)
-```
-
-```
-## [1] 12963
-```
-
-```r
-length(neg.ridge)
-```
-
-```
-## [1] 11903
-```
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.ridge[1:5]
-```
-
-```
-##          jew      streets          rob         plan        stall 
-## 3.042999e-07 2.091328e-05 2.313824e-05 2.362472e-05 2.417472e-05
-```
-
-```r
-neg.ridge[1:5]
-```
-
-```
-##        evolving     typecasting       cancelled     cameosimans 
-##     -0.10789309     -0.10340770     -0.10157122     -0.09999705 
-## selfdeprecating 
-##     -0.09974657
-```
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.elastic <- sort(coef.elastic[coef.elastic > 0])
-neg.elastic <- sort(coef.elastic[coef.elastic < 0])
-
-length(pos.elastic)
-```
-
-```
-## [1] 463
-```
-
-```r
-length(neg.elastic)
-```
-
-```
-## [1] 612
-```
-
---- .newbackground
-
-## 감정 단어 추출
-
-
-```r
-pos.elastic[1:5]
-```
-
-```
-##            theni       mutilating              ive             ride 
-##     0.0002650247     0.0003448974     0.0003601619     0.0003829296 
-## weirdstrangeeven 
-##     0.0009908731
-```
-
-```r
-neg.elastic[1:5]
-```
-
-```
-##          pic     returned       commit economically     enamored 
-##    -1.332630    -1.270371    -1.207446    -1.156321    -1.140002
-```
-
-
---- .newbackground
-
-## 감정 단어 점수화
-
-
-```r
-library(tm.plugin.sentiment)
-```
-
-
-```r
-score.lasso <- polarity(tdm.train, names(pos.lasso), names(neg.lasso))
-score.ridge <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
-score.elastic <- polarity(tdm.train, names(pos.elastic), names(neg.elastic))
-```
-
---- .newbackground
-
-## CUT-POINT
-
-
-
-
-
-
-
-```r
-findCutpoint(data.train$sentiment, score.lasso)
-```
-
-```
-## [1] 0.1428571
-```
-
-```r
-findCutpoint(data.train$sentiment, score.ridge)
-```
-
-```
-## [1] 0.106383
-```
-
-```r
-findCutpoint(data.train$sentiment, score.elastic)
-```
-
-```
-## [1] 0.106383
-```
-
---- .newbackground
-
-## CUT-POINT
-
-
-```r
-library(pROC)
-```
-
-
-```r
-plot.roc(data.train$sentiment, score.lasso, print.thres = T)
-```
-
-![plot of chunk unnamed-chunk-56](assets/fig/unnamed-chunk-56-1.png) 
-
-```
-## 
-## Call:
-## plot.roc.default(x = data.train$sentiment, predictor = score.lasso,     print.thres = T)
-## 
-## Data: score.lasso in 694 controls (data.train$sentiment 0) < 706 cases (data.train$sentiment 1).
-## Area under the curve: 0.9971
-```
-
---- .newbackground
-
-## CUT-POINT
-
-
-
-```r
-cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
-cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
-cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-corpus <- Corpus(VectorSource(data.test$review))
-
-tdm.test <- TermDocumentMatrix(corpus, 
-                               control=list(dictionary = Terms(tdm.train), 
-                                            tolower = T,
-                                            removePunctuation = T,
-                                            removeNumbers = T,
-                                            stopwords=stopwords("SMART")))
-```
-
---- .newbackground
-
-## Test Set
-
-
-
-```r
-score.lasso <- polarity(tdm.test, names(pos.lasso), names(neg.lasso))
-score.ridge <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-library(caret)
-```
-
-
-```r
-score.lasso.b <- rep(0, length(score.lasso))
-score.lasso.b[score.lasso >= cut.lasso] <- 1
-confusionMatrix(score.lasso.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 251  68
-##          1  58 223
-##                                           
-##                Accuracy : 0.79            
-##                  95% CI : (0.7552, 0.8219)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : <2e-16          
-##                                           
-##                   Kappa : 0.5792          
-##  Mcnemar's Test P-Value : 0.4227          
-##                                           
-##             Sensitivity : 0.8123          
-##             Specificity : 0.7663          
-##          Pos Pred Value : 0.7868          
-##          Neg Pred Value : 0.7936          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4183          
-##    Detection Prevalence : 0.5317          
-##       Balanced Accuracy : 0.7893          
-##                                           
-##        'Positive' Class : 0               
-## 
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.ridge.b <- rep(0, length(score.ridge))
-score.ridge.b[score.ridge >= cut.ridge] <- 1
-confusionMatrix(score.ridge.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  58
-##          1  61 233
-##                                           
-##                Accuracy : 0.8017          
-##                  95% CI : (0.7675, 0.8329)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : <2e-16          
-##                                           
-##                   Kappa : 0.6031          
-##  Mcnemar's Test P-Value : 0.8545          
-##                                           
-##             Sensitivity : 0.8026          
-##             Specificity : 0.8007          
-##          Pos Pred Value : 0.8105          
-##          Neg Pred Value : 0.7925          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4133          
-##    Detection Prevalence : 0.5100          
-##       Balanced Accuracy : 0.8016          
-##                                           
-##        'Positive' Class : 0               
-## 
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.elastic.b <- rep(0, length(score.elastic))
-score.elastic.b[score.elastic >= cut.elastic] <- 1
-confusionMatrix(score.elastic.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  58
-##          1  61 233
-##                                           
-##                Accuracy : 0.8017          
-##                  95% CI : (0.7675, 0.8329)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : <2e-16          
-##                                           
-##                   Kappa : 0.6031          
-##  Mcnemar's Test P-Value : 0.8545          
-##                                           
-##             Sensitivity : 0.8026          
-##             Specificity : 0.8007          
-##          Pos Pred Value : 0.8105          
-##          Neg Pred Value : 0.7925          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.4133          
-##    Detection Prevalence : 0.5100          
-##       Balanced Accuracy : 0.8016          
-##                                           
-##        'Positive' Class : 0               
-## 
-```
-
---- .newbackground
-
-## glmnet 활용
-
-
-```r
-score.lasso <- predict(cv.lasso, as.matrix(t(tdm.train)), s = "lambda.min")
-score.ridge <- predict(cv.ridge, as.matrix(t(tdm.train)), s = "lambda.min")
-score.elastic <- predict(cv.elastic, as.matrix(t(tdm.train)), s = "lambda.min")
-```
-
---- .newbackground
-
-## glmnet 활용
-
-
-```r
-findCutpoint(data.train$sentiment, score.lasso)
-```
-
-```
-## [1] 0.6222667
-```
-
-```r
-findCutpoint(data.train$sentiment, score.ridge)
-```
-
-```
-## [1] -0.01393038
-```
-
-```r
-findCutpoint(data.train$sentiment, score.elastic)
-```
-
-```
-## [1] -0.06572849
-```
-
-
-```r
-cut.lasso <- findCutpoint(data.train$sentiment, score.lasso)
-cut.ridge <- findCutpoint(data.train$sentiment, score.ridge)
-cut.elastic <- findCutpoint(data.train$sentiment, score.elastic)
-```
-
---- .newbackground
-
-## glmnet 활용
-
-
-```r
-score.lasso <- predict(cv.lasso, as.matrix(t(tdm.test)), s = "lambda.min")
-score.ridge <- predict(cv.ridge, as.matrix(t(tdm.test)), s = "lambda.min")
-score.elastic <- predict(cv.elastic, as.matrix(t(tdm.test)), s = "lambda.min")
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.lasso.b <- rep(0, length(score.lasso))
-score.lasso.b[score.lasso >= cut.lasso] <- 1
-confusionMatrix(score.lasso.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 260  68
-##          1  49 223
-##                                         
-##                Accuracy : 0.805         
-##                  95% CI : (0.771, 0.836)
-##     No Information Rate : 0.515         
-##     P-Value [Acc > NIR] : < 2e-16       
-##                                         
-##                   Kappa : 0.6089        
-##  Mcnemar's Test P-Value : 0.09609       
-##                                         
-##             Sensitivity : 0.8414        
-##             Specificity : 0.7663        
-##          Pos Pred Value : 0.7927        
-##          Neg Pred Value : 0.8199        
-##              Prevalence : 0.5150        
-##          Detection Rate : 0.4333        
-##    Detection Prevalence : 0.5467        
-##       Balanced Accuracy : 0.8039        
-##                                         
-##        'Positive' Class : 0             
-## 
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.ridge.b <- rep(0, length(score.ridge))
-score.ridge.b[score.ridge >= cut.ridge] <- 1
-confusionMatrix(score.ridge.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 238  40
-##          1  71 251
-##                                           
-##                Accuracy : 0.815           
-##                  95% CI : (0.7816, 0.8453)
-##     No Information Rate : 0.515           
-##     P-Value [Acc > NIR] : < 2.2e-16       
-##                                           
-##                   Kappa : 0.6308          
-##  Mcnemar's Test P-Value : 0.004407        
-##                                           
-##             Sensitivity : 0.7702          
-##             Specificity : 0.8625          
-##          Pos Pred Value : 0.8561          
-##          Neg Pred Value : 0.7795          
-##              Prevalence : 0.5150          
-##          Detection Rate : 0.3967          
-##    Detection Prevalence : 0.4633          
-##       Balanced Accuracy : 0.8164          
-##                                           
-##        'Positive' Class : 0               
-## 
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.elastic.b <- rep(0, length(score.elastic))
-score.elastic.b[score.elastic >= cut.elastic] <- 1
-confusionMatrix(score.elastic.b, data.test$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 248  34
-##          1  61 257
-##                                       
-##                Accuracy : 0.8417      
-##                  95% CI : (0.81, 0.87)
-##     No Information Rate : 0.515       
-##     P-Value [Acc > NIR] : < 2.2e-16   
-##                                       
-##                   Kappa : 0.6839      
-##  Mcnemar's Test P-Value : 0.007641    
-##                                       
-##             Sensitivity : 0.8026      
-##             Specificity : 0.8832      
-##          Pos Pred Value : 0.8794      
-##          Neg Pred Value : 0.8082      
-##              Prevalence : 0.5150      
-##          Detection Rate : 0.4133      
-##    Detection Prevalence : 0.4700      
-##       Balanced Accuracy : 0.8429      
-##                                       
-##        'Positive' Class : 0           
-## 
-```
-
---- .newbackground
-
-## 다른 데이터에 적용
-
-<h3b> Data </h3b>  
-<h3b> Amazon Books Reviews 중에서 2,000개</h3b>  
-
---- .newbackground
-
-## Test Set
-
-
-```r
-books.review <- read.csv("data/Amazon_books.csv", stringsAsFactors = F)
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-corpus <- Corpus(VectorSource(books.review$texts))
-
-tdm.test <- TermDocumentMatrix(corpus, 
-                               control=list(dictionary = Terms(tdm.train), 
-                                            tolower = T,
-                                            removePunctuation = T,
-                                            removeNumbers = T,
-                                            stopwords=stopwords("SMART")))
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.elastic <- polarity(tdm.test, names(pos.elastic), names(neg.elastic))
-```
-
---- .newbackground
-
-## Test Set
-
-
-```r
-score.elastic.b <- rep(0, length(score.elastic))
-score.elastic.b[score.elastic >= cut.elastic] <- 1
-confusionMatrix(score.elastic.b, books.review$sentiment)
-```
-
-```
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   0   1
-##          0 490 154
-##          1 510 846
-##                                           
-##                Accuracy : 0.668           
-##                  95% CI : (0.6469, 0.6886)
-##     No Information Rate : 0.5             
-##     P-Value [Acc > NIR] : < 2.2e-16       
-##                                           
-##                   Kappa : 0.336           
-##  Mcnemar's Test P-Value : < 2.2e-16       
-##                                           
-##             Sensitivity : 0.4900          
-##             Specificity : 0.8460          
-##          Pos Pred Value : 0.7609          
-##          Neg Pred Value : 0.6239          
-##              Prevalence : 0.5000          
-##          Detection Rate : 0.2450          
-##    Detection Prevalence : 0.3220          
-##       Balanced Accuracy : 0.6680          
-##                                           
-##        'Positive' Class : 0               
-## 
-```
-
 

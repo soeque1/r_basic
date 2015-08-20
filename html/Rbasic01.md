@@ -199,6 +199,14 @@ y == 2
 ## [1] FALSE FALSE FALSE
 ```
 
+```r
+dd
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'dd' not found
+```
+
 *** =right
 
 
@@ -639,7 +647,7 @@ mean(df.latter$구매건수)
 
 ---  .new-background
 
-## 12개월 (다음 시간에는)
+## 12개월 
 
 
 ```r
@@ -666,5 +674,13 @@ sapply(sale.month, function(x) mean(x$구매건수))
 ##        9       10       11       12 
 ## 23920.19 24190.30 24923.86 24290.30
 ```
+
+---  .new-background
+
+## 다음 시간  
+- 데이터 편집하기  
+- Missing 다루기  
+- 집단 평균 비교하기  
+- 상관관계 이해하기
 
 

@@ -278,6 +278,12 @@ str(x)
 <pre><code>## [1] FALSE FALSE FALSE
 </code></pre>
 
+<pre><code class="r">dd
+</code></pre>
+
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;dd&#39; not found
+</code></pre>
+
 </div>    
 <div class='right' style='float:right;width:50%'>
  <pre><code class="r">y[y == 1]
@@ -737,7 +743,7 @@ mean(df.latter$구매건수)
 
 <slide class="new-background" id="slide-36" style="background:;">
   <hgroup>
-    <h2>12개월 (다음 시간에는)</h2>
+    <h2>12개월</h2>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">sale.month &lt;- split(df, df$매출월)
@@ -760,6 +766,22 @@ for (i in 1:2)
 ##        9       10       11       12 
 ## 23920.19 24190.30 24923.86 24290.30
 </code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>다음 시간</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>데이터 편집하기<br></li>
+<li>Missing 다루기<br></li>
+<li>집단 평균 비교하기<br></li>
+<li>상관관계 이해하기</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -981,8 +1003,14 @@ for (i in 1:2)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='12개월 (다음 시간에는)'>
+        data-slide=36 title='12개월'>
          36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='다음 시간'>
+         37
       </a>
     </li>
   </ul>
