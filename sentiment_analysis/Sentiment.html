@@ -194,35 +194,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-11" style="background:;">
-  <hgroup>
-    <h2>회귀분석의 문제</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b><br>
-<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b><br>
-<h3b>- 예측력이 떨어짐  </h3b><br>
-<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-12" style="background:;">
-  <hgroup>
-    <h2>과적합을 막는 법</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b><br>
-<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b><br>
-<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b><br>
-<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="modal" id="slide-13" style="background:;">
+<slide class="modal" id="slide-11" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
@@ -246,7 +218,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground modal" id="slide-14" style="background:;">
+<slide class="newbackground modal" id="slide-12" style="background:;">
   <hgroup>
     <h2>상관관계</h2>
   </hgroup>
@@ -264,7 +236,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>상관관계 및 회귀분석</h2>
   </hgroup>
@@ -277,7 +249,7 @@
 <div class='right' style='float:right;width:'>
  <!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
 
-<!-- Thu Aug 20 23:49:50 2015 -->
+<!-- Fri Aug 21 18:58:15 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -291,12 +263,14 @@
 <pre><code>## [1] 0.8194181
 </code></pre>
 
+<p>키가 1cm 증가하면 몸무게는 .49kg 증가</p>
+
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>X가 2개라면?</h2>
   </hgroup>
@@ -320,14 +294,14 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-17" style="background:;">
+<slide class="newbackground" id="slide-15" style="background:;">
   <hgroup>
     <h2>다중회귀분석</h2>
   </hgroup>
   <article data-timings="">
     <!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
 
-<!-- Thu Aug 20 23:49:50 2015 -->
+<!-- Fri Aug 21 18:58:15 2015 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
@@ -340,7 +314,101 @@
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="newbackground" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>회귀분석의 문제</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b><br>
+<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b><br>
+<h3b>- 예측력이 떨어짐  </h3b><br>
+<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Over-fitting</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/poly.png" height=450px width=700px></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
 <slide class="newbackground" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Over-fitting</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b> Over-fitting을 피하는 방법들 </h3b><br>
+<h3b>- Penality of Model Complexity (MSE 보정)  </h3b><br>
+<h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b><br>
+<h3b>- Bayesian  </h3b><br>
+<h3b>- Drop Out, Bagging, Feature Bagging  </h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>과적합을 막는 법</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b><br>
+<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b><br>
+<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b><br>
+<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Lasso Vs Ridge</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/lassoridge.png" height=450px width=800px></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="new-background" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Lasso Vs Ridge</h2>
+  </hgroup>
+  <article data-timings="">
+      
+<div class='left' style='float:left;width:50%'>
+ <p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <p><img src="assets/fig/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Over-fitting</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="assets/img/lambda.png" height=450px width=700px></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-23" style="background:;">
   <hgroup>
     <h2>예측력</h2>
   </hgroup>
@@ -357,86 +425,14 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
-  <hgroup>
-    <h2>Traninig Vs Test</h2>
-  </hgroup>
-  <article data-timings="">
-      
-<div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
-
-</div>    
-<div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-20" style="background:;">
-  <hgroup>
-    <h2>Over-fitting</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><center><img src="assets/img/lambda.png" height=450px width=700px></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-21" style="background:;">
-  <hgroup>
-    <h2>Over-fitting(과적합)</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><h3b> How to avoid Over-fitting </h3b><br>
-<h3b>- Penality of Model Complexity (MSE 보정)  </h3b><br>
-<h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b><br>
-<h3b>- Bayesian  </h3b><br>
-<h3b>- Drop Out, Bagging, Feature Bagging  </h3b>  </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="newbackground" id="slide-22" style="background:;">
-  <hgroup>
-    <h2>Lasso Vs Ridge</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><center><img src="assets/img/lassoridge.png" height=450px width=800px></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-23" style="background:;">
-  <hgroup>
-    <h2>Lasso Vs Ridge</h2>
-  </hgroup>
-  <article data-timings="">
-      
-<div class='left' style='float:left;width:'>
- <p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
-
-</div>    
-<div class='right' style='float:right;width:'>
- <p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
 <slide class="newbackground" id="slide-24" style="background:;">
   <hgroup>
     <h2>감정분석</h2>
   </hgroup>
   <article data-timings="">
     <p><h3b> Data </h3b><br>
-<h3b> 아마존 모바일 폰 리뷰 중에서 2,000개만 </h3b>  </p>
+<h3b> 아마존 모바일 폰 리뷰 중에서 2,000개만 </h3b><br>
+<h3b> 긍정평 1000개, 부정평 1000개 </h3b>  </p>
 
   </article>
   <!-- Presenter Notes -->
@@ -454,6 +450,13 @@
 </code></pre>
 
 <pre><code>## [1] 2000    7
+</code></pre>
+
+<pre><code class="r">names(mobile)
+</code></pre>
+
+<pre><code>## [1] &quot;X&quot;         &quot;Title&quot;     &quot;Author&quot;    &quot;ReviewID&quot;  &quot;Texts&quot;     &quot;YMD&quot;      
+## [7] &quot;Sentiment&quot;
 </code></pre>
 
 <pre><code class="r">table(mobile$Sentiment)
@@ -667,7 +670,16 @@ stopwords()
 ## [569] &quot;yourselves&quot;    &quot;z&quot;             &quot;zero&quot;
 </code></pre>
 
-<pre><code class="r">dtm &lt;- DocumentTermMatrix(corpus,
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>6. DocumentTermMatrix 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">dtm &lt;- DocumentTermMatrix(corpus,
                           control = list(tolower = T,
                                          removePunctuation = T,
                                          removeNumbers = T,
@@ -692,7 +704,7 @@ stopwords()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-27" style="background:;">
+<slide class="newbackground" id="slide-28" style="background:;">
   <hgroup>
     <h2>7. 회귀분석으로 감정 사전 만들기</h2>
   </hgroup>
@@ -711,7 +723,7 @@ Y &lt;- mobile$Sentiment
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="newbackground" id="slide-28" style="background:;">
+<slide class="newbackground" id="slide-29" style="background:;">
   <hgroup>
     <h2>7. 회귀분석으로 감정 사전 만들기</h2>
   </hgroup>
@@ -721,6 +733,1253 @@ pos.lm &lt;- coef.lm[coef.lm &gt; 0]
 neg.lm &lt;- coef.lm[coef.lm &lt; 0]
 pos.lm &lt;- sort(pos.lm, decreasing = T)
 neg.lm &lt;- sort(neg.lm, decreasing = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>7. 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">pos.lm[1:20]
+</code></pre>
+
+<pre><code>##   aboutbattery     absorption     accustomed    accommodate         allthe 
+##      1085.0779       971.8079       742.7851       736.4887       680.7802 
+##     anywhereno  allconclusion   afterthought    beautifully            agt 
+##       673.7496       658.7255       501.8829       491.0924       438.5957 
+##  accidentially           blog      alongside       anymorei      acclaimed 
+##       370.4009       359.6093       346.5438       279.9606       254.9961 
+##           amps       advocate brightnesscall  accelerometer       accurate 
+##       253.5091       229.8871       202.4650       197.5923       197.3163
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>7. 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">neg.lm[1:20]
+</code></pre>
+
+<pre><code>##     adverse  accomplish     apology      boasts     applaud     artists 
+##   -337.1834   -330.4808   -298.6760   -256.1969   -253.5539   -217.8384 
+##   addresses       ainol     amazoni    accesses     arrange      blocks 
+##   -216.7636   -213.2872   -202.4802   -191.3860   -181.3013   -179.3567 
+##   averaging comparisons   adddelete      annoys        aarp    admitted 
+##   -177.2297   -176.4454   -173.5037   -168.7699   -167.4885   -163.6020 
+##         aka    amazonit 
+##   -156.0933   -154.2843
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">set.seed(12345)
+res.lasso &lt;- cv.glmnet(X, Y, family = &quot;binomial&quot;, alpha = 1,
+                       nfolds = 4, type.measure = &quot;class&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.lasso)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-29-1.png" alt="plot of chunk unnamed-chunk-29"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.lasso$glmnet.fit, xvar = &quot;lambda&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-30-1.png" alt="plot of chunk unnamed-chunk-30"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">options(scipen = 100)
+coef.lasso &lt;- coef(res.lasso, s = &quot;lambda.min&quot;)[,1]
+pos.lasso &lt;- coef.lasso[coef.lasso &gt; 0]
+neg.lasso &lt;- coef.lasso[coef.lasso &lt; 0]
+pos.lasso &lt;- sort(pos.lasso, decreasing = T)
+neg.lasso &lt;- sort(neg.lasso, decreasing = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">pos.lasso[1:20]
+</code></pre>
+
+<pre><code>##           news      sharpness        section implementation         amoled 
+##      38.577474      19.924116      17.276675      14.786139      14.263770 
+##          youve      autofocus          great       whatsapp        monster 
+##      11.408438      10.652642       9.939520       9.620485       8.232943 
+##           love responsiveness        swiping         kitkat           eyes 
+##       7.835211       6.849303       6.713517       6.351620       5.576048 
+##            pro           pair           fits        perfect           easy 
+##       5.325080       5.165146       4.919954       4.671299       4.651886
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>10. 라쏘 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">neg.lasso[1:20]
+</code></pre>
+
+<pre><code>##    addresses       pushed    promising consistently   repeatedly 
+##    -9.274913    -8.947030    -7.709165    -6.557389    -5.723836 
+##       return     versions        money        wakes        utter 
+##    -5.028760    -4.801251    -4.104239    -4.060679    -3.854104 
+##        elses         back          zip    contacted     swindled 
+##    -3.561807    -3.413399    -3.284574    -3.154823    -3.122682 
+##        sucks         july     horrible         slow     received 
+##    -3.117836    -3.014597    -2.965226    -2.871529    -2.654189
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">set.seed(12345)
+res.ridge &lt;- cv.glmnet(X, Y, family = &quot;binomial&quot;, alpha = 0,
+                       nfolds = 4, type.measure = &quot;class&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-39" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.ridge)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-35-1.png" alt="plot of chunk unnamed-chunk-35"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.ridge$glmnet.fit, xvar = &quot;lambda&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">coef.ridge &lt;- coef(res.ridge, s = &quot;lambda.min&quot;)[,1]
+pos.ridge &lt;- coef.ridge[coef.ridge &gt; 0]
+neg.ridge &lt;- coef.ridge[coef.ridge &lt; 0]
+pos.ridge &lt;- sort(pos.ridge, decreasing = T)
+neg.ridge &lt;- sort(neg.ridge, decreasing = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">pos.ridge[1:20]
+</code></pre>
+
+<pre><code>##   anywhereno brightnessto    yourselfi        wifig      whistle 
+##     2.739847     2.738926     2.738648     2.738635     2.738580 
+##    waistband commentsapps     vertical   thatbottom       copied 
+##     2.738508     2.738440     2.738419     2.738313     2.738093 
+##    speedcons    spacealso     smallest       cutter     sleeping 
+##     2.738082     2.737937     2.737801     2.737719     2.737640 
+##   screenvery    detailing       puffin       doable    phonetips 
+##     2.737409     2.737377     2.737238     2.737078     2.737075
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-43" style="background:;">
+  <hgroup>
+    <h2>11. 릿지 회귀분석으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">neg.ridge[1:20]
+</code></pre>
+
+<pre><code>##      slowness      limiting        groove        engage discontinuing 
+##     -1.500915     -1.500909     -1.500890     -1.500862     -1.500859 
+##       apology        carpet   disgruntled   explanation   hypothesize 
+##     -1.449195     -1.448927     -1.448633     -1.448471     -1.448232 
+##      whomever       voltage           toi       jumping         scuff 
+##     -1.448227     -1.448198     -1.448162     -1.448128     -1.448125 
+##   returnclaim       loosely   refurbishes       reflect        paused 
+##     -1.448084     -1.448064     -1.448048     -1.448016     -1.447995
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-44" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">set.seed(12345)
+res.elastic &lt;- cv.glmnet(X, Y, family = &quot;binomial&quot;, alpha = .5,
+                         nfolds = 4, type.measure=&quot;class&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-45" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.elastic)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(res.elastic$glmnet.fit, xvar = &quot;lambda&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-47" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">coef.elastic &lt;- coef(res.elastic, s = &quot;lambda.min&quot;)[,1]
+pos.elastic &lt;- coef.elastic[coef.elastic &gt; 0]
+neg.elastic &lt;- coef.elastic[coef.elastic &lt; 0]
+pos.elastic &lt;- sort(pos.elastic, decreasing = T)
+neg.elastic &lt;- sort(neg.elastic, decreasing = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-48" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">pos.elastic[1:20]
+</code></pre>
+
+<pre><code>##           news         amoled      sharpness      intrusive implementation 
+##      27.487451      10.570031      10.333007       9.966970       8.992294 
+##          great          youve           love         kitkat           eyes 
+##       6.975481       6.270957       5.106715       4.591255       4.382721 
+##       whatsapp        perfect           easy           fits         remote 
+##       4.193411       3.499910       3.440100       3.432532       3.380695 
+##            pro      impressed        windows           fast          loves 
+##       3.188608       3.149368       3.116624       3.035995       2.988360
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-49" style="background:;">
+  <hgroup>
+    <h2>12. 엘라스틱넷으로 감정 사전 만들기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">neg.elastic[1:20]
+</code></pre>
+
+<pre><code>##       pushed    addresses        wakes       return    promising 
+##    -7.409465    -4.587790    -4.123647    -4.070836    -3.998956 
+##   repeatedly consistently        money         back    contacted 
+##    -3.940290    -3.238517    -3.099030    -2.986000    -2.903110 
+##        sucks        utter     versions     horrible         told 
+##    -2.556260    -2.391758    -2.374289    -2.330850    -2.312851 
+##       refund         slow      wouldnt     terrible     received 
+##    -2.273095    -2.250336    -2.126634    -2.101997    -2.027309
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-50" style="background:;">
+  <hgroup>
+    <h2>14. 감정사전을 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(tm.plugin.sentiment)
+</code></pre>
+
+<pre><code class="r">senti.lm &lt;- polarity(dtm, names(pos.lm), names(neg.lm))
+senti.lasso &lt;- polarity(dtm, names(pos.lasso), names(neg.lasso))
+senti.ridge &lt;- polarity(dtm, names(pos.ridge), names(neg.ridge))
+senti.elastic &lt;- polarity(dtm, names(pos.elastic), names(neg.elastic))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-51" style="background:;">
+  <hgroup>
+    <h2>14. 감정사전을 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">senti.lm &lt;- polarity(dtm, names(pos.lm), names(neg.lm))
+senti.lasso &lt;- polarity(dtm, names(pos.lasso), names(neg.lasso))
+senti.ridge &lt;- polarity(dtm, names(pos.ridge), names(neg.ridge))
+senti.elastic &lt;- polarity(dtm, names(pos.elastic), names(neg.elastic))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-52" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">senti.lm.b &lt;- ifelse(senti.lm &gt; 0, 1, 0)
+senti.lasso.b &lt;- ifelse(senti.lasso &gt; 0, 1, 0)
+senti.ridge.b &lt;- ifelse(senti.ridge &gt; 0, 1, 0)
+senti.elastic.b &lt;- ifelse(senti.elastic &gt; 0, 1, 0)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-53" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(caret)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-54" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lm.b, mobile$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 962 535
+##          1  38 464
+##                                                
+##                Accuracy : 0.7134               
+##                  95% CI : (0.693, 0.7331)      
+##     No Information Rate : 0.5003               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.4266               
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.9620               
+##             Specificity : 0.4645               
+##          Pos Pred Value : 0.6426               
+##          Neg Pred Value : 0.9243               
+##              Prevalence : 0.5003               
+##          Detection Rate : 0.4812               
+##    Detection Prevalence : 0.7489               
+##       Balanced Accuracy : 0.7132               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-55" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lasso.b, mobile$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 978  47
+##          1  18 952
+##                                                
+##                Accuracy : 0.9674               
+##                  95% CI : (0.9587, 0.9748)     
+##     No Information Rate : 0.5008               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.9348               
+##  Mcnemar&#39;s Test P-Value : 0.0005147            
+##                                                
+##             Sensitivity : 0.9819               
+##             Specificity : 0.9530               
+##          Pos Pred Value : 0.9541               
+##          Neg Pred Value : 0.9814               
+##              Prevalence : 0.4992               
+##          Detection Rate : 0.4902               
+##    Detection Prevalence : 0.5138               
+##       Balanced Accuracy : 0.9674               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-56" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.ridge.b, mobile$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 984  20
+##          1  16 979
+##                                              
+##                Accuracy : 0.982              
+##                  95% CI : (0.9752, 0.9874)   
+##     No Information Rate : 0.5003             
+##     P-Value [Acc &gt; NIR] : &lt;0.0000000000000002
+##                                              
+##                   Kappa : 0.964              
+##  Mcnemar&#39;s Test P-Value : 0.6171             
+##                                              
+##             Sensitivity : 0.9840             
+##             Specificity : 0.9800             
+##          Pos Pred Value : 0.9801             
+##          Neg Pred Value : 0.9839             
+##              Prevalence : 0.5003             
+##          Detection Rate : 0.4922             
+##    Detection Prevalence : 0.5023             
+##       Balanced Accuracy : 0.9820             
+##                                              
+##        &#39;Positive&#39; Class : 0                  
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-57" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.elastic.b, mobile$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 977  61
+##          1  18 934
+##                                                
+##                Accuracy : 0.9603               
+##                  95% CI : (0.9508, 0.9684)     
+##     No Information Rate : 0.5                  
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.9206               
+##  Mcnemar&#39;s Test P-Value : 0.000002297          
+##                                                
+##             Sensitivity : 0.9819               
+##             Specificity : 0.9387               
+##          Pos Pred Value : 0.9412               
+##          Neg Pred Value : 0.9811               
+##              Prevalence : 0.5000               
+##          Detection Rate : 0.4910               
+##    Detection Prevalence : 0.5216               
+##       Balanced Accuracy : 0.9603               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-58" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mobile.test &lt;- read.csv(&quot;mobile2014_test.csv&quot;, stringsAsFactors = F)
+</code></pre>
+
+<pre><code class="r">dim(mobile.test)
+</code></pre>
+
+<pre><code>## [1] 1000    7
+</code></pre>
+
+<pre><code class="r">names(mobile.test)
+</code></pre>
+
+<pre><code>## [1] &quot;X&quot;         &quot;Title&quot;     &quot;Author&quot;    &quot;ReviewID&quot;  &quot;Texts&quot;     &quot;YMD&quot;      
+## [7] &quot;Sentiment&quot;
+</code></pre>
+
+<pre><code class="r">table(mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## 
+##   0   1 
+## 500 500
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-59" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">corpus &lt;- Corpus(VectorSource(mobile.test$Texts))
+dtm.test &lt;- DocumentTermMatrix(corpus,
+                          control = list(tolower = T,
+                                         removePunctuation = T,
+                                         removeNumbers = T,
+                                         stopwords = stopwords(&quot;SMART&quot;),
+                                         weighting = weightTfIdf,
+                                         dictionary = Terms(dtm)))
+</code></pre>
+
+<pre><code>## Warning in weighting(x): empty document(s): 883
+</code></pre>
+
+<pre><code>## Warning in weighting(x): unreferenced term(s):  downloading aah aaps
+## abombada aboutbattery aboutprice abroad abruptly absolutamente absulotly
+## accelerometer accent accepting accessed accesses accessibility
+## accessoriesi accessoriesin accidentially acclaimed acclimating accomplish
+## accomplishing accordinglyupgrading accounts accurate accurateif
+## accurateremote accustomed ace achieve aclarar acquainted acted action
+## activating activitate activity actuall actualmente acurate adapt adapted
+## adapter adaptor adddelete addedusing addict additionally additions adds
+## adefect adept adhesive adición adjustable adjustmentglad adjustments
+## admiral admitted admittedly admitting adn adobe adult advances advantage
+## adventure adverse advise advocate affects afffordable affordability
+## affordablelove afghanistan afternooni afterthought againin againsend
+## againso againthe againthey againthird agan ages agethe aggravated
+## aggravation agil agitate agreeing agreements agrivation agt
+## agtsplitrefirefox ahhhh aids ailments aiming airport airvoice
+## airvoicewireless aka alao albums alert alertembedding alertplaceholder
+## algo align alike alittle alittleit allconclusion allmetal allot allplease
+## allrate allreally allways alongside alpha alreadyi alta alter altered
+## alternate alternatives alternativesthis althought altogether aluminium
+## amaizing amateur amaze amazingscreen amazingthe amazomcom amazonafter
+## amazonit amazonok amazonso amazonthe ambulance américa americaits amfm
+## amolid ampliamente amps amused analyze anazon ancient anctipated andi
+## andif andriod androidbased androidify androidmemory androidwide androit
+## andwont ane angle angles angola angular animal announcements announces
+## annoy annoys anouther ans answerbefore ant antennae anticipated antiquated
+## antique antutu anuncia anuncio anxiously anymorei anymorethis anyonenow
+## anyoneunfortunately anyplace anytime anywayim anywayso anywhereno
+## anywhereon aparently aperture apkinstall aplicasiones aplications apni
+## apology appcamera appfitbit applaude appleprosvery applicationoutstanding
+## appmgriii appnone approve approx appsbuilt appsit appsive appsserices
+## appsservices appsthe appstore appthat archived areabest areathsnks
+## aredroid argentina argentinas arguably arirang arising arms aroundguess
+## arrange arrival arrivalwould arrogant arrows arthritis artwork asaving
+## asia asiathanks asíit aspect assisted assistedø  assisting
+## associationextremely assume assuming assurance assure assuredly astounding
+## atadsjbe atat athe athms ativities atoz atrix attached attack
+## attentiverecommend attgoes attit attnokia attok attracted
+## attsamsungmotorolasprintetc attzero atvpdkikxder audible audífonos
+## audiophile audiovideoi aunt aus australian authenticate authorized authors
+## autocad autofocus automail automation autonomy availablecan
+## availablefunction availablegalaxy availablethis avalon averaging avid
+## avoids awake awaythe awesomeamazon awesomei awesomely awesomeno
+## awesometexting awewater awfulthey awkwardly awsome baby backand backed
+## backi backit backlight backlit backlo backplease backside backthe backthis
+## backward backwards backwardthe badplease badthe baffled bait baited bajo
+## baked balanced balls ballsif bandwagon bandwitch bang bankanother banks
+## barbados barcode bare barnyard barometer barrel barrier barsdots base
+## batch baterry bath batt batter batterly batterys batterysaving
+## batterysince batterythe batterywhen battle batts bayi bayreuth bbmcontacts
+## bbs bday beach beam bear beaten beating becsuse bedefinitely bedrooms
+## bedside bedtime beforefairly beforesamsung beg begini beginner beginners
+## begs behalf behave behavior behaviors believeme belive bell bellevue
+## belongs belowfantastic belowthis beltim benchmark benchmarks beneath
+## benton bestbuy bestno betterdont betteri betterinstead betternote bevel
+## bezel bgcolor biased bigdoes bighas billing bind bio bionicsamsung bistro
+## bits bla blacberry blackberryi blackberrys blackberrythe blackblack
+## blacked blackfor blackwireless blamed blames bland blanket blanks
+## blanksave blanksince blazingly bleeding blemish bless blessing blinding
+## blink bloatapps blocking blocks blockswhen blocky blog blogare blood
+## bloody bloquea blow blueif blur blurb blured blurred blurry blurs blury
+## blutoothit bmp boardapparently boarding boat bodies bodygiven bodymotorola
+## bodysamsung bogus bold bolts bomb bone bonkers boom booster boosters
+## booted borrow borrowing bosnia bossi bothers bottomfiring bou bounced
+## bounds boxbatterydo boxed boxes boxso boy boyfriends brace bracketing
+## brain brained brakes braking brans bravo brazilrecommende breast breath
+## breather breathtaking bribe brigade brighter brightif brightnesscall
+## brightnessto brightpicture brights brilliance bringing british bro
+## broadcasts broadest broked brokeni brooklyn brotherwho brown browsers
+## browsingthe brto bruised bubble buck budgetminded buds buffered buildi
+## buildin buildquality builtmost builtone bull bullet bummer bundled buried
+## burned burner burning burns businees businessi businessman butch buts
+## butter buttonsi buttonwonderful butts buyagain buyersin buyfast buyi
+## buynext buzz buzzers buzzing byeno bypass caboose cabsince cad caharger
+## caint cajahasta cake caked cal calculate calculations calderon calendars
+## calender calibration calificación california callnot callsconscamera
+## callsecondary callsø  callssamsung cam cámara camcorder camcorderbuilt
+## camer cameraand cameraas camerabright camerafeels camerafinal cameragood
+## camerait cameraits cameral cameranot camerasimply camerasometime
+## camperthis camrea canada canbought cancel cancelar canceled cancelled
+## cancels cannibalize canpurchase cantidad cantotally capableno capacitive
+## capacity capgb captured características carateristics cardart cardit
+## cardphone cardthis cardtransfering caredfor caribbean carlos carma
+## carribbean carriermy carriersubsidized carrierswith carries carrydo
+## cartoon casebut casehttpwwwamazoncomgpproductbhvvikrefcmcrrypprdttlsol
+## casethe cash casual cat catalina catastrophic catcherr catches catching
+## caught caution cdata cellphonesfinally celluar celualr centers centrobuy
+## centura certainty chage chamber champ changealso changedthe channelfollow
+## channels chaos character characteristic characteristics chargedall
+## chargedsome chargeit chargeonly chargerbut chargeris chargeroverall
+## chargerport chargerstarted chargerthis chargewhen charginga chargingi
+## chargingthe charms chasor chattering cheapcellphonereplacement
+## cheapfeeling cheaphowever cheapit cheapo cheek cheep cheers cheesy
+## cherokee chews chimes chipped chipset chock choicea choicebut chooses
+## choosing choreit chrips chromebook chromecast chucking cingular circa
+## circle cities ciudad clans clarify clarityanother clarityit claro clash
+## classeasy classi classic cleaner clearlyalso clearno clearwhat cleverly
+## clicked client cliff clipdivstyleheight clipdivstyleheighthpx clipping
+## clockbecause clocks clone clones clot cloudy clue clumsyexcellent
+## clunkiest cnet coating coding coldstartstorage collar collect collection
+## colorado colorblind colorslimmer colorused colours comapnies comaptibility
+## combat combines comcast comercial comersi comical comings command
+## commendable commentsapps commitment communicatedi commutethe commuting
+## compañía companydaniel companyif compares comparisongreat compartment
+## compartments compatibilityclose compelled compensate competitioncons
+## competitionhardware competitive competitor complainti complaintthe
+## compleat completamente complexso complicated compliment compliments comply
+## comprehensive compromise compromising computadoras computerandroid
+## comunicate concepto concernnot concert conclude concluded concludes
+## conclussionstheres concrete condeson condición conditionall conditioni
+## conditionloads conducts confidence configurable configure configuring
+## confirmation conformed confort confusing confusingits conrol consequences
+## consgood considerable considers consthe consthis constructed consume
+## consumerfriendly consumption contac contactsand contender contento
+## contents contextsince continual continually continuing continuous
+## contracted contracting contracy contrary contrto contry convenientalso
+## convenientgreat conveniently conversationnokia conversations conversions
+## converts convoluted convoy cookie coolness copypaste corning corporate
+## corporation corrections correctphone
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-60" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">senti.lm.test &lt;- polarity(dtm.test, names(pos.lm), names(neg.lm))
+senti.lasso.test &lt;- polarity(dtm.test, names(pos.lasso), names(neg.lasso))
+senti.ridge.test &lt;- polarity(dtm.test, names(pos.ridge), names(neg.ridge))
+senti.elastic.test &lt;- polarity(dtm.test, names(pos.elastic), names(neg.elastic))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-61" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">senti.lm.b.test &lt;- ifelse(senti.lm.test &gt; 0, 1, 0)
+senti.lasso.b.test &lt;- ifelse(senti.lasso.test &gt; 0, 1, 0)
+senti.ridge.b.test &lt;- ifelse(senti.ridge.test &gt; 0, 1, 0)
+senti.elastic.b.test &lt;- ifelse(senti.elastic.test &gt; 0, 1, 0)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-62" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lm.b.test, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 445 301
+##          1  55 198
+##                                                
+##                Accuracy : 0.6436               
+##                  95% CI : (0.6131, 0.6734)     
+##     No Information Rate : 0.5005               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.2869               
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.8900               
+##             Specificity : 0.3968               
+##          Pos Pred Value : 0.5965               
+##          Neg Pred Value : 0.7826               
+##              Prevalence : 0.5005               
+##          Detection Rate : 0.4454               
+##    Detection Prevalence : 0.7467               
+##       Balanced Accuracy : 0.6434               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-63" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lasso.b.test, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 447  86
+##          1  45 411
+##                                                
+##                Accuracy : 0.8675               
+##                  95% CI : (0.8448, 0.8881)     
+##     No Information Rate : 0.5025               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.7352               
+##  Mcnemar&#39;s Test P-Value : 0.0004744            
+##                                                
+##             Sensitivity : 0.9085               
+##             Specificity : 0.8270               
+##          Pos Pred Value : 0.8386               
+##          Neg Pred Value : 0.9013               
+##              Prevalence : 0.4975               
+##          Detection Rate : 0.4520               
+##    Detection Prevalence : 0.5389               
+##       Balanced Accuracy : 0.8677               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-64" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.ridge.b.test, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 444  85
+##          1  56 414
+##                                               
+##                Accuracy : 0.8589              
+##                  95% CI : (0.8357, 0.8799)    
+##     No Information Rate : 0.5005              
+##     P-Value [Acc &gt; NIR] : &lt; 0.0000000000000002
+##                                               
+##                   Kappa : 0.7177              
+##  Mcnemar&#39;s Test P-Value : 0.01837             
+##                                               
+##             Sensitivity : 0.8880              
+##             Specificity : 0.8297              
+##          Pos Pred Value : 0.8393              
+##          Neg Pred Value : 0.8809              
+##              Prevalence : 0.5005              
+##          Detection Rate : 0.4444              
+##    Detection Prevalence : 0.5295              
+##       Balanced Accuracy : 0.8588              
+##                                               
+##        &#39;Positive&#39; Class : 0                   
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-65" style="background:;">
+  <hgroup>
+    <h2>15. 감정분석이 얼마나 정확한가 확인하기</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.elastic.b.test, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 454  82
+##          1  39 416
+##                                                
+##                Accuracy : 0.8779               
+##                  95% CI : (0.8559, 0.8976)     
+##     No Information Rate : 0.5025               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.7559               
+##  Mcnemar&#39;s Test P-Value : 0.0001344            
+##                                                
+##             Sensitivity : 0.9209               
+##             Specificity : 0.8353               
+##          Pos Pred Value : 0.8470               
+##          Neg Pred Value : 0.9143               
+##              Prevalence : 0.4975               
+##          Detection Rate : 0.4581               
+##    Detection Prevalence : 0.5409               
+##       Balanced Accuracy : 0.8781               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-66" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">X.test &lt;- as.matrix(dtm.test)
+senti.lm.test.coef &lt;- predict(res.lm , newx = X.test)
+senti.lasso.test.coef &lt;- predict(res.lasso, newx = X.test, s = &quot;lambda.min&quot;)
+senti.ridge.test.coef &lt;- predict(res.ridge, newx = X.test, s = &quot;lambda.min&quot;)
+senti.elastic.test.coef &lt;- predict(res.elastic, newx = X.test, s = &quot;lambda.min&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-67" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">senti.lm.b.test.coef &lt;- ifelse(senti.lm.test.coef &gt; 0, 1, 0)
+senti.lasso.b.test.coef &lt;- ifelse(senti.lasso.test.coef &gt; 0, 1, 0)
+senti.ridge.b.test.coef &lt;- ifelse(senti.ridge.test.coef &gt; 0, 1, 0)
+senti.elastic.b.test.coef &lt;- ifelse(senti.elastic.test.coef &gt; 0, 1, 0)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-68" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lm.b.test.coef, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 363 111
+##          1 137 389
+##                                              
+##                Accuracy : 0.752              
+##                  95% CI : (0.724, 0.7785)    
+##     No Information Rate : 0.5                
+##     P-Value [Acc &gt; NIR] : &lt;0.0000000000000002
+##                                              
+##                   Kappa : 0.504              
+##  Mcnemar&#39;s Test P-Value : 0.1124             
+##                                              
+##             Sensitivity : 0.7260             
+##             Specificity : 0.7780             
+##          Pos Pred Value : 0.7658             
+##          Neg Pred Value : 0.7395             
+##              Prevalence : 0.5000             
+##          Detection Rate : 0.3630             
+##    Detection Prevalence : 0.4740             
+##       Balanced Accuracy : 0.7520             
+##                                              
+##        &#39;Positive&#39; Class : 0                  
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-69" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lasso.b.test.coef, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 459  72
+##          1  41 428
+##                                               
+##                Accuracy : 0.887               
+##                  95% CI : (0.8657, 0.906)     
+##     No Information Rate : 0.5                 
+##     P-Value [Acc &gt; NIR] : &lt; 0.0000000000000002
+##                                               
+##                   Kappa : 0.774               
+##  Mcnemar&#39;s Test P-Value : 0.00477             
+##                                               
+##             Sensitivity : 0.9180              
+##             Specificity : 0.8560              
+##          Pos Pred Value : 0.8644              
+##          Neg Pred Value : 0.9126              
+##              Prevalence : 0.5000              
+##          Detection Rate : 0.4590              
+##    Detection Prevalence : 0.5310              
+##       Balanced Accuracy : 0.8870              
+##                                               
+##        &#39;Positive&#39; Class : 0                   
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-70" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.ridge.b.test.coef, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 417  67
+##          1  83 433
+##                                              
+##                Accuracy : 0.85               
+##                  95% CI : (0.8263, 0.8716)   
+##     No Information Rate : 0.5                
+##     P-Value [Acc &gt; NIR] : &lt;0.0000000000000002
+##                                              
+##                   Kappa : 0.7                
+##  Mcnemar&#39;s Test P-Value : 0.2207             
+##                                              
+##             Sensitivity : 0.8340             
+##             Specificity : 0.8660             
+##          Pos Pred Value : 0.8616             
+##          Neg Pred Value : 0.8391             
+##              Prevalence : 0.5000             
+##          Detection Rate : 0.4170             
+##    Detection Prevalence : 0.4840             
+##       Balanced Accuracy : 0.8500             
+##                                              
+##        &#39;Positive&#39; Class : 0                  
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-71" style="background:;">
+  <hgroup>
+    <h2>18. 감정사전의 회귀계수를 이용한 감정분석</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.elastic.b.test.coef, mobile.test$Sentiment)
+</code></pre>
+
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 464  68
+##          1  36 432
+##                                                
+##                Accuracy : 0.896                
+##                  95% CI : (0.8754, 0.9142)     
+##     No Information Rate : 0.5                  
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.792                
+##  Mcnemar&#39;s Test P-Value : 0.002367             
+##                                                
+##             Sensitivity : 0.9280               
+##             Specificity : 0.8640               
+##          Pos Pred Value : 0.8722               
+##          Neg Pred Value : 0.9231               
+##              Prevalence : 0.5000               
+##          Detection Rate : 0.4640               
+##    Detection Prevalence : 0.5320               
+##       Balanced Accuracy : 0.8960               
+##                                                
+##        &#39;Positive&#39; Class : 0                    
+## 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-72" style="background:;">
+  <hgroup>
+    <h2>종합</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lm.b, mobile$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.7133567
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.lm.b.test, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.6436436
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.lm.b.test.coef, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+##    0.752
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-73" style="background:;">
+  <hgroup>
+    <h2>종합</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.lasso.b, mobile$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.9674185
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.lasso.b.test, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+## 0.867543
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.lasso.b.test.coef, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+##    0.887
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-74" style="background:;">
+  <hgroup>
+    <h2>종합</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.ridge.b, mobile$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+## 0.981991
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.ridge.b.test, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.8588589
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.ridge.b.test.coef, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+##     0.85
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="newbackground" id="slide-75" style="background:;">
+  <hgroup>
+    <h2>종합</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">confusionMatrix(senti.elastic.b, mobile$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.9603015
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.elastic.b.test, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>##  Accuracy 
+## 0.8779011
+</code></pre>
+
+<pre><code class="r">confusionMatrix(senti.elastic.b.test.coef, mobile.test$Sentiment)$overall[1]
+</code></pre>
+
+<pre><code>## Accuracy 
+##    0.896
 </code></pre>
 
   </article>
@@ -793,79 +2052,79 @@ neg.lm &lt;- sort(neg.lm, decreasing = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='회귀분석의 문제'>
+        data-slide=11 title='상관관계'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='과적합을 막는 법'>
+        data-slide=12 title='상관관계'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='상관관계'>
+        data-slide=13 title='상관관계 및 회귀분석'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='상관관계'>
+        data-slide=14 title='X가 2개라면?'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='상관관계 및 회귀분석'>
+        data-slide=15 title='다중회귀분석'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='X가 2개라면?'>
+        data-slide=16 title='회귀분석의 문제'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='다중회귀분석'>
+        data-slide=17 title='Over-fitting'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='예측력'>
+        data-slide=18 title='Over-fitting'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Traninig Vs Test'>
+        data-slide=19 title='과적합을 막는 법'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Over-fitting'>
+        data-slide=20 title='Lasso Vs Ridge'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Over-fitting(과적합)'>
+        data-slide=21 title='Lasso Vs Ridge'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Lasso Vs Ridge'>
+        data-slide=22 title='Over-fitting'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Lasso Vs Ridge'>
+        data-slide=23 title='예측력'>
          23
       </a>
     </li>
@@ -889,7 +2148,7 @@ neg.lm &lt;- sort(neg.lm, decreasing = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='7. 회귀분석으로 감정 사전 만들기'>
+        data-slide=27 title='6. DocumentTermMatrix 만들기'>
          27
       </a>
     </li>
@@ -897,6 +2156,288 @@ neg.lm &lt;- sort(neg.lm, decreasing = F)
       <a href="#" target="_self" rel='tooltip' 
         data-slide=28 title='7. 회귀분석으로 감정 사전 만들기'>
          28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='7. 회귀분석으로 감정 사전 만들기'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='7. 회귀분석으로 감정 사전 만들기'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='7. 회귀분석으로 감정 사전 만들기'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='10. 라쏘 회귀분석으로 감정 사전 만들기'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='11. 릿지 회귀분석으로 감정 사전 만들기'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='12. 엘라스틱넷으로 감정 사전 만들기'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='14. 감정사전을 이용한 감정분석'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='14. 감정사전을 이용한 감정분석'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         62
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=63 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         63
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=64 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         64
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=65 title='15. 감정분석이 얼마나 정확한가 확인하기'>
+         65
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=66 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         66
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=67 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         67
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=68 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         68
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=69 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         69
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=70 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         70
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=71 title='18. 감정사전의 회귀계수를 이용한 감정분석'>
+         71
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=72 title='종합'>
+         72
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=73 title='종합'>
+         73
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=74 title='종합'>
+         74
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=75 title='종합'>
+         75
       </a>
     </li>
   </ul>

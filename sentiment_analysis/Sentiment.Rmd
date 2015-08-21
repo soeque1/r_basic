@@ -109,24 +109,6 @@ knit        : slidify::knit2slides
 <h3b>- 부정단어가 1개 증가할 때 마다 평점 1점 감점  </h3b>  
 <h3b>- 긍정단어가 1개 증가할 때 마다 평점 1점 증가  </h3b>  
 
---- .newbackground
-
-## 회귀분석의 문제 
-
-<h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b>  
-<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b>   
-<h3b>- 예측력이 떨어짐  </h3b>  
-<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  
-
---- .newbackground
-
-## 과적합을 막는 법 
-
-<h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b>  
-<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b>   
-<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b>  
-<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  
-
 --- &twocol .modal
 
 ## 상관관계
@@ -200,6 +182,9 @@ print(xtable(coef(summary(lm(weights ~ heights)))),type="html")
 cor(weights, heights)
 ```
 
+키가 1cm 증가하면 몸무게는 .49kg 증가
+
+
 --- &twocol
 
 ## X가 2개라면?
@@ -246,81 +231,24 @@ print(xtable(coef(summary(lm(weights ~ iq + heights)))),type="html")
 
 --- .newbackground
 
-## 예측력  
+## 회귀분석의 문제 
 
-<h3b> MSE(Mean of Square Error) </h3b>
-$$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
-
-<h3b> 정확도(Accracy) </h3b>  
-
-<center><img src="assets/img/confusionMat.jpg" height=200px width=600px></center>
-<h3b> 정확도 = (TP + TN) / (TP + FP + TN + FN) </h3b>
-
---- &twocol
-
-## Traninig Vs Test
-
-*** =left
-
-```{r results="asis", echo=F, fig.width=6}
-lm.1 <- lm(weights~heights)
-lm.2 <- lm(weights~iq+heights)
-plot(weights ~ heights, pch = 3, lwd = 5, main = "Sample(Training) Set", cex.lab = 2) 
-
-points((-10 + heights*.5) ~ heights, pch = 15, col = "red")
-points(predict(lm.1) ~ heights, pch = 15,  col = "blue")
-points(predict(lm.2) ~ heights , pch = 16,  col = "green")
-
-a <- apply(cbind(heights, heights, weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
-
-
-
-true_mse = sum((weights - (-10 + .5*heights))^2)
-lm_mse = sum((weights - predict(lm.1))^2)
-lm2_mse = sum((weights - predict(lm.2))^2)
-
-legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
-                       paste("LM MSE:",round(lm_mse,2)), 
-                       paste("LM2 MSE:",round(lm2_mse,2))),
-                         col=c("red","blue","green"),lty=1)
-
-```
-
-*** =right
-
-```{r results="asis", echo=F, fig.width=6}
-set.seed(12345)
-t.heights = rnorm(30,180,5)
-t.weights =  -10 + t.heights*.5 + rnorm(30,0,2)
-plot(t.weights ~ t.heights, pch = 3, lwd = 5, main = "Sample(Test) Set")
-points((-10 + t.heights*.5) ~ t.heights, pch = 15,  col = "red", cex.lab = 2)
-points(predict(lm.1) ~ t.heights, pch = 15,  col = "blue")
-points(predict(lm.2) ~ t.heights , pch = 16,  col = "green")
-
-a <- apply(cbind(t.heights, t.heights, t.weights, predict(lm.2)),1, function(coords){lines(coords[1:2],coords[3:4],lty=2)})
-
-true_mse = sum((t.weights - (-10 + .5*t.heights))^2)
-lm_mse = sum((t.weights - predict(lm.1))^2)
-lm2_mse = sum((t.weights - predict(lm.2))^2)
-
-legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
-                       paste("LM MSE:",round(lm_mse,2)), 
-                       paste("LM2 MSE:",round(lm2_mse,2))),
-                         col=c("red","blue","green"),lty=1)
-
-```
+<h3b>- 변수가 많아지면 과적합(overfitting)이 발생  </h3b>  
+<h3b>- 회귀계수가 극단적으로 커지거나 작아짐 </h3b>   
+<h3b>- 예측력이 떨어짐  </h3b>  
+<h3b>- 과적합을 막아주는 방법이 필요  </h3b>  
 
 --- .newbackground
 
 ## Over-fitting
 
-<center><img src="assets/img/lambda.png" height=450px width=700px></center>
+<center><img src="assets/img/poly.png" height=450px width=700px></center>
 
 --- .newbackground
 
-## Over-fitting(과적합)
+## Over-fitting
 
-<h3b> How to avoid Over-fitting </h3b>  
+<h3b> Over-fitting을 피하는 방법들 </h3b>  
 <h3b>- Penality of Model Complexity (MSE 보정)  </h3b>  
 <h3b><font color="red">- Regulization (Lasso, Ridge, Elastic Net) </font>  </h3b>  
 <h3b>- Bayesian  </h3b>  
@@ -328,11 +256,20 @@ legend("topleft",legend=c(paste("True MSE:",round(true_mse,2)),
 
 --- .newbackground
 
+## 과적합을 막는 법 
+
+<h3b>- 라쏘(lasso): 작은 회귀계수를 0으로 만듦   </h3b>  
+<h3b>- 릿지(ridge): 전반적으로 회귀계수를 줄여줌 </h3b>   
+<h3b>- 엘라스틱넷(elastic net): 라쏘 + 릿지  </h3b>  
+<h3b>- 감정분석에서 라쏘를 쓰면 감정 단어만 추출됨 </h3b>  
+
+--- .newbackground
+
 ## Lasso Vs Ridge
 
 <center><img src="assets/img/lassoridge.png" height=450px width=800px></center>
 
---- &twocol
+--- &twocol w1:50% w2:50% .new-background
 
 ## Lasso Vs Ridge
 
@@ -343,15 +280,6 @@ library(glmnet)
 ```
 
 ```{r, echo = F, fig.width=6}
-#cv.res <- cv.glmnet(cbind(heights, iq), weights, family = "gaussian", alpha = 1)
-#cv.coef <- coef(cv.res, s = "lambda.min")
-#plot(cv.res)
-# 
-#lasso.res <- glmnet(cbind(heights, iq), weights, lambda = cv.res$lambda.min, alpha = 1)
-#plot(coefficients(lasso.res))
-#lasso_mse = sum((t.weights - predict(lasso.res, cbind(heights, iq)))^2)
-#lasso_mse
-
 lbs_fun <- function(fit, ...) {
         L <- length(fit$lambda)
         x <- log(fit$lambda[L])
@@ -362,7 +290,7 @@ lbs_fun <- function(fit, ...) {
 }
 
 lasso.res <- glmnet(cbind(heights, iq), weights, alpha = 1)
-plot(lasso.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "LASSO", ylim = c(0, .6), cex.lab = 2)
+plot(lasso.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "LASSO", ylim = c(0, .6), cex.lab = 1.3, ylab = "회귀계수")
 lbs_fun(lasso.res)
 
 ```
@@ -372,9 +300,28 @@ lbs_fun(lasso.res)
 ```{r, echo = F, fig.width=6}
 
 ridge.res <- glmnet(cbind(heights, iq), weights, alpha = 0)
-plot(ridge.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "RIDGE", ylim = c(0, .6), cex.lab = 2)
+plot(ridge.res, xvar="lambda", col=1:dim(coef(lasso.res))[1], main = "RIDGE", ylim = c(0, .6), cex.lab = 1.3, ylab = "회귀계수")
 lbs_fun(ridge.res)
 ```
+
+--- .newbackground
+
+## Over-fitting
+
+<center><img src="assets/img/lambda.png" height=450px width=700px></center>
+
+
+--- .newbackground
+
+## 예측력  
+
+<h3b> MSE(Mean of Square Error) </h3b>
+$$ MSE = \sum_{i=1}^{n}(Y_{i} - \hat{Y_{i}})^{2} $$
+
+<h3b> 정확도(Accracy) </h3b>  
+
+<center><img src="assets/img/confusionMat.jpg" height=200px width=600px></center>
+<h3b> 정확도 = (TP + TN) / (TP + FP + TN + FN) </h3b>
 
 --- .newbackground
 
@@ -382,14 +329,14 @@ lbs_fun(ridge.res)
 
 <h3b> Data </h3b>  
 <h3b> 아마존 모바일 폰 리뷰 중에서 2,000개만 </h3b>  
+<h3b> 긍정평 1000개, 부정평 1000개 </h3b>  
 
 --- .newbackground
 
 ## 5. 예제 데이터 불러오기
 
 ```{r, echo = F}
-setwd("~/Dropbox/repo/r_basic/sentiment_analysis/data/")
-mobile <- read.csv('mobile2014.csv', stringsAsFactors = F)
+mobile <- read.csv('/Users/kimhyungjun/Dropbox/repo/r_basic/sentiment_analysis/data/mobile2014.csv', stringsAsFactors = F)
 ```
 
 ```{r, eval = F}
@@ -398,6 +345,7 @@ mobile <- read.csv('mobile2014.csv', stringsAsFactors = F)
 
 ```{r}
 dim(mobile)
+names(mobile)
 table(mobile$Sentiment)
 ```
 
@@ -409,14 +357,19 @@ table(mobile$Sentiment)
 library(tm)
 ```
 
-
 ```{r}
 corpus <- Corpus(VectorSource(mobile$Texts))
 
 ##  제거할 단어 목록 확인
 stopwords()
 stopwords("SMART")
+```
 
+--- .newbackground
+
+## 6. DocumentTermMatrix 만들기
+
+```{r}
 dtm <- DocumentTermMatrix(corpus,
                           control = list(tolower = T,
                                          removePunctuation = T,
@@ -454,5 +407,445 @@ pos.lm <- coef.lm[coef.lm > 0]
 neg.lm <- coef.lm[coef.lm < 0]
 pos.lm <- sort(pos.lm, decreasing = T)
 neg.lm <- sort(neg.lm, decreasing = F)
+```
+
+--- .newbackground
+    
+## 7. 회귀분석으로 감정 사전 만들기
+    
+```{r}
+pos.lm[1:20]
+```
+
+--- .newbackground
+    
+## 7. 회귀분석으로 감정 사전 만들기
+    
+```{r}
+neg.lm[1:20]
+```
+
+--- .newbackground
+
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+
+```{r}
+set.seed(12345)
+res.lasso <- cv.glmnet(X, Y, family = "binomial", alpha = 1,
+                       nfolds = 4, type.measure = "class")
+```
+
+--- .newbackground
+
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+
+```{r}
+plot(res.lasso)
+```
+
+--- .newbackground
+
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+
+```{r}
+plot(res.lasso$glmnet.fit, xvar = "lambda")
+```
+
+--- .newbackground
+
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+
+```{r}
+options(scipen = 100)
+coef.lasso <- coef(res.lasso, s = "lambda.min")[,1]
+pos.lasso <- coef.lasso[coef.lasso > 0]
+neg.lasso <- coef.lasso[coef.lasso < 0]
+pos.lasso <- sort(pos.lasso, decreasing = T)
+neg.lasso <- sort(neg.lasso, decreasing = F)
+```
+
+--- .newbackground
+    
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+    
+```{r}
+pos.lasso[1:20]
+```
+
+--- .newbackground
+    
+## 10. 라쏘 회귀분석으로 감정 사전 만들기
+    
+```{r}
+neg.lasso[1:20]
+```
+
+--- .newbackground
+
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+
+```{r}
+set.seed(12345)
+res.ridge <- cv.glmnet(X, Y, family = "binomial", alpha = 0,
+                       nfolds = 4, type.measure = "class")
+```
+
+--- .newbackground
+
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+
+```{r}
+plot(res.ridge)
+```
+
+--- .newbackground
+
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+
+```{r}
+plot(res.ridge$glmnet.fit, xvar = "lambda")
+```
+
+--- .newbackground
+
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+
+```{r}
+coef.ridge <- coef(res.ridge, s = "lambda.min")[,1]
+pos.ridge <- coef.ridge[coef.ridge > 0]
+neg.ridge <- coef.ridge[coef.ridge < 0]
+pos.ridge <- sort(pos.ridge, decreasing = T)
+neg.ridge <- sort(neg.ridge, decreasing = F)
+```
+
+--- .newbackground
+    
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+    
+```{r}
+pos.ridge[1:20]
+```
+
+--- .newbackground
+    
+## 11. 릿지 회귀분석으로 감정 사전 만들기
+    
+```{r}
+neg.ridge[1:20]
+```
+
+--- .newbackground
+
+## 12. 엘라스틱넷으로 감정 사전 만들기
+
+```{r}
+set.seed(12345)
+res.elastic <- cv.glmnet(X, Y, family = "binomial", alpha = .5,
+                         nfolds = 4, type.measure="class")
+```
+
+--- .newbackground
+
+## 12. 엘라스틱넷으로 감정 사전 만들기
+
+```{r}
+plot(res.elastic)
+```
+
+--- .newbackground
+
+## 12. 엘라스틱넷으로 감정 사전 만들기
+
+```{r}
+plot(res.elastic$glmnet.fit, xvar = "lambda")
+```
+
+--- .newbackground
+
+## 12. 엘라스틱넷으로 감정 사전 만들기
+
+```{r}
+coef.elastic <- coef(res.elastic, s = "lambda.min")[,1]
+pos.elastic <- coef.elastic[coef.elastic > 0]
+neg.elastic <- coef.elastic[coef.elastic < 0]
+pos.elastic <- sort(pos.elastic, decreasing = T)
+neg.elastic <- sort(neg.elastic, decreasing = F)
+```
+
+--- .newbackground
+    
+## 12. 엘라스틱넷으로 감정 사전 만들기
+    
+```{r}
+pos.elastic[1:20]
+```
+
+--- .newbackground
+    
+## 12. 엘라스틱넷으로 감정 사전 만들기
+    
+```{r}
+neg.elastic[1:20]
+```
+
+
+--- .newbackground
+
+## 14. 감정사전을 이용한 감정분석
+
+```{r, message=F}
+library(tm.plugin.sentiment)
+```
+
+```{r}
+senti.lm <- polarity(dtm, names(pos.lm), names(neg.lm))
+senti.lasso <- polarity(dtm, names(pos.lasso), names(neg.lasso))
+senti.ridge <- polarity(dtm, names(pos.ridge), names(neg.ridge))
+senti.elastic <- polarity(dtm, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## 14. 감정사전을 이용한 감정분석
+
+```{r}
+senti.lm <- polarity(dtm, names(pos.lm), names(neg.lm))
+senti.lasso <- polarity(dtm, names(pos.lasso), names(neg.lasso))
+senti.ridge <- polarity(dtm, names(pos.ridge), names(neg.ridge))
+senti.elastic <- polarity(dtm, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+senti.lm.b <- ifelse(senti.lm > 0, 1, 0)
+senti.lasso.b <- ifelse(senti.lasso > 0, 1, 0)
+senti.ridge.b <- ifelse(senti.ridge > 0, 1, 0)
+senti.elastic.b <- ifelse(senti.elastic > 0, 1, 0)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r, message=F}
+library(caret)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.lm.b, mobile$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.lasso.b, mobile$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.ridge.b, mobile$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.elastic.b, mobile$Sentiment)
+```
+
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r, echo = F}
+mobile.test <- read.csv('/Users/kimhyungjun/Dropbox/repo/r_basic/sentiment_analysis/data/mobile2014_test.csv', stringsAsFactors = F)
+```
+
+```{r, eval = F}
+mobile.test <- read.csv("mobile2014_test.csv", stringsAsFactors = F)
+```
+
+```{r}
+dim(mobile.test)
+names(mobile.test)
+table(mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+corpus <- Corpus(VectorSource(mobile.test$Texts))
+dtm.test <- DocumentTermMatrix(corpus,
+                          control = list(tolower = T,
+                                         removePunctuation = T,
+                                         removeNumbers = T,
+                                         stopwords = stopwords("SMART"),
+                                         weighting = weightTfIdf,
+                                         dictionary = Terms(dtm)))
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+senti.lm.test <- polarity(dtm.test, names(pos.lm), names(neg.lm))
+senti.lasso.test <- polarity(dtm.test, names(pos.lasso), names(neg.lasso))
+senti.ridge.test <- polarity(dtm.test, names(pos.ridge), names(neg.ridge))
+senti.elastic.test <- polarity(dtm.test, names(pos.elastic), names(neg.elastic))
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+senti.lm.b.test <- ifelse(senti.lm.test > 0, 1, 0)
+senti.lasso.b.test <- ifelse(senti.lasso.test > 0, 1, 0)
+senti.ridge.b.test <- ifelse(senti.ridge.test > 0, 1, 0)
+senti.elastic.b.test <- ifelse(senti.elastic.test > 0, 1, 0)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.lm.b.test, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.lasso.b.test, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.ridge.b.test, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 15. 감정분석이 얼마나 정확한가 확인하기
+
+```{r}
+confusionMatrix(senti.elastic.b.test, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+X.test <- as.matrix(dtm.test)
+senti.lm.test.coef <- predict(res.lm , newx = X.test)
+senti.lasso.test.coef <- predict(res.lasso, newx = X.test, s = "lambda.min")
+senti.ridge.test.coef <- predict(res.ridge, newx = X.test, s = "lambda.min")
+senti.elastic.test.coef <- predict(res.elastic, newx = X.test, s = "lambda.min")
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+senti.lm.b.test.coef <- ifelse(senti.lm.test.coef > 0, 1, 0)
+senti.lasso.b.test.coef <- ifelse(senti.lasso.test.coef > 0, 1, 0)
+senti.ridge.b.test.coef <- ifelse(senti.ridge.test.coef > 0, 1, 0)
+senti.elastic.b.test.coef <- ifelse(senti.elastic.test.coef > 0, 1, 0)
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+confusionMatrix(senti.lm.b.test.coef, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+confusionMatrix(senti.lasso.b.test.coef, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+confusionMatrix(senti.ridge.b.test.coef, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 18. 감정사전의 회귀계수를 이용한 감정분석
+
+```{r}
+confusionMatrix(senti.elastic.b.test.coef, mobile.test$Sentiment)
+```
+
+--- .newbackground
+
+## 종합
+
+```{r}
+confusionMatrix(senti.lm.b, mobile$Sentiment)$overall[1]
+confusionMatrix(senti.lm.b.test, mobile.test$Sentiment)$overall[1]
+confusionMatrix(senti.lm.b.test.coef, mobile.test$Sentiment)$overall[1]
+```
+
+--- .newbackground
+
+## 종합
+
+```{r}
+confusionMatrix(senti.lasso.b, mobile$Sentiment)$overall[1]
+confusionMatrix(senti.lasso.b.test, mobile.test$Sentiment)$overall[1]
+confusionMatrix(senti.lasso.b.test.coef, mobile.test$Sentiment)$overall[1]
+```
+
+--- .newbackground
+
+## 종합
+
+```{r}
+confusionMatrix(senti.ridge.b, mobile$Sentiment)$overall[1]
+confusionMatrix(senti.ridge.b.test, mobile.test$Sentiment)$overall[1]
+confusionMatrix(senti.ridge.b.test.coef, mobile.test$Sentiment)$overall[1]
+```
+
+--- .newbackground
+
+## 종합
+
+```{r}
+confusionMatrix(senti.elastic.b, mobile$Sentiment)$overall[1]
+confusionMatrix(senti.elastic.b.test, mobile.test$Sentiment)$overall[1]
+confusionMatrix(senti.elastic.b.test.coef, mobile.test$Sentiment)$overall[1]
 ```
 
